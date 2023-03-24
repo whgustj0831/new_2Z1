@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+* { margin:0; padding:0; box-sizing:border-box; outline:none; }
+a { color:inherit; text-decoration:none; }
+input { border: none; }
+/* ::placeholder { color:#aaa } */
+ul { list-style: none; }
+
+#star {
+    width: 450px;
+    margin: 50px auto; padding: 20px 30px 500px 30px;
+    border: 1px solid #ccc;
+}
+#star > h2 {
+    font-size: 28px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    padding: 20px;
+}
+#star .startext {
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+} 
+#star .startext > form {
+    display: flex;
+    height: 50px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+#star .startext > form > input {
+    flex: 1;
+    padding-left: 20px;
+    border-right: 1px solid #ccc;
+}
+#star .startext > form > button {
+    border: none;
+    background: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+#star .starlist {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+#star .starlist > li {
+    display: flex;
+}
+#star .starlist > li > input {
+    flex: 1;
+    padding: 10px 20px;
+    border-right: 1px solid #ccc;
+}
+#star .starlist > li > button {
+    border: none;
+    background: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+#star .btn {
+    float: right;
+    margin-top: 10px; padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+* { margin:0; padding:0; box-sizing:border-box; outline:none; }
+input { border: none; }
+
+
+body {
+  background-image: url(../img/77254_27169_036.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* 전체 스크롤 박스안에 넣어버리기 */
+/* 반응형 퍼센트로 바꾸기 */
+
+#wrap {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  overflow-y: scroll;
+}
+
+.row {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.joinPage .joinBox {
+  padding-top: 90px;
+}
+.joinPage .joinBox p {
+  line-height: 1.5em;
+}
+.joinPage .joinBox h2 {
+  font-size: 30px;
+  padding: 20px 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 35px;
+}
+.joinPage .joinBox .btn {
+  text-align: center;
+}
+.joinPage .joinBox .btn button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  background: #fff;
+  margin: 70px 10px;
+  border-radius: 8px;
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+}
+.joinPage .joinBox .btn button[type=submit] {
+  background: none;
+  border: 1px solid #fff;
+}
+
+
+.joinPage .joinBox form h3 {
+  font-size: 18px;
+  padding: 30px 10px 20px 10px;
+  /* font-weight: bold; */
+  font-size: 20px;
+  color: #fff;
+}
+.joinPage .joinBox form .cf {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  padding-top: 10px;
+}
+.joinPage .joinBox form .cf:first-child {
+  border-top: 1px solid #fff;
+  padding-top: 15px;
+}
+.joinPage .joinBox form .cf label {
+  padding: 1px 20px 1px 13px;
+  margin-left: 10px;
+  text-align: left;
+  vertical-align: middle;
+  background: #fff;
+}
+.joinPage .joinBox form .cf .ap {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.joinPage .joinBox form .cf input[type=checkbox],
+.joinPage .joinBox form .cf input[type=radio],
+.joinPage .joinBox form .cf input[type=checkbox] + label,
+.joinPage .joinBox form .cf input[type=radio] + label {
+  vertical-align: middle;
+}
+.joinPage .joinBox form .cf input[type=text],
+.joinPage .joinBox form .cf input[type=password],
+.joinPage .joinBox form .cf select {
+  height: 30px;
+  border: 1px solid #fff;
+  text-indent: 1em;
+  vertical-align: middle;
+}
+.joinPage .joinBox form .cf select {
+  text-indent: 0em;
+}
+
+.joinPage .joinBox form .cf textarea {
+  width: 80%;
+  height: 100px;
+  border: 1px solid #fff;
+  padding: 10px;
+}
+
+.joinPage .joinBox form .hh {
+  margin-top: 20px;
+} 
+.joinPage .joinBox form .agree {
+  background: #fff;
+  padding: 30px 20px 10px 20px;
+}
+.joinPage .joinBox form .agree > div {
+  background: #fff;
+  height: 100px;
+  overflow-y: auto;
+  line-height: 1.5;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.joinPage .joinBox form .agree input {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1020px) {
+  .row {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  
+}

@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
+.trainInfo {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+}
+.trainInfo * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.trainInfo .station-line {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  position: relative;
+}
+.trainInfo .station-line::after {
+  position: absolute;
+  width: 100%;
+  height: 1.8em;
+  background-color: #00a84d;
+  content: " ";
+  display: block;
+  z-index: -1;
+}
+.trainInfo .station-line .station {
+  text-align: center;
+  color: white;
+  line-height: 1;
+}
+.trainInfo .station-line .station-current {
+  min-width: 170px;
+  border: 6px solid #00a84d;
+  border-radius: 50px;
+  color: #00a84d;
+  font-size: 150%;
+  background-color: white;
+  padding: 10px 40px;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  font-weight: 700;
+  line-height: 1.5;
+}
+@media screen and (max-width: 400px) {
+  .trainInfo .station-line {
+    gap: 2%;
+    justify-content: space-around;
+  }
+  .trainInfo .station-line .station-current {
+    font-size: 130%;
+    padding: 10px 20px;
+    letter-spacing: 0.2em;
+    text-indent: 0.2em;
+  }
+}
+.trainInfo .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding: 10px 0;
+  gap: 10%;
+}
+.trainInfo .loader {
+  animation: ani infinite 0.5s both;
+  transform-origin: bottom center;
+}
+@keyframes ani {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(-3deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(3deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+.trainInfo .loader-box {
+  position: absolute;
+  top: 40%;
+}
+.trainInfo .track {
+  top: 10%;
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 120px;
+  border-left: 8px solid #bbb;
+  transform: skew(-5deg) rotateX(45deg) translateX(25%);
+}
+.trainInfo .track:before {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 50px;
+  background-color: #bbb;
+  top: 90px;
+  box-shadow: 0 0 #bbb, 0 -20px #bbb, 0 -40px #bbb, 0 -60px #bbb, 0 -80px #bbb, 0 -100px #bbb, 0 -120px #bbb, 0 -140px #bbb, 0 -160px #bbb;
+  animation: track 1s linear infinite;
+}
+@keyframes track {
+  0% {
+    transform: translateY(70px) rotateX(45deg);
+  }
+  100% {
+    transform: translateY(0px) rotateX(45deg);
+  }
+}
+.trainInfo .track:after {
+  display: block;
+  top: 10%;
+  content: "";
+  position: absolute;
+  transform: rotate(-10deg) translateY(8px);
+  width: 50px;
+  height: 120px;
+  background-color: #fff;
+  border-left: 8px solid #bbb;
+  left: 30px;
+  top: -10px;
+}
+.trainInfo .train {
+  border-radius: 10px;
+  border: 3px solid #00a84d;
+  outline-offset: 5px;
+  outline: 3px solid #00a84d;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.trainInfo .train::before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  content: "";
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url("../img/window.png");
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.trainInfo .train i {
+  color: #00a84d;
+}
+.trainInfo .train .fa-location-dot {
+  font-size: 26px;
+}
+.trainInfo .train .train-msg {
+  padding: 3px;
+  border: 3px solid #00a84d;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+  background-color: white;
+}
+.trainInfo .train .train-msg::before {
+  border: 3px solid #00a84d;
+  z-index: -1;
+  width: 153.75%;
+  background-color: #00a84d;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(-25% - 6px);
+  content: " ";
+  display: block;
+}
+.trainInfo .train .congestion {
+  min-width: -moz-max-content;
+  min-width: max-content;
+  color: white;
+  overflow: hidden;
+}
+.trainInfo .train .congestion span {
+  display: inline-block;
+  padding: 3px 8px;
+  background-color: #00a84d;
+  color: white;
+}
+.trainInfo .train .congestion span:first-of-type {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 6px;
+}
+.trainInfo .train .congestion span:last-of-type {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 6px;
+}
+.trainInfo .train .congestion [data-crowded="0"] {
+  color: transparent;
+  filter: grayscale(0.8);
+}
+.trainInfo .train .congestion [data-crowded="1"] {
+  filter: saturate(1.6);
+}
+.trainInfo .train .congestion [data-crowded="2"] {
+  filter: saturate(1.2);
+}
+.trainInfo .train .congestion [data-crowded="3"] {
+  filter: hue-rotate(-30deg);
+}
+.trainInfo .train .congestion [data-crowded="4"] {
+  filter: hue-rotate(-55deg);
+}
+@media screen and (max-width: 400px) {
+  .trainInfo .train {
+    padding: 10px;
+  }
+  .trainInfo .train .congestion span {
+    padding: 2px 7px;
+  }
+}
+.trainInfo .train .next-train {
+  color: #444;
+}
+.trainInfo .container {
+  overflow: visible;
+  position: relative;
+}
+.trainInfo .container::after {
+  display: block;
+  position: absolute;
+  height: 230px;
+  width: 100vw;
+  content: " ";
+  margin-top: 10vh;
+  top: 100%;
+  background-image: url("../img/seat.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}/*# sourceMappingURL=index.css.map */

@@ -91,7 +91,7 @@ button {
 }
 
 .slider {
-  z-index: 99999999;
+  z-index: 8000;
   background-color: gainsboro;
   position: fixed;
   left: 100%;
@@ -105,13 +105,12 @@ button {
   transform: translateX(-300px);
 }
 
-.popup0 {
-  width: 500px;
-  height: 360px;
+.popup {
+  width: 400px;
+  height: 200px;
   border: 2px solid green;
   position: fixed;
-  left: 20%;
-  top: 30%;
+  transform: translate(-50%, -100%);
 }
 
 .ligin_popup {
@@ -160,6 +159,7 @@ button {
     border: 2px solid salmon;
     left: 0;
     bottom: 0;
+    transform: unset;
   }
   /* 	.ligin_popup {
     position: fixed;

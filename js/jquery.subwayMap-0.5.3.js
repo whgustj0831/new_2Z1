@@ -345,9 +345,9 @@ THE SOFTWARE.
         },
 
         _drawBg: function (el) {
-            console.log("hi");
+        /*     console.log("hi"); */
 
-            if ($(window).width() > 768) {
+          /*   if ($(window).width() > 768) {
                 var ctx = this._getCanvasLayer(el, false);
                 var background = new Image();
                 background.src = "img/bg.png";
@@ -356,7 +356,7 @@ THE SOFTWARE.
                     //이미지, x좌표, y좌표, 가로크기, 세로크기
                     ctx.drawImage(background, 0, -210);
                 };
-            }
+            } */
         },
         _drawLine: function (
             el,

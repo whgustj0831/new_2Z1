@@ -23,19 +23,37 @@
     </head>
 
     <body>
+        <!-- 
+            서치박스
+                밖으로 빼내기
+                a태그로바꾸기 추가 빼서 역정보에 넣기
+                아니 왜ㅠㅠㅠ 싶지만 쨋든 미디어쿼리에서 서치박스 옆으로 뜨는거
+            ????역정보
+                팝업 어쩌고 저쩌고...
+
+            최근기록
+            즐겨찾기
+                오른쪽 위에 전체삭제
+            로그인 팝업
+            이미지박스
+                이미지만들기
+            내위치???/
+            
+
+         -->
         <header class="header">
             <h1>
                 <img src="./Artboard 32000.png" alt="" />
             </h1>
 
             <div class="btns">
-                <button class="mobile-search" id="mobile-search">M</button>
+                <button class="mobile-search" id="mobile-search"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 <button class="logini"><i class="fa-solid fa-user"></i></button>
 
                 <div class="search-box">
                     <input type="text" placeholder="역이름 검색" id="search-input" />
-                    <button>
+                    <button class="search_button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
 
@@ -48,7 +66,7 @@
             </div>
         </header>
         <nav class="nav">
-            <button id="get-stations"><i class="fa-solid fa-signal-stream" ></i></button>
+            <button id="get-stations"><i class="fa-solid fa-crosshairs"></i></button>
             <button class="slider-btn" id="search-history-btn">
                 <i class="fa-solid fa-clock"></i>
             </button>
@@ -70,14 +88,19 @@
       
         </div>
 
-        <div class="ligin_popup">
-            <button>로그인</button>
+        <div class="login_popup">
+            <h2>로그인</h2>
+            <p class="loginin">
+                <input type="text" name="idt" placeholder="아이디">
+            </p>
+            <p class="pwin">
+                <input type="password" name="pw" placeholder="비밀번호">
+            </p>
+            <button type="submit">로그인</button>
         </div>
 
       
-    <script src="./js/sample.js" defer></script>
-    <script src="./js/main.js" defer></script>
-      
+        <script src="./js/sample.js" defer></script>
+        <script src="./js/main.js" defer></script>
     </body>
-
 </html>

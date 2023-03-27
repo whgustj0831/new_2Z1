@@ -760,7 +760,7 @@ var favData = [];
 
 if (localStorage.favData) {
     favData = JSON.parse(localStorage.favData);
-    if (favData) {
+    if (favData.length) {
         favId = favData[favData.length - 1]["id"];
     }
     useFavData(favData);

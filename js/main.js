@@ -730,6 +730,8 @@ function getGeoPos() {
 
 $("#search-input").on("input", (e) => {
     let value = e.target.value;
+
+    if (value.length === 0) return;
     let arr = [];
     line2.forEach((station, i) => {
         const index = station.statn_nm.indexOf(value);
@@ -739,8 +741,6 @@ $("#search-input").on("input", (e) => {
         }
     });
 
-    $(".search-result-container .search-result").remove();
-
     const htmlText = arr.map(
         (name) =>
             `<li>
@@ -748,7 +748,31 @@ $("#search-input").on("input", (e) => {
     <button type="button" class='addS' data-statn="${name}">추가</button></li>`
     );
 
-    $(".search-result-container").html(htmlText.join(""));
+    $(".search-result").html(htmlText.join(""));
+
+    $(this).keypress(function (e) {
+        if (e.blur) {
+            if ($(this).val() == "") {
+                $("#star ul .itext").remove();
+            }
+        }
+    });
+});
+
+$("#search-input").blur(function () {
+    $(".search-result").html("");
+});
+
+$(this).blur("#star ul", function () {
+    $(".itext").remove();
+});
+
+$(this).keypress(function (e) {
+    if (e.blur) {
+        if ($(this).val() == "") {
+            $("#star ul .itext").remove();
+        }
+    }
 });
 
 var favId = 0;

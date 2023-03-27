@@ -91,7 +91,7 @@ button {
 }
 
 .slider {
-  z-index: 8000;
+  z-index: 99999999;
   background-color: gainsboro;
   position: fixed;
   left: 100%;

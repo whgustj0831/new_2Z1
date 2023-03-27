@@ -11,13 +11,16 @@ body {
   height: 966px;
 }
 
+button {
+  border-radius: 10px;
+}
+
 .header {
   z-index: 9999999;
   position: fixed;
   width: 100%;
   display: flex;
-  background: #fff;
-  border-bottom: 3px solid rgb(110, 200, 105);
+  border: 3px solid red;
   justify-content: space-between;
 }
 
@@ -27,18 +30,13 @@ body {
 
 .btns {
   display: flex;
-  /* border: 3px solid orange; */
+  border: 3px solid orange;
 }
 
 .btns > button {
   width: 50px;
   border-radius: 10px;
   font-size: 20px;
-}
-.nav > button:nth-child(2) {
-  width: 70px;
-  border-left: 3px solid rgb(110, 200, 105);
-  border-right: 3px solid rgb(110, 200, 105);
 }
 
 .logini {
@@ -49,22 +47,18 @@ body {
   position: fixed;
   bottom: 0;
   z-index: 8888;
-  right: 80px;
+  right: 3%;
   bottom: 5%;
-  border: 3px solid rgb(110, 200, 105);
-  border-radius: 10px;
 }
+
 .nav > button {
-  font-size: 30px;
-  border: none;
-  padding: 10px 0;
-  width: 60px;
-  text-align: center;
+  width: 50px;
+  font-size: 20px;
+  padding: 10px;
 }
 
 .guide {
-  background: #fff;
-  border: 1px solid rgb(110, 200, 105);
+  border: 3px solid yellow;
   position: fixed;
   left: 5%;
   top: 15%;
@@ -72,7 +66,6 @@ body {
   height: 300px;
   border-radius: 30px;
   padding: 20px;
-  z-index: 9999999;
 }
 
 .mobile-search {
@@ -80,9 +73,9 @@ body {
 }
 
 .search-box {
-  line-height: 55px;
-  padding: 0 40px 0 20px;
-  margin-left: 10px;
+  border: 3px solid blue;
+  line-height: 45px;
+  padding: 0 30px;
 }
 
 .search-box > input {
@@ -90,84 +83,43 @@ body {
   width: 250px;
   border-radius: 30px;
   text-indent: 1em;
-  outline: none;
 }
 
 .search-box > button {
   width: 50px;
   padding: 5px 0;
-  border-radius: 10px;
 }
 
 .slider {
-  z-index: 99999999;
-  background-color: #fff;
+  z-index: 8000;
+  background-color: gainsboro;
   position: fixed;
   left: 100%;
-  border-left: 3px solid rgb(110, 200, 105);
+  border: 2px solid black;
   height: 100%;
-  width: 600px;
+  width: 300px;
   transition: transform 0.3s;
 }
 
 .slider.open {
-  transform: translateX(-375px);
+  transform: translateX(-300px);
 }
 
-.popup0 {
-  display: none;
-  width: 500px;
-  height: 360px;
+.popup {
+  width: 400px;
+  height: 200px;
   border: 2px solid green;
   position: fixed;
-  left: 20%;
-  top: 30%;
+  transform: translate(-50%, -100%);
 }
 
-.login_popup {
-  display: none;
+.ligin_popup {
   position: fixed;
+  border: 2px solid blue;
   top: 10%;
-  right: 40%;
+  right: 30%;
   width: 500px;
   height: 700px;
-  padding: 120px 100px;
-  background: rgba(255, 255, 255, 1);
-  border: 3px solid rgb(110, 200, 105);
-  z-index: 999999999999;
-  border-radius: 30px;
-}
-.login_popup > h2 {
-  color: rgb(110, 200, 105);
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 80px;
-}
-.login_popup > p {
-  border: 1px solid rgb(110, 200, 105);
-  background: #fff;
-  border-radius: 10px;
-  padding: 5px;
-  margin-bottom: 10px;
-  text-indent: 1em;
-}
-.login_popup > p > input {
-  border: none;
-  padding: 10px 0;
-  width: 90%;
-  font-size: 15px;
-  outline: none;
-}
-.login_popup > button {
-  border: 1px solid rgb(110, 200, 105);
-  text-align: center;
-  font-size: 20px;
-  width: 300px;
-  background: #fff;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 40px;
 }
 
 @media screen and (max-width: 768px) {
@@ -186,56 +138,17 @@ body {
   .guide {
     display: none;
   }
-  .btns > button {
-    width: 50px;
-    border-radius: 10px;
-    font-size: 20px;
-    margin-right: 25px;
-  }
-  .logini {
-    margin: 10px 0;
-  }
-  .mobile-search {
-    margin: 10px 0;
+  .header {
+    flex-wrap: wrap;
   }
   .search-box {
-      width: 100%;
-      text-align: center;
-      line-height: 0;
-      padding: 10px;
-      margin-left: 0;
+    width: 100%;
+    text-align: center;
   }
-  .search-box > input {
-    padding: 5px;
-    width: 350px;
-    border-radius: 30px;
-    text-indent: 1em;
-    outline: none;
-  }
-  .search-box > button {
-    width: 50px;
-    padding: 5px 0;
-    border-radius: 10px;
-    margin-left: 5px;
-  }
-  /* .search_button {
-    display: none;
-  } */
   .nav {
     width: 100%;
-    border-radius: 0;
-    border: none;
+    border: 1px solid red;
     display: flex;
-    position: fixed;
-    left: 0;
-    border-top: 3px solid rgb(110, 200, 105);
-  }
-  .nav > button {
-    font-size: 25px;
-    border: none;
-    padding: 10px 0;
-    width: 40px;
-    text-align: center;
   }
   .nav > * {
     flex-basis: 100%;
@@ -246,31 +159,17 @@ body {
     border: 2px solid salmon;
     left: 0;
     bottom: 0;
+    transform: unset;
   }
-  .login_popup {
-    display: none;
+  /* 	.ligin_popup {
     position: fixed;
     right: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: #fff;
+    background: blueviolet;
     z-index: 99999999999;
-    border: none;
-    border-radius: 0;
-    padding: 120px 100px;
-  }
-
-  .login_popup > button {
-      border: 1px solid rgb(110, 200, 105);
-      text-align: center;
-      font-size: 20px;
-      width: 100%;
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 40px;
-  }
+  } */
   [data-clicked=clicked] {
     background-color: red;
   }

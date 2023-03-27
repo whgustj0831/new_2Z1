@@ -1,4 +1,4 @@
-(function($){
+/* (function($){
 
     var id = 0;
     var gdata = [ ]
@@ -45,4 +45,4 @@
         usedata(gdata)
         return false
     })
-})(jQuery)
+})(jQuery) */

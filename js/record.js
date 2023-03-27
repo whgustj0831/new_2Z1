@@ -1,4 +1,4 @@
-(function ($) {
+/* (function ($) {
 
     console.log(localStorage)
     if (localStorage.recentSearch) {
@@ -38,3 +38,4 @@
 
     })
 })(jQuery)
+ */

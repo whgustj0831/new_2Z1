@@ -1,4 +1,4 @@
-(function ($) {
+/* (function ($) {
 
 
     window.onload = () => {
@@ -40,4 +40,4 @@
 
 
 
-})(jQuery)
+})(jQuery) */

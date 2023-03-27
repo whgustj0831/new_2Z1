@@ -7,17 +7,16 @@ const markers = line2.map((station, i) => {
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
+
             x: 2 * i + 5,
             y: 2,
             statn_id: station.statn_id,
             marker: "",
             data_markerInfo: "",
             station_id: station.statn_id,
-            data_clicked: false,
         };
     } else if (i < 21) {
         return {
-            data_clicked: false,
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
@@ -31,8 +30,6 @@ const markers = line2.map((station, i) => {
         };
     } else if (i < 25) {
         return {
-            data_clicked: false,
-
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
@@ -46,8 +43,6 @@ const markers = line2.map((station, i) => {
         };
     } else if (i === 25) {
         return {
-            data_clicked: false,
-
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
@@ -61,8 +56,6 @@ const markers = line2.map((station, i) => {
         };
     } else if (i < 42) {
         return {
-            data_clicked: false,
-
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
@@ -76,8 +69,6 @@ const markers = line2.map((station, i) => {
         };
     } else if (i === 42) {
         return {
-            data_clicked: false,
-
             statn_nm: station.statn_nm,
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
@@ -92,6 +83,8 @@ const markers = line2.map((station, i) => {
     }
 });
 
+console.log(markers);
+
 const lisMobile = () =>
     markers.map((station, i) => {
         if (i < 43) {
@@ -99,9 +92,7 @@ const lisMobile = () =>
 data-marker="${station.marker}"
 data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
-            }" data-nearest="${station.data_nearest}" data-clicked="${
-                station.data_clicked
-            }">
+            }" data-markerInfo="${station.data_markerInfo}">
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
         } else if (i === 43) {
@@ -297,16 +288,20 @@ data-textClass="text" data-gridNumbers="true" data-grid="true" data-lineWidth="8
 };
 
 function update() {
-    $("#wrap").html("");
+    if ($("#wrap").is(".main")) {
+        $("#wrap").html("");
+        $("#wrap").html(getHtmlText());
 
-    $("#wrap").html(getHtmlText());
+        $(".subway-map").subwayMap({
+            debug: true,
+        });
 
-    $(".subway-map").subwayMap({
-        debug: true,
-    });
-
-    if ($(window).width() < 1249) {
-        $(".subway-map").css("zoom", $(window).width() / $("canvas").width());
+        if ($(window).width() < 1249) {
+            $(".subway-map").css(
+                "zoom",
+                $(window).width() / $("canvas").width()
+            );
+        }
     }
 }
 
@@ -401,8 +396,7 @@ async function getTrainLocation() {
         console.log(err);
     }
 }
-
-/* timeoutId = setTimeout(getTrainLocation, 10000)  */
+/* timeoutId = setTimeout(getTrainLocation, 10000); */
 
 window.onresize = () => {
     update();
@@ -416,10 +410,9 @@ if (localStorage.recentSearch) {
     if (recentSearch) {
         RSid = recentSearch[recentSearch.length - 1]["id"];
     }
-    usedata(recentSearch);
 }
 
-$("#wrap").on("mousedown", ".subway-map .text", function (e) {
+$("#wrap").on("mousedown", ".subway-map a.text", function (e) {
     e.preventDefault();
 
     if (e.which === 1) {
@@ -430,16 +423,15 @@ $("#wrap").on("mousedown", ".subway-map .text", function (e) {
         const name = $(this).data("info");
 
         const offset = $(this).offset();
-        const windowWidth = $("body").width();
-        const windowHeight = $("body").height();
+        const windowWidth = $('body').width();
+        const windowHeight = $('body').height();
 
-        //PC화면
-        //  style="left:${
-        //      offset.left * windowWidth/800
-        //  }px; top:${offset.top  * windowWidth/800  }px"
+
 
         $("body").append(
-            `<div class="popup" > 
+            `<div class="popup" style="left:${
+                offset.left * windowWidth/800
+            }px; top:${offset.top  * windowWidth/800  }px"> 
             
 			<div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
@@ -541,24 +533,8 @@ $("#wrap").on("mousedown", ".subway-map .text", function (e) {
             0,
             name.indexOf("(") === -1 ? name.length : name.indexOf("(")
         );
-
-        const clicked = markers.find((el) => el.statn_nm == name);
-
-        markers.forEach((marker, i) => {
-            if (i < 43) {
-                marker.data_clicked = "";
-            }
-        });
-        clicked.data_clicked = "clicked";
-
-        console.log(markers);
-
-        update();
-
         updateArrivalData(stationClicked);
-    }
-
-    /*     else if (e.which === 3) {
+    } else if (e.which === 3) {
         $(this).addClass("favorite");
         $(this).siblings().removeClass("clicked");
         $(".popup").remove();
@@ -571,81 +547,53 @@ $("#wrap").on("mousedown", ".subway-map .text", function (e) {
         console.log(name);
 
         console.log(name);
-    } */
-
-    RSid++;
-
-    const obj = { id: RSid, text: stationClicked };
-    console.log(recentSearch);
-    recentSearch.push(obj);
-    if (recentSearch.length > 5) {
-        recentSearch.shift();
     }
 
-    localStorage.recentSearch = JSON.stringify(recentSearch);
+    /*    const statn_nm = $(this).text().slice(1, -1).trim()
 
-    usedata(recentSearch);
 
+        RSid++
+
+        const obj = {id: RSid, text: statn_nm}
+        console.log(recentSearch)
+        recentSearch.push(obj)
+        if (recentSearch.length > 5) {
+            recentSearch.shift()
+
+        }
+
+        console.log(recentSearch)
+
+        localStorage.recentSearch = JSON.stringify(recentSearch)
+
+
+        console.log(statn_nm)*/
     return false;
 });
 
-$(window).on("load", () => {
-    if ($(window).width() < 768) {
-        $("header").append($(".search-box"));
-    } else {
-        $(".btns").append($(".search-box"));
-    }
-});
-$(window).on("resize", () => {
-    if ($(window).width() < 768) {
-        $("header").append($(".search-box"));
-    } else {
-        $(".btns").append($(".search-box"));
-    }
-});
 
-function usedata(rdata) {
-    $(".slider .search-history").remove();
-    let list = `<ul class="search-history">`;
-    rdata.map(function (value) {
-        list += `
-<li>
-<a href="./trainInfo?statn_nm=${value.text}">${value.text}</a>
-</li>`;
-        list += `<button type="button" class='delete-li'>삭제</button></li>`;
-    });
 
-    list += `</ul>`;
 
-    $(".slider").append(list);
-}
-$("#search-history-btn").on("click", function (e) {
-    $(".search-history").show();
-    $(".favorites").hide();
-});
 
-$("#fav-btn").on("click", function (e) {
-    $(".search-history").hide();
-    $(".favorites").show();
-});
 
-$(".slider").on("click", ".delete-li", function () {
-    console.log("delte");
 
-    let num = $(this).parent().index();
-    recentSearch.splice(num, 1);
-    localStorage.gdata = JSON.stringify(recentSearch);
-    $(".slider .search-history").remove();
-    usedata(recentSearch);
-});
 
-$(".slider-btn").on("click", function (e) {
-    $(".slider").addClass("open");
-});
 
-$("#wrap").on("click", function (e) {
-    $(".slider").removeClass("open");
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $("#get-stations").on("click", getGeoPos);
 
@@ -716,86 +664,56 @@ function getGeoPos() {
 
         /*      console.log(firstStation, secondStation, nearest1, nearest2) */
 
-        markers[nearest1].data_nearest = "nearest";
-        markers[nearest2].data_nearest = "nearest";
+        markers[nearest1].data_markerInfo = "nearest";
+        markers[nearest2].data_markerInfo = "nearest";
 
         /*    markers[nearest2].data_markerInfo = "nearest";  */
-
-        update();
 
         $(`[data-info="${firstStationNm}"]`).addClass("nearest");
         $(`[data-info="${secondStationNm}"]`).addClass("nearest");
     });
 }
 
-$("#search-input").on("input", (e) => {
-    let value = e.target.value;
-    let arr = [];
-    line2.forEach((station, i) => {
-        const index = station.statn_nm.indexOf(value);
-        if (index !== -1) {
-            console.log(index, station.statn_nm);
-            arr.push(station.statn_nm);
-        }
-    });
+$("#notification").on("click", getNotification);
 
-    $(".search-result-container .search-result").remove();
+window.onload = getNotification();
+async function getNotification() {
+    try {
+        console.log("hi");
 
-    const htmlText = arr.map(
-        (name) =>
-            `<li>
-       <input type="text" value="${name}" disabled>
-    <button type="button" class='addS' data-statn="${name}">추가</button></li>`
-    );
+        const response = await fetch(
+            `http://apis.data.go.kr/B553766/smt-delay/delay?serviceKey=pKDkS%2FXdX%2FQv4gjE0ZhkAW3uYQRWVtB1HlfzpGzGInft6B8vyTDYHVx1wr4yDKAnqeY70hUzHFrxs%2FcyW4HENQ%3D%3D&numOfRows=100&pageNo=1&lineNum=2`,
+            { method: "GET" }
+        );
 
-    $(".search-result-container").html(htmlText.join(""));
-});
+        const { data } = await response.json();
 
-var favId = 0;
-var favData = [];
+        const delayData = [];
+        data.forEach((item) => {
+            if (item.delay_rsn === null) {
+                delayData.push(item);
+            }
+        });
 
-if (localStorage.favData) {
-    favData = JSON.parse(localStorage.favData);
-    if (favData) {
-        favId = favData[favData.length - 1]["id"];
+        const lis = delayData.map(
+            (item) =>
+                `<li> ${item.train_state} <button class='remove-notification'> X</button> </li>`
+        );
+
+        const notificationHtml = `
+        ${lis.join("")}
+        
+        `;
+
+        $("#notification-box").html("").append(notificationHtml);
+
+        /* 		getCongestionData();
+         */
+    } catch (err) {
+        console.log(err);
     }
-    useFavData(favData);
 }
 
-console.log(favData);
-// 추가
-$(".search-result-container").on("click", ".addS", function () {
-    let aname = $(this).attr("data-statn");
-    favId++;
-    let obj = { id: favId, text: aname };
-    favData.push(obj);
-    localStorage.favData = JSON.stringify(favData);
-    useFavData(favData);
-});
-
-function useFavData(favData) {
-    console.log(favData);
-    $(".favorites").html("");
-    const favHtml = favData.map(
-        (station) =>
-            `<li>
-   <input type="text" value="${station.text}" disabled>
-<button type="button" class='delete-fav-btn' data-statn="${station.text}">삭제</button></li>`
-    );
-
-    console.log(favHtml);
-
-    $(".favorites").html(favHtml.join(""));
-}
-
-$(".slider").on("click", ".delete-fav-btn", function () {
-    let num = $(this).parent().index();
-    favData.splice(num, 1);
-    localStorage.favData = JSON.stringify(favData);
-
-    useFavData(favData);
-});
-
-$("#mobile-search").on("click", function () {
-    $(".search-box").toggleClass("show");
+$("#notification-box").on("click", "button.remove-notification", function () {
+    $(this).parent().remove();
 });

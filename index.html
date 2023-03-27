@@ -1,308 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EZ</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/index.css" />
+        <script src="./js/jquery-1.12.4.min.js"></script>
+        <script
+            src="./js/jquery.subwayMap-0.5.3.js"
+            type="text/javascript"
+        ></script>
+        <script src="./js/line2.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <script src="./js/jquery-1.12.4.min.js"></script>
-    <script src="./js/jquery.subwayMap-0.5.3.js" type="text/javascript"></script>
-    <script src='./js/line2.js'></script>
-</head>
+    <body>
+        <header class="header">
+            <h1>
+                <img src="./Artboard 32000.png" alt="" />
+            </h1>
 
+            <div class="btns">
+                <button class="mobile-search" id="mobile-search">M</button>
 
-<style>
-    button {
-        border-radius: 10px;
-    }
+                <button class="logini"><i class="fa-solid fa-user"></i></button>
 
-    .header {
-        z-index: 9999999;
-        position: fixed;
-        width: 100%;
-        display: flex;
-        border: 3px solid red;
-        justify-content: space-between;
-    }
+                <div class="search-box">
+                    <input type="text" placeholder="역이름 검색" id="search-input" />
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
 
-    .header > h1 {
-        padding: 10px 30px;
-    }
+                    <ul class="search-result-container">
 
-    .btns {
-        display: flex;
-        border: 3px solid orange;
-    }
+                    </ul>
 
-    .btns > button {
-        width: 50px;
-        border-radius: 10px;
-        font-size: 20px;
-    }
-
-    .logini {
-        margin: 10px;
-    }
-
-    .nav {
-        position: fixed;
-        bottom: 0;
-        z-index: 8888;
-        right: 3%;
-        bottom: 5%;
-    }
-    .nav > button {
-        width: 50px;
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    .guide {
-
-        border: 3px solid yellow;
-
-        position: fixed;
-        left: 5%;
-        top: 15%;
-
-        width: 200px;
-        height: 300px;
-        border-radius: 30px;
-        padding: 20px
-    }
-
-
-    .mobile-search {
-        display: none;
-    }
-
-    .search-box {
-        border: 3px solid blue;
-        line-height: 45px;
-        padding: 0 30px;
-    }
-
-    .search-box > input {
-        padding: 5px;
-        width: 250px;
-        border-radius: 30px;
-        text-indent: 1em;
-    }
-
-    .search-box > button {
-        width: 50px;
-        padding: 5px 0;
-    }
-
-    .slider {
-        z-index: 8000;
-        background-color: gainsboro;
-        position: fixed;
-        left: 100%;
-        border: 2px solid black;
-        height: 100%;
-        width: 300px;
-
-        transition: transform .3s;
-    }
-
-    .slider.open {
-        transform: translateX(-300px);
-
-    }
-
-    .popup0 {
-        width: 500px;
-
-        height: 360px;
-
-        border: 2px solid green;
-        position: fixed;
-
-        left: 20%;
-        top: 30%;
-
-    }
-
-    .ligin_popup {
-        position: fixed;
-        border: 2px solid blue;
-        top: 10%;
-        right: 30%;
-        width: 500px;
-        height: 700px;
-    }
-
-    @media screen and (max-width: 768px) {
-
-        .mobile-search {
-            display: block;
-        }
-
-
-        .guide {
-            display: none;
-        }
-
-        .header {
-            flex-wrap: wrap;
-
-        }
-
-        .search-box {
-            width: 100%;
-            text-align: center;
-        }
-
-        .nav {
-            width: 100%;
-            border: 1px solid red;
-
-            display: flex;
-
-
-        }
-
-        .nav>* {
-            flex-basis: 100%;
-        }
-
-
-
-        .popup0 {
-            width: 100%;
-            border: 2px solid green;
-            left:0;
-            bottom :0;
-            top : unset;
-            
-        }
-
-        .ligin_popup {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background: blueviolet;
-            z-index: 99999999999;
-        }
-
-
-    }
-</style>
-
-
-
-
-<body>
-
-    <header class="header">
-        <h1>
-            <img src="./Artboard 32000.png" alt="">
-        </h1>
-
-
-        <div class="btns">
-
-            <button class="mobile-search">M</button>
-
-            <button class="logini"><i class="fa-solid fa-user"></i></button>
-
-
-
-            <div class="search-box">
-                <input type="text" placeholder="역이름 검색">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    
+                </div>
             </div>
+        </header>
+        <nav class="nav">
+            <button id="get-stations"><i class="fa-solid fa-signal-stream" ></i></button>
+            <button class="slider-btn" id="search-history-btn">
+                <i class="fa-solid fa-clock"></i>
+            </button>
+            <button class="slider-btn" id="fav-btn"><i class="fa-solid fa-star"></i></button>
+        </nav>
+        <div class="guide">이미지박스</div>
+        <div id="wrap"></div>
+
+  
+
+        <div class="slider">
+        <ul class="search-history">
+
+        </ul>
+
+        <ul class="favorites">
+            
+        </ul>
+      
         </div>
 
+        <div class="ligin_popup">
+            <button>로그인</button>
+        </div>
 
-
-
-
-    </header>
-    <nav class="nav">
-        <button><i class="fa-solid fa-signal-stream"></i>   </button>
-        <button class="slider-btn"><i class="fa-solid fa-clock"></i></button>
-        <button class="slider-btn"><i class="fa-solid fa-star"></i></button>
-    </nav>
-    <div class="guide">
-        이미지박스
-    </div>
-    <div id="wrap">
-
-    </div>
-
-
-    <div class="popup0">
-        sdfsdfsdfsdfsd
-    </div>
-
-    <div class="slider">
-        <li>dsfsdf</li>
-        <li>dsfsdf</li> 
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-        <li>dsfsdf</li>
-
-    </div>
-
-    <div class="ligin_popup">
-        <button>로그인</button>
-    </div>
-
-
-    <script defer>
-
-        $(window).on('load', () => {
-            if ($(window).width() < 768) {
-                $('header').append($('.search-box'));
-            } else {
-                $('.btns').append($('.search-box'));
-            }
-        })
-        $(window).on('resize', () => {
-
-            if ($(window).width() < 768) {
-                $('header').append($('.search-box'));
-            } else {
-                $('.btns').append($('.search-box'));
-            }
-        })
-
-        $('.slider-btn').on('click', function () {
-            console.log('hi')
-
-            $('.slider').addClass('open')
-
-        })
-
-        $('body').on('click', function (e) {
-
-
-            if ($(e.target).is('.slider') || $(e.target).is('.slider-btn') || $(e.target).parent('.slider').length) return;
-
-            $('.slider').removeClass('open')
-
-        })
-
-    </script>
-    <script src="./js/main.js" defer></script>
-
-
-</body>
-
+      
+        <script src="./js/sample.js" defer></script>
+        <script src="./js/main.js" defer></script>
+    </body>
 </html>

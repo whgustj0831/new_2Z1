@@ -750,30 +750,10 @@ $("#search-input").on("input", (e) => {
 
     $(".search-result").html(htmlText.join(""));
 
-    $(this).keypress(function (e) {
-        if (e.blur) {
-            if ($(this).val() == "") {
-                $("#star ul .itext").remove();
-            }
-        }
-    });
+
 });
 
-$("#search-input").blur(function () {
-    $(".search-result").html("");
-});
 
-$(this).blur("#star ul", function () {
-    $(".itext").remove();
-});
-
-$(this).keypress(function (e) {
-    if (e.blur) {
-        if ($(this).val() == "") {
-            $("#star ul .itext").remove();
-        }
-    }
-});
 
 var favId = 0;
 var favData = [];
@@ -788,7 +768,8 @@ if (localStorage.favData) {
 
 console.log(favData);
 // 추가
-$(".search-result-container").on("click", ".addS", function () {
+$(".search-result").on("click", ".addS", function () {
+    console.log('hiii')
     let aname = $(this).attr("data-statn");
     favId++;
     let obj = { id: favId, text: aname };

@@ -109,6 +109,43 @@ data-coords="${station.x}, ${station.y}" data-dir="${
     
         </li>`;
         }
+
+        /*
+       if (i < 4) {
+            return `<li
+    data-marker="${station.marker}"
+    data-coords="${2 * i + 5}, 2" data-labelpos="N">
+    <a>${station ? station.statn_nm : ''}</a>
+    </li>`
+
+        } else if (i < 21) {
+            return `<li data-marker="${station.marker}" data-coords="12, ${i - 1}" data-dir="E" data-labelpos="W">
+            <a >${station ? station.statn_nm : ''}</a>
+            </li>`
+
+
+        } else if (i < 25) {
+            return `<li data-marker="${station.marker}" data-coords="${-(i * 2) + 53}, 20" data-dir="S" data-labelpos="S">
+            <a >${line2[i] ? line2[i].statn_nm : ''}</a>
+            </li>`
+        } else if (i === 25) {
+            return `<li data-marker="${station.marker}" data-coords="4,19" data-dir="W" data-labelpos="E">
+         <a >${station ? station.statn_nm : ''}</a>
+            </li>`
+        } else if (i < 42) {
+            return `<li data-marker="${station.marker}" data-coords="4, ${(-i + 26) * 16 / 17 + 18}" data-dir="W" data-labelpos="E">
+             <a >${station ? station.statn_nm : ''}</a>
+            </li>`
+        } else if (i === 42) {
+            return `<li data-marker="${station.marker}" data-coords="4,3" data-dir="W" data-labelpos="E">
+            <a >${station ? station.statn_nm : ''}</a>
+            </li>`
+        } else if (i < 44) {
+            return `<li data-coords="5,2">
+
+            </li>`
+        }
+    */
     });
 
 const coda1 = line2.map((station, i) => {
@@ -212,6 +249,8 @@ const getHtmlText = () => {
         const htmlText = `
      <div id="map-wrapper">
     
+
+
     <div class="subway-map" data-columns="16" data-rows="24" data-cellSize="50" data-legendId="legend"
 data-textClass="text" data-gridNumbers="true" data-grid="yes" data-lineWidth="8">
 
@@ -266,16 +305,12 @@ function update() {
         debug: true,
     });
 
-    if ($(window).width() < 1489) {
+    if ($(window).width() < 1249) {
         $(".subway-map").css("zoom", $(window).width() / $("canvas").width());
     }
 }
 
 update();
-
-window.onresize = () => {
-    update();
-};
 
 let timeoutId;
 
@@ -369,6 +404,10 @@ async function getTrainLocation() {
 
 /* timeoutId = setTimeout(getTrainLocation, 10000)  */
 
+window.onresize = () => {
+    update();
+};
+
 let RSid = 0;
 let recentSearch = [];
 
@@ -380,7 +419,7 @@ if (localStorage.recentSearch) {
     usedata(recentSearch);
 }
 
-$("#wrap").on("mousedown", ".subway-map a.text", function (e) {
+$("#wrap").on("mousedown", ".subway-map .text", function (e) {
     e.preventDefault();
 
     if (e.which === 1) {
@@ -391,23 +430,16 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
         const name = $(this).data("info");
 
         const offset = $(this).offset();
-        const windowWidth = $(window).width();
+        const windowWidth = $("body").width();
+        const windowHeight = $("body").height();
 
         //PC화면
-
-        const popupHtml =
-            $(window).width() > 768
-                ? `<div class="popup"  style="left:${Math.min(
-                      (offset.left * windowWidth) / 1488,
-                      offset.left
-                  )}px; top:${Math.min(
-                      (offset.top * windowWidth) / 1488,
-                      offset.top
-                  )}px">`
-                : '<div class="popup">';
+        //  style="left:${
+        //      offset.left * windowWidth/800
+        //  }px; top:${offset.top  * windowWidth/800  }px"
 
         $("body").append(
-            `${popupHtml}
+            `<div class="popup" > 
             
 			<div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
@@ -544,7 +576,7 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
     RSid++;
 
     const obj = { id: RSid, text: stationClicked };
-
+    console.log(recentSearch);
     recentSearch.push(obj);
     if (recentSearch.length > 5) {
         recentSearch.shift();
@@ -556,8 +588,6 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
     return false;
 });
-
-
 
 $(window).on("load", () => {
     if ($(window).width() < 768) {
@@ -719,7 +749,11 @@ $("#search-input").on("input", (e) => {
     );
 
     $(".search-result").html(htmlText.join(""));
+
+
 });
+
+
 
 var favId = 0;
 var favData = [];
@@ -735,7 +769,7 @@ if (localStorage.favData) {
 console.log(favData);
 // 추가
 $(".search-result").on("click", ".addS", function () {
-    console.log("hiii");
+    console.log('hiii')
     let aname = $(this).attr("data-statn");
     favId++;
     let obj = { id: favId, text: aname };

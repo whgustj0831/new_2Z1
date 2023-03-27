@@ -11,16 +11,13 @@ body {
   height: 966px;
 }
 
-button {
-  border-radius: 10px;
-}
-
 .header {
   z-index: 9999999;
   position: fixed;
   width: 100%;
   display: flex;
-  border: 3px solid red;
+  background: #fff;
+  border-bottom: 3px solid rgb(110, 200, 105);
   justify-content: space-between;
 }
 
@@ -30,13 +27,18 @@ button {
 
 .btns {
   display: flex;
-  border: 3px solid orange;
+  /* border: 3px solid orange; */
 }
 
 .btns > button {
   width: 50px;
   border-radius: 10px;
   font-size: 20px;
+}
+.nav > button:nth-child(2) {
+  width: 70px;
+  border-left: 3px solid rgb(110, 200, 105);
+  border-right: 3px solid rgb(110, 200, 105);
 }
 
 .logini {
@@ -47,18 +49,22 @@ button {
   position: fixed;
   bottom: 0;
   z-index: 8888;
-  right: 3%;
+  right: 80px;
   bottom: 5%;
+  border: 3px solid rgb(110, 200, 105);
+  border-radius: 10px;
 }
-
 .nav > button {
-  width: 50px;
-  font-size: 20px;
-  padding: 10px;
+  font-size: 30px;
+  border: none;
+  padding: 10px 0;
+  width: 60px;
+  text-align: center;
 }
 
 .guide {
-  border: 3px solid yellow;
+  background: #fff;
+  border: 1px solid rgb(110, 200, 105);
   position: fixed;
   left: 5%;
   top: 15%;
@@ -66,6 +72,7 @@ button {
   height: 300px;
   border-radius: 30px;
   padding: 20px;
+  z-index: 9999999;
 }
 
 .mobile-search {
@@ -73,9 +80,9 @@ button {
 }
 
 .search-box {
-  border: 3px solid blue;
-  line-height: 45px;
-  padding: 0 30px;
+  line-height: 55px;
+  padding: 0 40px 0 20px;
+  margin-left: 10px;
 }
 
 .search-box > input {
@@ -83,43 +90,84 @@ button {
   width: 250px;
   border-radius: 30px;
   text-indent: 1em;
+  outline: none;
 }
 
 .search-box > button {
   width: 50px;
   padding: 5px 0;
+  border-radius: 10px;
 }
 
 .slider {
-  z-index: 8000;
-  background-color: gainsboro;
+  z-index: 99999999;
+  background-color: #fff;
   position: fixed;
   left: 100%;
-  border: 2px solid black;
+  border-left: 3px solid rgb(110, 200, 105);
   height: 100%;
-  width: 300px;
+  width: 600px;
   transition: transform 0.3s;
 }
 
 .slider.open {
-  transform: translateX(-300px);
+  transform: translateX(-375px);
 }
 
-.popup {
-  width: 400px;
-  height: 200px;
+.popup0 {
+  display: none;
+  width: 500px;
+  height: 360px;
   border: 2px solid green;
   position: fixed;
-  transform: translate(-50%, -100%);
+  left: 20%;
+  top: 30%;
 }
 
-.ligin_popup {
+.login_popup {
+  display: none;
   position: fixed;
-  border: 2px solid blue;
   top: 10%;
-  right: 30%;
+  right: 40%;
   width: 500px;
   height: 700px;
+  padding: 120px 100px;
+  background: rgba(255, 255, 255, 1);
+  border: 3px solid rgb(110, 200, 105);
+  z-index: 999999999999;
+  border-radius: 30px;
+}
+.login_popup > h2 {
+  color: rgb(110, 200, 105);
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 80px;
+}
+.login_popup > p {
+  border: 1px solid rgb(110, 200, 105);
+  background: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-indent: 1em;
+}
+.login_popup > p > input {
+  border: none;
+  padding: 10px 0;
+  width: 90%;
+  font-size: 15px;
+  outline: none;
+}
+.login_popup > button {
+  border: 1px solid rgb(110, 200, 105);
+  text-align: center;
+  font-size: 20px;
+  width: 300px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 40px;
 }
 
 @media screen and (max-width: 768px) {
@@ -138,17 +186,56 @@ button {
   .guide {
     display: none;
   }
-  .header {
-    flex-wrap: wrap;
+  .btns > button {
+    width: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-right: 25px;
+  }
+  .logini {
+    margin: 10px 0;
+  }
+  .mobile-search {
+    margin: 10px 0;
   }
   .search-box {
-    width: 100%;
-    text-align: center;
+      width: 100%;
+      text-align: center;
+      line-height: 0;
+      padding: 10px;
+      margin-left: 0;
   }
+  .search-box > input {
+    padding: 5px;
+    width: 350px;
+    border-radius: 30px;
+    text-indent: 1em;
+    outline: none;
+  }
+  .search-box > button {
+    width: 50px;
+    padding: 5px 0;
+    border-radius: 10px;
+    margin-left: 5px;
+  }
+  /* .search_button {
+    display: none;
+  } */
   .nav {
     width: 100%;
-    border: 1px solid red;
+    border-radius: 0;
+    border: none;
     display: flex;
+    position: fixed;
+    left: 0;
+    border-top: 3px solid rgb(110, 200, 105);
+  }
+  .nav > button {
+    font-size: 25px;
+    border: none;
+    padding: 10px 0;
+    width: 40px;
+    text-align: center;
   }
   .nav > * {
     flex-basis: 100%;
@@ -159,17 +246,31 @@ button {
     border: 2px solid salmon;
     left: 0;
     bottom: 0;
-    transform: unset;
   }
-  /* 	.ligin_popup {
+  .login_popup {
+    display: none;
     position: fixed;
     right: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: blueviolet;
+    background: #fff;
     z-index: 99999999999;
-  } */
+    border: none;
+    border-radius: 0;
+    padding: 120px 100px;
+  }
+
+  .login_popup > button {
+      border: 1px solid rgb(110, 200, 105);
+      text-align: center;
+      font-size: 20px;
+      width: 100%;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 40px;
+  }
   [data-clicked=clicked] {
     background-color: red;
   }

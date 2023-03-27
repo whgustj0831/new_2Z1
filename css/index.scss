@@ -105,12 +105,13 @@ button {
     transform: translateX(-300px);
 }
 
-.popup {
-    width: 400px;
-    height: 200px;
+.popup0 {
+    width: 500px;
+    height: 360px;
     border: 2px solid green;
     position: fixed;
-    transform: translate(-50%, -100%);
+    left: 20%;
+    top: 30%;
 }
 
 .ligin_popup {
@@ -162,7 +163,6 @@ button {
         border: 2px solid salmon;
         left: 0;
         bottom: 0;
-        transform: unset;
     }
     /* 	.ligin_popup {
 	  position: fixed;

@@ -29,13 +29,13 @@
             </h1>
 
             <div class="btns">
-                <button class="mobile-search" id="mobile-search">M</button>
+                <button class="mobile-search" id="mobile-search"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 <button class="logini"><i class="fa-solid fa-user"></i></button>
 
                 <div class="search-box">
                     <input type="text" placeholder="역이름 검색" id="search-input" />
-                    <button>
+                    <button class="search_button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
 
@@ -48,7 +48,7 @@
             </div>
         </header>
         <nav class="nav">
-            <button id="get-stations"><i class="fa-solid fa-signal-stream" ></i></button>
+            <button id="get-stations"><i class="fa-solid fa-crosshairs"></i></button>
             <button class="slider-btn" id="search-history-btn">
                 <i class="fa-solid fa-clock"></i>
             </button>
@@ -70,14 +70,19 @@
       
         </div>
 
-        <div class="ligin_popup">
-            <button>로그인</button>
+        <div class="login_popup">
+            <h2>로그인</h2>
+            <p class="loginin">
+                <input type="text" name="idt" placeholder="아이디">
+            </p>
+            <p class="pwin">
+                <input type="password" name="pw" placeholder="비밀번호">
+            </p>
+            <button type="submit">로그인</button>
         </div>
 
       
-    <script src="./js/sample.js" defer></script>
-    <script src="./js/main.js" defer></script>
-      
+        <script src="./js/sample.js" defer></script>
+        <script src="./js/main.js" defer></script>
     </body>
-
 </html>

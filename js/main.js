@@ -576,13 +576,12 @@ $(window).on("resize", () => {
 
 function usedata(rdata) {
     $(".slider .search-history").remove();
-    let list = `<ul class="search-history">`;
+    let list = `<ul class="search-history"> <h3>최근기록</h3>`;
     rdata.map(function (value) {
         list += `
 <li>
 <a href="./trainInfo?statn_nm=${value.text}">${value.text}</a>
 </li>`;
-        list += `<button type="button" class='delete-li'>삭제</button></li>`;
     });
 
     list += `</ul>`;
@@ -715,11 +714,12 @@ $("#search-input").on("input", (e) => {
         (name) =>
             `<li>
        <input type="text" value="${name}" disabled>
-    <button type="button" class='addS' data-statn="${name}">추가</button></li>`
+    </li>`
     );
 
     $(".search-result").html(htmlText.join(""));
 });
+
 
 var favId = 0;
 var favData = [];
@@ -750,8 +750,9 @@ function useFavData(favData) {
     const favHtml = favData.map(
         (station) =>
             `<li>
-   <input type="text" value="${station.text}" disabled>
-<button type="button" class='delete-fav-btn' data-statn="${station.text}">삭제</button></li>`
+                <input type="text" value="${station.text}" disabled>
+                <button type="button" class='delete-fav-btn' data-statn="${station.text}">삭제</button>
+            </li>`
     );
 
     console.log(favHtml);

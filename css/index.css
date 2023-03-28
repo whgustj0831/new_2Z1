@@ -334,6 +334,7 @@ h3 {
     border: 2px solid salmon;
     left: 0;
     bottom: 0;
+    transform : unset;
   }
   .login_popup {
     display: none;

@@ -126,14 +126,13 @@ body {
   transform: translateX(-375px);
 }
 
-.popup0 {
-  display: none;
-  width: 500px;
-  height: 360px;
-  border: 2px solid green;
-  position: fixed;
-  left: 20%;
-  top: 30%;
+.popup {
+    width: 400px;
+    height: 200px;
+    border: 2px solid green;
+    position: fixed;
+    transform: translate(-50%, -100%);
+
 }
 
 .login_popup {

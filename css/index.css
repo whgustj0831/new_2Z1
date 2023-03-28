@@ -229,18 +229,6 @@ h3 {
   font-size: 16px;
 }
 
-.search-history > li {
-  width: 380px;
-  text-align: center;
-  padding: 150px 10px;
-  border-bottom: 2px solid rgb(2, 176, 11);
-}
-
-.favorites li > input {
-  padding: 10px 100px;
-  font-size: 16px;
-}
-
 @media screen and (max-width: 768px) {
   .search-box {
     display: none;

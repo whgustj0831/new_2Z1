@@ -62,12 +62,12 @@ THE SOFTWARE.
             this.layer++;
             var canvas = $(
                 "<canvas style='position:absolute;z-Index:" +
-                    ((overlay ? 2000 : 1000) + this.layer) +
-                    "' width='" +
-                    this.options.pixelWidth +
-                    "' height='" +
-                    this.options.pixelHeight +
-                    "'></canvas>"
+                ((overlay ? 2000 : 1000) + this.layer) +
+                "' width='" +
+                this.options.pixelWidth +
+                "' height='" +
+                this.options.pixelHeight +
+                "'></canvas>"
             );
             el.append(canvas);
             return canvas[0].getContext("2d");
@@ -189,14 +189,13 @@ THE SOFTWARE.
                             .children("li")
                             .each(function () {
 
-                             
+
                                 var coords = $(this).attr("data-coords");
                                 if (coords === undefined) coords = "";
 
                                 var clicked = $(this).attr("data-clicked");
-
                                 if (clicked === undefined) clicked = "";
-                            
+
 
                                 var nearest = $(this).attr("data-nearest");
                                 if (nearest === undefined) nearest = "";
@@ -229,17 +228,17 @@ THE SOFTWARE.
 
                                 self._debug(
                                     "Coords=" +
-                                        coords +
-                                        "; Dir=" +
-                                        dir +
-                                        "; Link=" +
-                                        link +
-                                        "; Label=" +
-                                        label +
-                                        "; labelPos=" +
-                                        labelPos +
-                                        "; Marker=" +
-                                        marker
+                                    coords +
+                                    "; Dir=" +
+                                    dir +
+                                    "; Link=" +
+                                    link +
+                                    "; Label=" +
+                                    label +
+                                    "; labelPos=" +
+                                    labelPos +
+                                    "; Marker=" +
+                                    marker
                                 );
 
                                 var x = "";
@@ -267,7 +266,7 @@ THE SOFTWARE.
                                     label: label,
                                     labelPos: labelPos,
                                     clicked: clicked,
-                                    nearest : nearest
+                                    nearest: nearest
                                 };
                             });
 
@@ -332,12 +331,12 @@ THE SOFTWARE.
 
                         legend.append(
                             "<div><span style='float:left; display:block; width:100px;height:" +
-                                lineWidth +
-                                "px;'><svg>" +
-                                lineSVG +
-                                "</svg></span>" +
-                                lineLabels[line].label +
-                                "</div>"
+                            lineWidth +
+                            "px;'><svg>" +
+                            lineSVG +
+                            "</svg></span>" +
+                            lineLabels[line].label +
+                            "</div>"
                         );
                     }
                 }
@@ -345,18 +344,18 @@ THE SOFTWARE.
         },
 
         _drawBg: function (el) {
-        /*     console.log("hi"); */
+            /*     console.log("hi"); */
 
-          /*   if ($(window).width() > 768) {
-                var ctx = this._getCanvasLayer(el, false);
-                var background = new Image();
-                background.src = "img/bg.png";
+            /*   if ($(window).width() > 768) {
+                  var ctx = this._getCanvasLayer(el, false);
+                  var background = new Image();
+                  background.src = "img/bg.png";
 
-                background.onload = function () {
-                    //이미지, x좌표, y좌표, 가로크기, 세로크기
-                    ctx.drawImage(background, 0, -210);
-                };
-            } */
+                  background.onload = function () {
+                      //이미지, x좌표, y좌표, 가로크기, 세로크기
+                      ctx.drawImage(background, 0, -210);
+                  };
+              } */
         },
         _drawLine: function (
             el,
@@ -480,13 +479,13 @@ THE SOFTWARE.
                         }
                         this._debug(
                             currNode.x * scale +
-                                xVal +
-                                ", " +
-                                currNode.y * scale +
-                                "; " +
-                                (nextNode.x + (dirVal * xDiff) / 2) * scale +
-                                ", " +
-                                (nextNode.y + (yVal * xDiff) / 2) * scale
+                            xVal +
+                            ", " +
+                            currNode.y * scale +
+                            "; " +
+                            (nextNode.x + (dirVal * xDiff) / 2) * scale +
+                            ", " +
+                            (nextNode.y + (yVal * xDiff) / 2) * scale
                         );
                         ctx.bezierCurveTo(
                             currNode.x * scale + xVal,
@@ -541,7 +540,7 @@ THE SOFTWARE.
             if (data.label == "") return;
             if (data.marker == "") data.marker = "station";
 
-   
+
             // Scale coordinates for rendering
             var x = data.x * scale;
             var y = data.y * scale;
@@ -747,38 +746,38 @@ THE SOFTWARE.
                 "px;left:" +
                 (x + el.position().left) +
                 "px;z-index:2999; '";
-         
+
             if (data.link != "") {
                 $(
                     "<a " +
-                        "data-info=" +
-                        data.label.replace(/\\n/g, "<br />") +
-                        style1 +
-                        " title='" +
-                        data.title.replace(/\\n/g, "<br />") +
-                        "' href='" +
-                        data.link +
-                        `' data-clicked = "${data.clicked}"
+                    "data-info=" +
+                    data.label.replace(/\\n/g, "<br />") +
+                    style1 +
+                    " title='" +
+                    data.title.replace(/\\n/g, "<br />") +
+                    "' href='" +
+                    data.link +
+                    `' data-clicked = "${data.clicked}"
                          data-nearest = "${data.nearest}"`
 
-                        
-                      + "target='_new'>" + "</a>"
+
+                    + "target='_new'>" + "</a>"
                 ).appendTo(el);
 
                 $(
                     "<span " +
-                        style2 +
-                        ">" +
-                        data.label.replace(/\\n/g, "<br />") +
-                        "</span>"
+                    style2 +
+                    ">" +
+                    data.label.replace(/\\n/g, "<br />") +
+                    "</span>"
                 ).appendTo(el);
             } else
                 $(
                     "<span " +
-                        style2 +
-                        ">" +
-                        data.label.replace(/\\n/g, "<br />") +
-                        "</span>"
+                    style2 +
+                    ">" +
+                    data.label.replace(/\\n/g, "<br />") +
+                    "</span>"
                 ).appendTo(el);
         },
         _drawGrid: function (el, scale, gridNumbers) {

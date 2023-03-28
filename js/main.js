@@ -4,7 +4,10 @@ const trainPosList = [];
 const markers = line2.map((station, i) => {
     if (i < 4) {
         return {
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 2 * i + 5,
@@ -18,7 +21,10 @@ const markers = line2.map((station, i) => {
     } else if (i < 21) {
         return {
             data_clicked: false,
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 12,
@@ -33,7 +39,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: -(i * 2) + 53,
@@ -48,7 +57,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
@@ -63,7 +75,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
@@ -78,7 +93,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
@@ -93,7 +111,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 13,
@@ -109,7 +130,10 @@ const markers = line2.map((station, i) => {
         return {
             data_clicked: false,
 
-            statn_nm: station.statn_nm,
+            statn_nm: station.statn_nm.slice(
+                0,
+                station.statn_nm.indexOf("(") === -1 ? station.statn_nm.length : station.statn_nm.indexOf("(")
+            ),
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 3,
@@ -142,7 +166,7 @@ data-coords="${station.x}, ${station.y}" data-dir="${
         }
     });
 
-const coda1 = markers.map((station, i) => {
+const coda1 =()=> markers.map((station, i) => {
     if (i === 41) {
         return `<li data-coords="12, 9"></li>`;
     }
@@ -159,7 +183,7 @@ const coda1 = markers.map((station, i) => {
     }
 });
 
-const coda2 = markers.map((station, i) => {
+const coda2 =()=> markers.map((station, i) => {
     if (i === 45) {
         return `<li data-coords="4, 12.3"></li>`;
     }
@@ -180,40 +204,39 @@ line2.forEach((station, i) => {
     if (i > 48) return;
     const getPCxy = (i) => {
         if (i < 10) {
-            return { pcX: 9 + i * 2, pcY: 6, pcDir : "E"};
+            return {pcX: 9 + i * 2, pcY: 6, pcDir: "E"};
         } else if (i === 10) {
-            return { pcX: 28, pcY: 7, pcDir : "E" };
+            return {pcX: 28, pcY: 7, pcDir: "E"};
         } else if (i < 18) {
-            return { pcX: 28, pcY: 7 + ((i - 10) * 12) / 7 ,  pcDir : "S"} ;
+            return {pcX: 28, pcY: 7 + ((i - 10) * 12) / 7, pcDir: "S"};
         } else if (i === 18) {
-            return { pcX: 27, pcY: 20 , pcDir : "S"};
+            return {pcX: 27, pcY: 20, pcDir: "S"};
         } else if (i < 30) {
-            return { pcX: 27 - ((i - 18) * 22) / 12, pcY: 20,  pcDir : "E" };
+            return {pcX: 27 - ((i - 18) * 22) / 12, pcY: 20, pcDir: "E"};
         } else if (i === 30) {
-            return { pcX: 5, pcY: 20 ,pcDir : "E"};
+            return {pcX: 5, pcY: 20, pcDir: "E"};
         } else if (i === 31) {
-            return { pcX: 4, pcY: 19 , pcDir : "W"};
+            return {pcX: 4, pcY: 19, pcDir: "W"};
         } else if (i < 40) {
-            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7 };
+            return {pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7};
         } else if (i === 40) {
-            return { pcX: 4, pcY: 7 };
+            return {pcX: 4, pcY: 7};
         } else if (i === 41) {
-            return { pcX: 5, pcY: 6 };
+            return {pcX: 5, pcY: 6};
         } else if (i === 42) {
-            return { pcX: 7, pcY: 6 };
+            return {pcX: 7, pcY: 6};
         } else if (i < 45) {
-            return { pcX: 28, pcY: -i + 40 + 8 , pcDir : "W" };
+            return {pcX: 28, pcY: -i + 40 + 8, pcDir: "W"};
         } else if (i === 45) {
-            return { pcX: 27, pcY: 3,   };
+            return {pcX: 27, pcY: 3,};
         } else if (i === 46) {
-            return { pcX: 2, pcY: 15 , };
+            return {pcX: 2, pcY: 15,};
         } else if (i < 49) {
-            return { pcX: 2, pcY: 14 + (-i + 47) };
+            return {pcX: 2, pcY: 14 + (-i + 47)};
         }
     };
 
-    console.log(markers, "new");
-    const { pcX, pcY , pcDir} = getPCxy(i);
+    const {pcX, pcY, pcDir} = getPCxy(i);
 
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
@@ -297,16 +320,16 @@ line2.forEach((station, i) => {
     }
 }); */
 
-const lisPc = markers.map((station, i) => {
+const lisPc = ()=> markers.map((station, i) => {
     if (i > 43) return;
     if (i < 43) {
         return `<li
 data-marker="${station.marker}"
 data-coords="${station.pcX}, ${station.pcY}" data-dir="${
             station.pcDir
-        }" data-nearest="${station.data_nearest}" data-clicked="${
-            station.data_clicked
-        }">
+        }" data-nearest="${station.data_nearest}"  data-clicked=${
+            station.data_clicked 
+        }>
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
     } else if (i === 43) {
@@ -315,11 +338,11 @@ data-coords="${station.pcX}, ${station.pcY}" data-dir="${
     </li>`;
     }
 });
-const coda3 = markers.map((station, i) => {
+const coda3 =()=> markers.map((station, i) => {
     if (i < 42) return;
     if (i === 42) {
         return `<li data-coords="28, 7"></li>`;
-    } else if ( i < 46) {
+    } else if (i < 46) {
         return `<li
         data-marker="${station.marker}"
         data-coords="${station.pcX}, ${station.pcY}" data-dir="${
@@ -329,10 +352,10 @@ const coda3 = markers.map((station, i) => {
         }">
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
-    } 
+    }
 });
 
-const coda4 = markers.map((station, i) => {
+const coda4 =() => markers.map((station, i) => {
 
     if (i < 43) return;
     if (i === 43) {
@@ -366,20 +389,20 @@ const getHtmlText = () => {
         const htmlText = `
      <div id="map-wrapper">
     
-    <div class="subway-map" data-columns="16" data-rows="24" data-cellSize="50" data-legendId="legend"
+    <div class="subway-map" data-columns="16" data-rows="24" data-cellSize="50" 
 data-textClass="text" data-gridNumbers="true" data-grid="yes" data-lineWidth="8">
 
-    <ul class="trains" data-color="red">
+    <ul class="trains" data-color="red" data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>
 <ul data-color="#82eca7" data-label="jQuery Widgets">
 ${lisMobile().join("")}
 </ul>
 <ul data-color="#82eca7">
-${coda1.join("")}
+${coda1().join("")}
 </ul>
 <ul data-color="#82eca7">
-${coda2.join("")}
+${coda2().join("")}
 </ul>
 
 </div>
@@ -392,14 +415,17 @@ ${coda2.join("")}
          <div id="map-wrapper">
 <div class="subway-map" data-columns="30" data-rows="25" data-cellSize="50" 
 data-textClass="text" data-gridNumbers="true" data-grid="true" data-lineWidth="8">
+  <ul class="trains" data-color="red" data-textClass="trains">
+${trainPosList.length ? MarkerHtml.join("") : ""}
+</ul>
 <ul data-color="#82eca7" data-label="jQuery Widgets" >
-    ${lisPc.join("")}
+    ${lisPc().join("")}
 </ul>
 <ul data-color="#82eca7">
-    ${coda3.join("")}
+    ${coda3().join("")}
 </ul>
 <ul data-color="#82eca7" >
-    ${coda4.join("")}
+    ${coda4().join("")}
 </ul>
 
 </div>
@@ -414,8 +440,8 @@ function update() {
     $("#wrap").html(getHtmlText());
 
     $(".subway-map").subwayMap({
-        debug: true,
-    });
+                                   debug: true,
+                               });
 
     if ($(window).width() < 1500) {
         $(".subway-map").css("zoom", $(window).width() / $("canvas").width());
@@ -425,34 +451,38 @@ function update() {
 update();
 
 window.onresize = () => {
+    trainPosList.splice(0)
+    // getTrainLocation();
     update();
+
 };
 
 let timeoutId;
 
 async function getTrainLocation() {
     try {
-        if (!$("#wrap").is(".main")) return;
 
+
+        const isMobile = $(window).width() <= 768;
         if (trainPosList.length !== 0) {
             trainPosList.splice(0, trainPosList.length);
         }
-        console.log("NEW");
+
 
         clearTimeout(timeoutId);
-        /*   timeoutId = setTimeout(getTrainLocation, 4000)*/
+        //   timeoutId = setTimeout(getTrainLocation, 10000)
         const response = await fetch(
             "http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimePosition/0/100/2호선",
 
-            { method: "GET" }
+            {method: "GET"}
         );
 
-        const { realtimePositionList } = await response.json();
+        const {realtimePositionList} = await response.json();
 
-        console.log(realtimePositionList);
 
         const lis = realtimePositionList.map((train, i) => {
             const statnId = train.statnId.slice(-4);
+
 
             const getNextStation = (station) => {
                 let nextStation;
@@ -486,24 +516,14 @@ async function getTrainLocation() {
                 const pos = {
                     trainNo: train.trainNo,
                     updnLine: train.updnLine,
-                    x: (station.x + station2.x) / 2,
-                    y: (station.y + station2.y) / 2,
+                    x: isMobile ? (station.x + station2.x) / 2 : (station.pcX + station2.pcX) / 2,
+                    y: isMobile ? (station.y + station2.y) / 2 : (station.pcY + station2.pcY) / 2,
                 };
                 trainPosList.push(pos);
+                console.log(trainPosList)
             }
         });
-        //         console.log(realtimePositionList)
-        //         const lis = realtimePositionList.map((train, i )=>{
-        //
-        //
-        //
-        //
-        //
-        //             `<li data-coords="${2 * i + 5}, 2" data-labelpos="N">
-        // <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${line2[i] ? line2[i].statn_nm : ''}</a>
-        // </li>`
-        //         })
-        //         console.log(lis)
+
 
         MarkerHtml = trainPosList.map((train) => {
             if (train.updnLine === "0") {
@@ -517,7 +537,8 @@ async function getTrainLocation() {
         console.log(err);
     }
 }
-/* timeoutId = setTimeout(getTrainLocation, 10000)  */
+
+//timeoutId = setTimeout(getTrainLocation, 0)
 
 let RSid = 0;
 let recentSearch = [];
@@ -530,34 +551,35 @@ if (localStorage.recentSearch) {
     usedata(recentSearch);
 }
 
-$("#wrap").on("mousedown", ".subway-map a.text", function (e) {
-    e.preventDefault();
+let name;
 
-    if (e.which === 1) {
-        $(this).addClass("clicked");
-        $(this).siblings().removeClass("clicked");
-        $(".popup").remove();
+function onClickStation(name) {
+    console.log(name)
+    stationClicked = name.slice(
+        0,
+        name.indexOf("(") === -1 ? name.length : name.indexOf("(")
+    );
 
-        const name = $(this).data("info");
+    $(".popup").remove();
 
-        const offset = $(this).offset();
-        const windowWidth = $(window).width();
+    const offset = $(`[data-info=${stationClicked}]`).offset();
+    const windowWidth = $(window).width();
 
-        //PC화면
+    //PC화면
 
-        const popupHtml =
-            $(window).width() > 768
-                ? `<div class="popup"  style="left:${Math.min(
-                      (offset.left * windowWidth) / 1500,
-                      offset.left
-                  )}px; top:${Math.min(
-                      (offset.top * windowWidth) / 1500,
-                      offset.top
-                  )}px">`
-                : '<div class="popup">';
+    const popupHtml =
+        $(window).width() > 768
+            ? `<div class="popup"  style="left:${Math.min(
+                (offset.left * windowWidth) / 1500,
+                offset.left
+            )}px; top:${Math.min(
+                (offset.top * windowWidth) / 1500,
+                offset.top
+            )}px">`
+            : '<div class="popup">';
 
-        $("body").append(
-            `${popupHtml}
+    $("body").append(
+        `${popupHtml}
             
 			<div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
@@ -653,47 +675,38 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 		
             
             </div>`
-        );
+    );
 
-        stationClicked = name.slice(
-            0,
-            name.indexOf("(") === -1 ? name.length : name.indexOf("(")
-        );
 
-        const clicked = markers.find((el) => el.statn_nm == name);
+    const clicked = markers.find((el) => {
 
-        markers.forEach((marker, i) => {
-            if (i < 43) {
-                marker.data_clicked = "";
-            }
-        });
-        clicked.data_clicked = "clicked";
+        return el.statn_nm === stationClicked})
+    ;
 
-        console.log(markers);
+    markers.forEach((marker, i) => {
+        marker.data_clicked = "";
+    });
 
-        update();
+    clicked.data_clicked = "clicked";
 
-        updateArrivalData(stationClicked);
-    }
+    console.log(clicked)
 
-    /*     else if (e.which === 3) {
-        $(this).addClass("favorite");
-        $(this).siblings().removeClass("clicked");
-        $(".popup").remove();
+    update();
 
-        const name = $(this).data("info");
-        const fav = markers.find((el) => el.statn_nm == name);
+    updateArrivalData(stationClicked);
+}
 
-        fav.data_markerInfo = "fav";
+$("#wrap").on("mousedown", ".subway-map a.text", function (e) {
+    e.preventDefault();
 
-        console.log(name);
+    const name = $(this).data("info");
 
-        console.log(name);
-    } */
+    console.log(name)
 
+    onClickStation(name);
     RSid++;
 
-    const obj = { id: RSid, text: stationClicked };
+    const obj = {id: RSid, text: stationClicked};
 
     recentSearch.push(obj);
     if (recentSearch.length > 5) {
@@ -706,7 +719,6 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
     return false;
 });
-
 
 
 $(window).on("load resize", () => {
@@ -731,6 +743,7 @@ function usedata(rdata) {
 
     $(".slider").append(list);
 }
+
 $("#search-history-btn").on("click", function (e) {
     $(".search-history").show();
     $(".favorites").hide();
@@ -856,7 +869,7 @@ $("#search-input").on("input", (e) => {
     const htmlText = arr.map(
         (name) =>
             `<li>
-       <input type="text" value="${name}" disabled>
+       <input type="text" value="${name}" class="searched" disabled>
     </li>`
     );
 
@@ -877,14 +890,10 @@ if (localStorage.favData) {
 
 console.log(favData);
 // 추가
-$(".search-result").on("click", ".addS", function () {
-    console.log("hiii");
-    let aname = $(this).attr("data-statn");
-    favId++;
-    let obj = { id: favId, text: aname };
-    favData.push(obj);
-    localStorage.favData = JSON.stringify(favData);
-    useFavData(favData);
+$(".search-result").on("mousedown", 'input', function () {
+
+
+    onClickStation($(this).val())
 });
 
 function useFavData(favData) {
@@ -914,3 +923,13 @@ $(".slider").on("click", ".delete-fav-btn", function () {
 $("#mobile-search").on("click", function () {
     $(".search-box").toggleClass("show");
 });
+
+
+
+
+$(".search-history").on("click", 'a',function (e) {
+
+e.preventDefault()
+    onClickStation( $(this).text())
+});
+

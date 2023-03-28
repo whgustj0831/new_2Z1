@@ -89,6 +89,37 @@ const markers = line2.map((station, i) => {
             data_fav: false,
             station_id: station.statn_id,
         };
+    } else if (i < 46) {
+        return {
+            data_clicked: false,
+
+            statn_nm: station.statn_nm,
+            crdnt_x: station.crdnt_x - 0,
+            crdnt_y: station.crdnt_y - 0,
+            x: 13,
+            y: 11 + 40 - i,
+
+            statn_id: station.statn_id,
+            marker: "",
+            data_dir: "E",
+            data_fav: false,
+            station_id: station.statn_id,
+        };
+    } else if (i < 50) {
+        return {
+            data_clicked: false,
+
+            statn_nm: station.statn_nm,
+            crdnt_x: station.crdnt_x - 0,
+            crdnt_y: station.crdnt_y - 0,
+            x: 3,
+            y: 13 - 46 + i,
+            statn_id: station.statn_id,
+            marker: "",
+            data_dir: "W",
+            data_fav: false,
+            station_id: station.statn_id,
+        };
     }
 });
 
@@ -111,99 +142,222 @@ data-coords="${station.x}, ${station.y}" data-dir="${
         }
     });
 
-const coda1 = line2.map((station, i) => {
+const coda1 = markers.map((station, i) => {
     if (i === 41) {
         return `<li data-coords="12, 9"></li>`;
     }
     if (i > 42 && i < 46) {
-        return `<li data-marker="${station.marker}" data-coords="13, ${
-            11 + 40 - i
-        }" data-dir="E" data-labelpos="E">
-   <a >${station ? station.statn_nm : ""}</a>
-</li>`;
+        return `<li
+        data-marker="${station.marker}"
+        data-coords="${station.x}, ${station.y}" data-dir="${
+            station.data_dir
+        }" data-nearest="${station.data_nearest}" data-clicked="${
+            station.data_clicked
+        }">
+        <a href="#">${station ? station.statn_nm : ""}</a>
+        </li>`;
     }
 });
 
-const coda2 = line2.map((station, i) => {
-    if (i === 46) {
-        return `<li data-coords="4, 11"></li>`;
+const coda2 = markers.map((station, i) => {
+    if (i === 45) {
+        return `<li data-coords="4, 12.3"></li>`;
     }
-    if (i > 46) {
-        return `<li data-marker="${station.marker}" data-coords="3, ${
-            11 - 46 + i
-        }" data-dir="W" data-labelpos="W">
-   <a >${station ? station.statn_nm : ""}</a>
-</li>`;
+    if (i > 45 && i < 49) {
+        return `<li
+        data-marker="${station.marker}"
+        data-coords="${station.x}, ${station.y}" data-dir="${
+            station.data_dir
+        }" data-nearest="${station.data_nearest}" data-clicked="${
+            station.data_clicked
+        }">
+        <a href="#">${station ? station.statn_nm : ""}</a>
+        </li>`;
     }
 });
 
-const lisPc = line2.map((station, i) => {
+line2.forEach((station, i) => {
+    if (i > 48) return;
+    const getPCxy = (i) => {
+        if (i < 10) {
+            return { pcX: 9 + i * 2, pcY: 6, pcDir : "E"};
+        } else if (i === 10) {
+            return { pcX: 28, pcY: 7, pcDir : "E" };
+        } else if (i < 18) {
+            return { pcX: 28, pcY: 7 + ((i - 10) * 12) / 7 ,  pcDir : "S"} ;
+        } else if (i === 18) {
+            return { pcX: 27, pcY: 20 , pcDir : "S"};
+        } else if (i < 30) {
+            return { pcX: 27 - ((i - 18) * 22) / 12, pcY: 20,  pcDir : "E" };
+        } else if (i === 30) {
+            return { pcX: 5, pcY: 20 ,pcDir : "E"};
+        } else if (i === 31) {
+            return { pcX: 4, pcY: 19 , pcDir : "W"};
+        } else if (i < 40) {
+            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7 };
+        } else if (i === 40) {
+            return { pcX: 4, pcY: 7 };
+        } else if (i === 41) {
+            return { pcX: 5, pcY: 6 };
+        } else if (i === 42) {
+            return { pcX: 7, pcY: 6 };
+        } else if (i < 45) {
+            return { pcX: 28, pcY: -i + 40 + 8 , pcDir : "W" };
+        } else if (i === 45) {
+            return { pcX: 27, pcY: 3,   };
+        } else if (i === 46) {
+            return { pcX: 2, pcY: 15 , };
+        } else if (i < 49) {
+            return { pcX: 2, pcY: 14 + (-i + 47) };
+        }
+    };
+
+    console.log(markers, "new");
+    const { pcX, pcY , pcDir} = getPCxy(i);
+
+    markers[i].pcX = pcX;
+    markers[i].pcY = pcY;
+    markers[i].pcDir = pcDir;
+
+});
+
+/* const lisPc = line2.map((station, i) => {
     if (i < 10) {
-        return `<li data-coords="${23 + i * 3}, 10"  data-dir="S">
+        return `<li data-coords="${9 + i * 2}, 6"  data-dir="S">
 <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
             line2[i] ? line2[i].statn_nm : ""
         }</a>
 </li>`;
-    } else if (i < 14) {
-        return `<li data-coords=" 51, ${11 + (i - 10) * 2.5}" data-dir="E">
+    } else if (i === 10) {
+        return `<li data-coords=" 28, 7" data-dir="E">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i < 18) {
+        return `<li data-coords=" 28, ${7 + ((i - 10) * 12) / 7}" data-dir="E">
 <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
             line2[i] ? line2[i].statn_nm : ""
         }</a>
 </li>`;
-    } else if (i < 19) {
-        return `<li data-coords=" 51, ${11 + (i - 10) * 2.5}" data-dir="N">
-<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+    } else if (i === 18) {
+        return `<li data-coords="27, 20" data-dir="S">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
             line2[i] ? line2[i].statn_nm : ""
         }</a>
-</li>`;
-    } else if (i < 31) {
-        return `<li data-coords="${50 - (i - 19) * 3}, 32"  data-dir="S">
-<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
-            line2[i] ? line2[i].statn_nm : ""
-        }</a>
-</li>`;
-    } else if (i < 40) {
-        return `<li data-coords="16, ${16.2 - (i - 37) * 2.4}"  data-dir="W">
-<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
-            line2[i] ? line2[i].statn_nm : ""
-        }</a>
-</li>`;
-    } else if (i < 43) {
-        return `<li data-coords="${15 + (i - 39) * 2}, 10"  data-dir="N">
-<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
-            line2[i] ? line2[i].statn_nm : ""
-        }</a>
-</li>`;
-    }
-});
-
-const coda3 = line2.map((station, i) => {
-    if (i === 41) {
-        return `<li data-coords="51, 12"></li>`;
-    }
-    if (i > 42 && i < 46) {
+        </li>`;
+    } else if (i < 30) {
         return `<li data-coords="${
-            (60 - i) * 3
-        },7" data-dir="E" data-labelpos="E">
+            27 - ((i - 18) * 22) / 12
+        }, 20"  data-dir="S">
 <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
             line2[i] ? line2[i].statn_nm : ""
         }</a>
 </li>`;
+    } else if (i === 30) {
+        return `<li data-coords="5, 20"  data-dir="W">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i === 31) {
+        return `<li data-coords="4, 19"  data-dir="W">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i < 40) {
+        return `<li data-coords="4, ${(-(i - 40) * 12) / 9 + 7}"  data-dir="N">
+<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+</li>`;
+    } else if (i === 40) {
+        return `<li data-coords="4, 7"  data-dir="N">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i === 41) {
+        return `<li data-coords="5, 6"  data-dir="N">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i < 44) {
+        return `<li data-coords="7, 6"  data-dir="W">
+        <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+            line2[i] ? line2[i].statn_nm : ""
+        }</a>
+        </li>`;
+    } else if (i === 44) {
+        return `<li data-coords="9, 6"  data-dir="W">
+   
+        </li>`;
+    }
+}); */
+
+const lisPc = markers.map((station, i) => {
+    if (i > 43) return;
+    if (i < 43) {
+        return `<li
+data-marker="${station.marker}"
+data-coords="${station.pcX}, ${station.pcY}" data-dir="${
+            station.pcDir
+        }" data-nearest="${station.data_nearest}" data-clicked="${
+            station.data_clicked
+        }">
+<a href="#">${station ? station.statn_nm : ""}</a>
+</li>`;
+    } else if (i === 43) {
+        return `<li data-coords="9,6">
+
+    </li>`;
     }
 });
+const coda3 = markers.map((station, i) => {
+    if (i < 42) return;
+    if (i === 42) {
+        return `<li data-coords="28, 7"></li>`;
+    } else if ( i < 46) {
+        return `<li
+        data-marker="${station.marker}"
+        data-coords="${station.pcX}, ${station.pcY}" data-dir="${
+            station.pcDir
+        }" data-nearest="${station.data_nearest}" data-clicked="${
+            station.data_clicked
+        }">
+        <a href="#">${station ? station.statn_nm : ""}</a>
+        </li>`;
+    } 
+});
 
-const coda4 = line2.map((station, i) => {
-    if (i === 46) {
-        return `<li data-coords="16, 26"></li>`;
-    }
-    if (i > 46) {
-        return `<li data-coords="13, ${
-            26 + (47 - i) * 3
-        }" data-dir="W" data-labelpos="W">
+const coda4 = markers.map((station, i) => {
+
+    if (i < 43) return;
+    if (i === 43) {
+        return `<li data-coords="4, 16.2"></li>`;
+    } else if (i === 44) {
+        return `<li data-coords="3, 16.2"></li>`;
+    } else if (i === 45) {
+        return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
+</li>`;
+    } else if (i === 46) {
+        return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
 <a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
             line2[i] ? line2[i].statn_nm : ""
         }</a>
 </li>`;
+    } else if (i > 46 && i < 49) {
+        return `<li
+        data-marker="${station.marker}"
+        data-coords="${station.pcX}, ${station.pcY}" data-dir="${
+            station.pcDir
+        }" data-nearest="${station.data_nearest}" data-clicked="${
+            station.data_clicked
+        }">
+        <a href="#">${station ? station.statn_nm : ""}</a>
+        </li>`;
     }
 });
 
@@ -236,21 +390,18 @@ ${coda2.join("")}
     } else {
         const htmlText = `
          <div id="map-wrapper">
-<div class="subway-map" data-columns="62" data-rows="40" data-cellSize="24" data-legendId="legend"
+<div class="subway-map" data-columns="30" data-rows="25" data-cellSize="50" 
 data-textClass="text" data-gridNumbers="true" data-grid="true" data-lineWidth="8">
-<ul data-color="#82eca7" data-label="jQuery Widgets" data-shiftCoords="-3,0">
+<ul data-color="#82eca7" data-label="jQuery Widgets" >
     ${lisPc.join("")}
 </ul>
-<ul data-color="#82eca7" data-shiftCoords="-3,0">
+<ul data-color="#82eca7">
     ${coda3.join("")}
 </ul>
-<ul data-color="#82eca7" data-shiftCoords="-3,0">
+<ul data-color="#82eca7" >
     ${coda4.join("")}
 </ul>
-<ul data-color="#82eca7" data-shiftCoords="-3,0">
-    <li data-coords="21,10"></li>
-    <li data-coords="23,10"></li>
-</ul>
+
 </div>
 </div>`;
         return htmlText;
@@ -266,7 +417,7 @@ function update() {
         debug: true,
     });
 
-    if ($(window).width() < 1489) {
+    if ($(window).width() < 1500) {
         $(".subway-map").css("zoom", $(window).width() / $("canvas").width());
     }
 }
@@ -366,7 +517,6 @@ async function getTrainLocation() {
         console.log(err);
     }
 }
-
 /* timeoutId = setTimeout(getTrainLocation, 10000)  */
 
 let RSid = 0;
@@ -398,10 +548,10 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
         const popupHtml =
             $(window).width() > 768
                 ? `<div class="popup"  style="left:${Math.min(
-                      (offset.left * windowWidth) / 1488,
+                      (offset.left * windowWidth) / 1500,
                       offset.left
                   )}px; top:${Math.min(
-                      (offset.top * windowWidth) / 1488,
+                      (offset.top * windowWidth) / 1500,
                       offset.top
                   )}px">`
                 : '<div class="popup">';
@@ -559,14 +709,7 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
 
 
-$(window).on("load", () => {
-    if ($(window).width() < 768) {
-        $("header").append($(".search-box"));
-    } else {
-        $(".btns").append($(".search-box"));
-    }
-});
-$(window).on("resize", () => {
+$(window).on("load resize", () => {
     if ($(window).width() < 768) {
         $("header").append($(".search-box"));
     } else {

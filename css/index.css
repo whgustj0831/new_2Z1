@@ -1,3 +1,4 @@
+
 body {
   width: 100%;
   height: 100%;
@@ -17,7 +18,7 @@ body {
   width: 100%;
   display: flex;
   background: #fff;
-  border-bottom: 3px solid rgb(110, 200, 105);
+  border-bottom: 3px solid rgb(2, 176, 11);
   justify-content: space-between;
 }
 
@@ -34,15 +35,18 @@ body {
   width: 50px;
   border-radius: 10px;
   font-size: 20px;
+  color: #fff;
 }
 .nav > button:nth-child(2) {
   width: 70px;
-  border-left: 3px solid rgb(110, 200, 105);
-  border-right: 3px solid rgb(110, 200, 105);
+  border-left: 2px solid rgb(2, 176, 11);
+  border-right: 2px solid rgb(2, 176, 11);
 }
 
 .logini {
   margin: 10px;
+  border: none;
+  background-color: rgb(2, 176, 11);
 }
 
 .nav {
@@ -51,8 +55,10 @@ body {
   z-index: 8888;
   right: 80px;
   bottom: 5%;
-  border: 3px solid rgb(110, 200, 105);
+  border: 2px solid rgb(2, 176, 11);
   border-radius: 10px;
+  padding: 0 5px;
+  background: #fff;
 }
 .nav > button {
   font-size: 30px;
@@ -60,11 +66,12 @@ body {
   padding: 10px 0;
   width: 60px;
   text-align: center;
+  color: rgb(2, 176, 11);
 }
 
 .guide {
   background: #fff;
-  border: 1px solid rgb(110, 200, 105);
+  border: 1px solid rgb(2, 176, 11);
   position: fixed;
   left: 5%;
   top: 15%;
@@ -81,22 +88,27 @@ body {
 
 .search-box {
   line-height: 55px;
-  padding: 0 40px 0 20px;
+  padding: 0 50px 0 20px;
   margin-left: 10px;
 }
 
 .search-box > input {
+  font-size: 16px;
   padding: 5px;
   width: 250px;
   border-radius: 30px;
-  text-indent: 1em;
+  text-indent: 0.8em;
   outline: none;
 }
 
 .search-box > button {
+  font-size: 16px;
   width: 50px;
   padding: 5px 0;
   border-radius: 10px;
+  border: 1px solid rgb(2, 176, 11);
+  background-color: rgb(2, 176, 11);
+  color: #fff;
 }
 
 .slider {
@@ -104,7 +116,7 @@ body {
   background-color: #fff;
   position: fixed;
   left: 100%;
-  border-left: 3px solid rgb(110, 200, 105);
+  border-left: 3px solid rgb(2, 176, 11);
   height: 100%;
   width: 600px;
   transition: transform 0.3s;
@@ -133,19 +145,23 @@ body {
   height: 700px;
   padding: 120px 100px;
   background: rgba(255, 255, 255, 1);
-  border: 3px solid rgb(110, 200, 105);
+  border: 3px solid rgb(2, 176, 11);
   z-index: 999999999999;
   border-radius: 30px;
 }
+.login_popup.show {
+  display: block;
+}
+
 .login_popup > h2 {
-  color: rgb(110, 200, 105);
+  color: rgb(2, 176, 11);
   text-align: center;
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 80px;
 }
 .login_popup > p {
-  border: 1px solid rgb(110, 200, 105);
+  border: 1px solid rgb(2, 176, 11);
   background: #fff;
   border-radius: 10px;
   padding: 5px;
@@ -160,7 +176,7 @@ body {
   outline: none;
 }
 .login_popup > button {
-  border: 1px solid rgb(110, 200, 105);
+  border: 1px solid rgb(2, 176, 11);
   text-align: center;
   font-size: 20px;
   width: 300px;
@@ -168,6 +184,61 @@ body {
   padding: 10px;
   border-radius: 10px;
   margin-top: 40px;
+}
+
+.searchbox2 {
+  z-index: 99999999;
+  position: fixed;
+  right: 48px;
+  top: 50px;
+}
+
+.search-result {
+  font-size: 16px;
+  width: 310px;
+  background: #fff;
+  border: 2px solid rgb(2, 176, 11);
+  border-bottom: none;
+}
+
+.search-result > li {
+  width: 100%;
+  border-bottom: 2px solid rgb(2, 176, 11);
+  padding: 10px 0px 10px 20px;
+}
+.search-result > li > input {
+  width: 80%;
+  border: none;
+  background: none;
+}
+
+h3 {
+  padding: 60px 130px;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+.search-history > li {
+  width: 380px;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid rgb(2, 176, 11);
+}
+.search-history > li > a {
+  padding: 10px 100px;
+  font-size: 16px;
+}
+
+.search-history > li {
+  width: 380px;
+  text-align: center;
+  padding: 150px 10px;
+  border-bottom: 2px solid rgb(2, 176, 11);
+}
+
+.favorites li > input {
+  padding: 10px 100px;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
@@ -193,12 +264,15 @@ body {
     margin-right: 25px;
   }
   .logini {
-    margin: 10px;
+    margin: 10px 0;
   }
   .mobile-search {
     margin: 10px 0;
+    background: rgb(2, 176, 11);
+    border: 1px solid rgb(2, 176, 11);
   }
   .search-box {
+      flex-wrap: wrap;
       width: 100%;
       text-align: center;
       line-height: 0;
@@ -218,6 +292,33 @@ body {
     border-radius: 10px;
     margin-left: 5px;
   }
+  .searchbox2 {
+    z-index: 99999999;
+    position: fixed;
+    right: 38px;
+    top: 50px;
+    display: none;
+  }
+  .searchbox2.on {
+    display: block;
+  }
+  .search-result {
+    width: 310px;
+    background: #fff;
+    border: 2px solid rgb(2, 176, 11);
+    border-bottom: none;
+  }
+  
+  .search-result > li {
+    width: 100%;
+    border-bottom: 2px solid rgb(2, 176, 11);
+    padding: 10px 0px 10px 20px;
+  }
+  .search-result > li > input {
+    width: 80%;
+    border: none;
+    background: none;
+  }
   /* .search_button {
     display: none;
   } */
@@ -228,7 +329,7 @@ body {
     display: flex;
     position: fixed;
     left: 0;
-    border-top: 3px solid rgb(110, 200, 105);
+    border-top: 3px solid rgb(2, 176, 11);
   }
   .nav > button {
     font-size: 25px;
@@ -262,7 +363,7 @@ body {
   }
 
   .login_popup > button {
-      border: 1px solid rgb(110, 200, 105);
+      border: 1px solid rgb(2, 176, 11);
       text-align: center;
       font-size: 20px;
       width: 100%;

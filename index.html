@@ -42,66 +42,67 @@
 
          -->
         <header class="header">
-
             <h1>
                 <img src="./Artboard 32000.png" alt="" />
             </h1>
 
             <div class="btns">
-                <button class="mobile-search" id="mobile-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="mobile-search" id="mobile-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
 
                 <button class="logini"><i class="fa-solid fa-user"></i></button>
 
                 <div class="search-box">
-                    <input type="text" placeholder="역이름 검색" id="search-input" />
+                    <input
+                        type="text"
+                        placeholder="역이름 검색"
+                        id="search-input"
+                    />
                     <button class="search_button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </div>
-
         </header>
         <div class="searchbox2">
-            <ul class="search-result">
-    
-            </ul>
+            <ul class="search-result"></ul>
         </div>
 
-        <nav class="nav">
-            <button id="get-stations"><i class="fa-solid fa-crosshairs"></i></button>
-            <button class="slider-btn" id="search-history-btn">
-                <i class="fa-solid fa-clock"></i>
-            </button>
-            <button class="slider-btn" id="fav-btn"><i class="fa-solid fa-star"></i></button>
-        </nav>
-        <div class="guide">이미지박스</div>
-        <div id="wrap"></div>
+        <div class="flex-container">
+            <nav class="nav">
+                <button id="get-stations">
+                    <i class="fa-solid fa-crosshairs"></i>
+                </button>
+                <button class="slider-btn" id="search-history-btn">
+                    <i class="fa-solid fa-clock"></i>
+                </button>
+                <button class="slider-btn" id="fav-btn">
+                    <i class="fa-solid fa-star"></i>
+                </button>
+            </nav>
+            <div class="guide">이미지박스</div>
 
-  
+            <div id="wrap"></div>
 
-        <div class="slider">
-            <ul class="search-history">
+            <div class="slider">
+                <div class="layer"></div>
+                <ul class="search-history"></ul>
 
-            </ul>
+                <ul class="favorites"></ul>
+            </div>
 
-            <ul class="favorites">
-                
-            </ul>
-      
+            <div class="login_popup">
+                <h2>로그인</h2>
+                <p class="loginin">
+                    <input type="text" name="idt" placeholder="아이디" />
+                </p>
+                <p class="pwin">
+                    <input type="password" name="pw" placeholder="비밀번호" />
+                </p>
+                <button type="submit" class="loginbtn">로그인</button>
+            </div>
         </div>
-
-        <div class="login_popup">
-            <h2>로그인</h2>
-            <p class="loginin">
-                <input type="text" name="idt" placeholder="아이디">
-            </p>
-            <p class="pwin">
-                <input type="password" name="pw" placeholder="비밀번호">
-            </p>
-            <button type="submit" class="loginbtn">로그인</button>
-        </div>
-
-      
         <script src="./js/sample.js" defer></script>
         <script src="./js/main.js" defer></script>
     </body>

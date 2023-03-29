@@ -478,7 +478,7 @@ function update() {
 
     const zoomRate = Math.min(
         w / $("canvas").width(),
-        h / $("canvas").height()
+        h / $("canvas").height(), 1
     );
 
     $("#wrap").css("zoom", zoomRate);

@@ -84,7 +84,7 @@ body {
     left: 5%;
     top: 15%;
     width: 200px;
-    height: 300px;
+    height: 250px;
     border-radius: 30px;
     padding: 20px;
     z-index: 9999999;
@@ -152,6 +152,28 @@ body {
     position: fixed;
     transform: translate(-50%, -100%);
     z-index: 9999999;
+}
+
+.popup > button {
+    position: fixed;
+    right: 7px;
+    top: 7px;
+    border: none;
+    font-size: 22px;
+}
+  .popup > .traindiv {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
+}
+  .popup > .traindiv > .inline-train {
+    width: 200px;
+  
+}
+  .popup > .traindiv > .outline-train {
+    width: 200px;
+  
 }
 
 .login_popup {

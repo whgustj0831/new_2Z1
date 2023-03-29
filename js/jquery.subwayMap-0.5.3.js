@@ -206,6 +206,11 @@ THE SOFTWARE.
                                 var labelPos = $(this).attr("data-labelPos");
                                 if (labelPos === undefined) labelPos = "s";
 
+
+                                var pclabel = $(this).attr("data-pclabel");
+                                if (pclabel === undefined) pclabel = "s";
+
+
                                 var marker = $(this).attr("data-marker");
                                 if (marker == undefined) marker = "";
 
@@ -266,7 +271,8 @@ THE SOFTWARE.
                                     label: label,
                                     labelPos: labelPos,
                                     clicked: clicked,
-                                    nearest: nearest
+                                    nearest: nearest,
+                                    pclabel : pclabel
                                 };
                             });
 
@@ -651,6 +657,8 @@ THE SOFTWARE.
             var offset = 0;
             var topOffset = 0;
             var centerOffset = "0px";
+
+            console.log(data.pclabel)
             switch (data.labelPos.toLowerCase()) {
                 case "n":
                     pos =
@@ -658,7 +666,7 @@ THE SOFTWARE.
                         offset +
                         "px " +
                         centerOffset;
-                    topOffset = offset * 2;
+
                     break;
                 case "w":
                     pos =
@@ -726,23 +734,26 @@ THE SOFTWARE.
                     ? "font-size:8pt;font-family:Verdana,Arial,Helvetica,Sans Serif;text-decoration:none; "
                     : "") +
                 "width:20px;" +
-                (pos != "" ? pos : "") +
+
+          //      (pos != "" ? pos : "") +
                 ";position:absolute;top:" +
-                (y + el.position().top - 10) +
+                (y + el.position().top) +
                 "px;left:" +
                 (x + el.position().left - 10) +
                 "px;z-index:3000; border : 5px solid green; display:block; height : 20px; '";
 
             var style2 =
+
                 (textClass != "" ? "class='" + textClass + "' " : "") +
                 "style='" +
                 (textClass == ""
-                    ? "font-size:8pt;font-family:Verdana,Arial,Helvetica,Sans Serif;text-decoration:none;"
+                    ? "font-size:16pt;font-family:Verdana,Arial,Helvetica,Sans Serif;text-decoration:none;"
                     : "") +
-                "width:50px;" +
-                (pos != "" ? pos : "") +
+                "width:80px;" +
+
+                "; border:3px solid red;" +
                 ";position:absolute;top:" +
-                (y + el.position().top) +
+                (y + el.position().top ) +
                 "px;left:" +
                 (x + el.position().left) +
                 "px;z-index:2999; '";
@@ -750,6 +761,7 @@ THE SOFTWARE.
             if (data.link != "") {
                 $(
                     "<a " +
+                    `data-labelD="${data.pclabel}"` +
                     "data-info=" +
                     data.label.replace(/\\n/g, "<br />") +
                     style1 +
@@ -766,6 +778,7 @@ THE SOFTWARE.
 
                 $(
                     "<span " +
+                    `data-pclabel="${data.pclabel}"`+
                     style2 +
                     ">" +
                     data.label.replace(/\\n/g, "<br />") +
@@ -774,6 +787,7 @@ THE SOFTWARE.
             } else
                 $(
                     "<span " +
+                    `data-pclabel="${data.pclabel}"`+
                     style2 +
                     ">" +
                     data.label.replace(/\\n/g, "<br />") +

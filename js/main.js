@@ -580,10 +580,11 @@ function onClickStation(name) {
 
     $("body").append(
         `${popupHtml}
-            
+
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
-			
-            <div class="train inline-train">
+
+            
+			<div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
 
@@ -724,11 +725,26 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
 
 $(window).on("load resize", () => {
-    if ($(window).width() < 768) {
+    const offset = $(`[data-info=${stationClicked}]`).offset();
+    const windowWidth = $(window).width();
+
+
+    if (windowWidth < 768) {
         $("header").append($(".search-box"));
     } else {
         $(".btns").append($(".search-box"));
+
+        $('.popup').css({left : `${Math.min(
+            (offset.left * windowWidth) / 1500,
+            offset.left
+        )}px`, top : `${Math.min(
+            (offset.top * windowWidth) / 1500,
+            offset.top
+        )}px` })
+
+
     }
+
 });
 
 function usedata(rdata) {
@@ -944,9 +960,9 @@ $(".loginbtn").on("click", function () {
 });
 
 
-
 $(".search-history").on("click", 'a',function (e) {
 
 e.preventDefault()
     onClickStation( $(this).text())
 });
+

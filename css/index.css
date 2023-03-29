@@ -52,7 +52,7 @@ body {
 .nav {
   position: fixed;
   bottom: 0;
-  z-index: 8888;
+  z-index: 99999999999999;
   right: 80px;
   bottom: 5%;
   border: 2px solid rgb(2, 176, 11);
@@ -99,6 +99,7 @@ body {
   border-radius: 30px;
   text-indent: 0.8em;
   outline: none;
+  border: 1px solid rgb(2, 176, 11);
 }
 
 .search-box > button {
@@ -132,7 +133,7 @@ body {
     border: 2px solid green;
     position: fixed;
     transform: translate(-50%, -100%);
-
+    z-index: 9999999;
 }
 
 .login_popup {
@@ -147,9 +148,6 @@ body {
   border: 3px solid rgb(2, 176, 11);
   z-index: 999999999999;
   border-radius: 30px;
-}
-.login_popup.show {
-  display: block;
 }
 
 .login_popup > h2 {
@@ -186,6 +184,7 @@ body {
 }
 
 .searchbox2 {
+  display: none;
   z-index: 99999999;
   position: fixed;
   right: 48px;
@@ -272,6 +271,7 @@ h3 {
     border-radius: 30px;
     text-indent: 1em;
     outline: none;
+    border: 1px solid rgb(2, 176, 11);
   }
   .search-box > button {
     width: 50px;
@@ -285,9 +285,6 @@ h3 {
     right: 38px;
     top: 50px;
     display: none;
-  }
-  .searchbox2.on {
-    display: block;
   }
   .search-result {
     width: 310px;

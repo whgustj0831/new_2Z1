@@ -581,7 +581,9 @@ function onClickStation(name) {
     $("body").append(
         `${popupHtml}
             
-			<div class="train inline-train">
+            <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
+			
+            <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
 
@@ -722,26 +724,11 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
 
 $(window).on("load resize", () => {
-    const offset = $(`[data-info=${stationClicked}]`).offset();
-    const windowWidth = $(window).width();
-
-
-    if (windowWidth < 768) {
+    if ($(window).width() < 768) {
         $("header").append($(".search-box"));
     } else {
         $(".btns").append($(".search-box"));
-
-        $('.popup').css({left : `${Math.min(
-            (offset.left * windowWidth) / 1500,
-            offset.left
-        )}px`, top : `${Math.min(
-            (offset.top * windowWidth) / 1500,
-            offset.top
-        )}px` })
-
-
     }
-
 });
 
 function usedata(rdata) {
@@ -939,6 +926,22 @@ $("#mobile-search").on("click", function () {
     $(".search-box").toggleClass("show");
 });
 
+$(".search-box").on("click", function () {
+    $(".searchbox2").show();
+});
+$(".mobile-search").on("click", function () {
+    $(".searchbox2").hide();
+});
+$(".search_button").on("click", function () {
+    $(".searchbox2").hide();
+});
+
+$(".logini").on("click", function () {
+    $(".login_popup").show();
+});
+$(".loginbtn").on("click", function () {
+    $(".login_popup").hide();
+});
 
 
 
@@ -947,4 +950,3 @@ $(".search-history").on("click", 'a',function (e) {
 e.preventDefault()
     onClickStation( $(this).text())
 });
-

@@ -722,11 +722,26 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
 
 $(window).on("load resize", () => {
-    if ($(window).width() < 768) {
+    const offset = $(`[data-info=${stationClicked}]`).offset();
+    const windowWidth = $(window).width();
+
+
+    if (windowWidth < 768) {
         $("header").append($(".search-box"));
     } else {
         $(".btns").append($(".search-box"));
+
+        $('.popup').css({left : `${Math.min(
+            (offset.left * windowWidth) / 1500,
+            offset.left
+        )}px`, top : `${Math.min(
+            (offset.top * windowWidth) / 1500,
+            offset.top
+        )}px` })
+
+
     }
+
 });
 
 function usedata(rdata) {

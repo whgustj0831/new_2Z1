@@ -701,6 +701,20 @@ function onClickStation(name) {
             </div>`
     );
 
+    $(".addS").on("click", function () {
+        const statn = $(this).data("statn");
+
+        favId++;
+
+        const obj = { id: favId, text: stationClicked };
+
+        favData.push(obj);
+
+        localStorage.favData = JSON.stringify(favData);
+
+        useFavData(favData);
+    });
+
     const clicked = markers.find((el) => {
         return el.statn_nm === stationClicked;
     });
@@ -805,7 +819,7 @@ $(".slider-btn").on("click", function (e) {
 });
 
 $(".slider").on("click", ".layer", function (e) {
-    console.log('hi')
+    console.log("hi");
     $(".slider").removeClass("open");
 });
 

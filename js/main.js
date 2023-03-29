@@ -605,6 +605,8 @@ function onClickStation(name) {
             
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
 			
+        <div class="traindiv">
+        
             <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
@@ -696,7 +698,7 @@ function onClickStation(name) {
 
 
 			</div>
-		
+		</div>
             
             </div>`
     );

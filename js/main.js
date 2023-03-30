@@ -547,7 +547,7 @@ async function getTrainLocation() {
         }
 
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(getTrainLocation, 10000);
+        // timeoutId = setTimeout(getTrainLocation, 10000);
         const response = await fetch(
             `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,
 
@@ -763,9 +763,11 @@ function onClickStation(name) {
         `${popupHtml}
             
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
+            <h3>${name}</h3>
+            <div class="popupbg"></div>
 		 <div class="traindiv">
             <div class="train inline-train">
-				<i class="fa-solid fa-location-dot"></i>
+				<i class="fa-solid fa-location-dot"></i> 열차위치
 
 
 
@@ -811,7 +813,7 @@ function onClickStation(name) {
 
 
 			<div class="train outline-train">
-				<i class="fa-solid fa-location-dot"></i>
+				<i class="fa-solid fa-location-dot"></i> 열차위치
 
 
 
@@ -873,6 +875,10 @@ function onClickStation(name) {
 
         useFavData(favData);
     });
+
+    $(".addS").on('click', function() {
+        $(".addS > i").css("color", "rgb(2, 176, 11)");
+    })
 
     const clicked = markers.find((el) => {
         return el.statn_nm === stationClicked;
@@ -943,9 +949,8 @@ function usedata(rdata) {
     const searchLis = rdata.map(
         (station) =>
             `<li>
-<a href="#">${station.text}</a>
-</li>
-               `
+                <a href="#">${station.text}</a>
+            </li>`
     );
 
     $(".search-history").html(searchLis.join(""));
@@ -960,6 +965,7 @@ $("#fav-btn").on("click", function (e) {
     $(".search-history-wrapper").hide();
     $(".favorites-wrapper").show();
 });
+
 
 $(".slider").on("click", ".delete-li", function () {
     console.log("delte");
@@ -1141,10 +1147,17 @@ $(".search_button").on("click", function () {
 
 $(".logini").on("click", function () {
     $(".login_popup").show();
+    $(this).addClass('on')
 });
 $(".loginbtn").on("click", function () {
     $(".login_popup").hide();
 });
+$('#wrap').on('click', function(){
+    $(".login_popup").hide();
+})
+$('#wrap').on('click', function(){
+    $(".popup").hide();
+})
 
 $(".search-history").on("click", "a", function (e) {
     console.log(e.target, "inSearchHistroy");

@@ -13,13 +13,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 2 * i + 5,
-            y: 3,
+            y: 2,
             statn_id: station.statn_id,
             marker: "",
             data_markerInfo: "",
             station_id: station.statn_id,
             data_clicked: false,
-            data_mlabel: "N",
         };
     } else if (i < 21) {
         return {
@@ -33,13 +32,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 12,
-            y: i,
+            y: i - 1,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "E",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "W",
         };
     } else if (i < 25) {
         return {
@@ -54,13 +52,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: -(i * 2) + 53,
-            y: 21,
+            y: 20,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "S",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "S",
         };
     } else if (i === 25) {
         return {
@@ -75,13 +72,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: 20,
+            y: 19,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "E",
         };
     } else if (i < 42) {
         return {
@@ -96,13 +92,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: ((-i + 26) * 16) / 17 + 19,
+            y: ((-i + 26) * 16) / 17 + 18,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "E",
         };
     } else if (i === 42) {
         return {
@@ -117,13 +112,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: 4,
+            y: 3,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "E",
         };
     } else if (i < 46) {
         return {
@@ -138,14 +132,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 13,
-            y: 12 + 40 - i,
+            y: 11 + 40 - i,
 
             statn_id: station.statn_id,
             marker: "",
             data_dir: "E",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "E",
         };
     } else if (i < 50) {
         return {
@@ -160,13 +153,12 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 3,
-            y: 14 - 46 + i,
+            y: 13 - 46 + i,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
-            data_mlabel: "W",
         };
     }
 });
@@ -175,7 +167,6 @@ const lisMobile = () =>
     markers.map((station, i) => {
         if (i < 43) {
             return `<li
-            data-pclabel="${station.data_mlabel}"
 data-marker="${station.marker}"
 data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -185,7 +176,7 @@ data-coords="${station.x}, ${station.y}" data-dir="${
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
         } else if (i === 43) {
-            return `<li data-coords="5,3">
+            return `<li data-coords="5,2">
     
         </li>`;
         }
@@ -194,11 +185,10 @@ data-coords="${station.x}, ${station.y}" data-dir="${
 const coda1 = () =>
     markers.map((station, i) => {
         if (i === 41) {
-            return `<li data-coords="12, 10"></li>`;
+            return `<li data-coords="12, 9"></li>`;
         }
         if (i > 42 && i < 46) {
             return `<li
-            data-pclabel="${station.data_mlabel}"
         data-marker="${station.marker}"
         data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -213,11 +203,10 @@ const coda1 = () =>
 const coda2 = () =>
     markers.map((station, i) => {
         if (i === 45) {
-            return `<li data-coords="4, 13.3"></li>`;
+            return `<li data-coords="4, 12.3"></li>`;
         }
         if (i > 45 && i < 49) {
             return `<li
-            data-pclabel="${station.data_mlabel}"
         data-marker="${station.marker}"
         data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -233,54 +222,43 @@ line2.forEach((station, i) => {
     if (i > 48) return;
     const getPCxy = (i) => {
         if (i < 10) {
-            return { pcX: 9 + i * 2, pcY: 6, pcDir: "E", pcLabelPos: "N" };
+            return { pcX: 9 + i * 2, pcY: 6, pcDir: "E" };
         } else if (i === 10) {
-            return { pcX: 28, pcY: 7, pcDir: "E", pcLabelPos: "E" };
+            return { pcX: 28, pcY: 7, pcDir: "E" };
         } else if (i < 18) {
-            return {
-                pcX: 28,
-                pcY: 7 + ((i - 10) * 12) / 7,
-                pcDir: "S",
-                pcLabelPos: "E",
-            };
+            return { pcX: 28, pcY: 7 + ((i - 10) * 12) / 7, pcDir: "S" };
         } else if (i === 18) {
-            return { pcX: 27, pcY: 20, pcDir: "S", pcLabelPos: "S" };
+            return { pcX: 27, pcY: 20, pcDir: "S" };
         } else if (i < 30) {
-            return {
-                pcX: 27 - ((i - 18) * 22) / 12,
-                pcY: 20,
-                pcDir: "E",
-                pcLabelPos: "S",
-            };
+            return { pcX: 27 - ((i - 18) * 22) / 12, pcY: 20, pcDir: "E" };
         } else if (i === 30) {
-            return { pcX: 5, pcY: 20, pcDir: "E", pcLabelPos: "S" };
+            return { pcX: 5, pcY: 20, pcDir: "E" };
         } else if (i === 31) {
-            return { pcX: 4, pcY: 19, pcDir: "W", pcLabelPos: "W" };
+            return { pcX: 4, pcY: 19, pcDir: "W" };
         } else if (i < 40) {
-            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7, pcLabelPos: "W" };
+            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7 };
         } else if (i === 40) {
-            return { pcX: 4, pcY: 7, pcLabelPos: "W" };
+            return { pcX: 4, pcY: 7 };
         } else if (i === 41) {
-            return { pcX: 5, pcY: 6, pcLabelPos: "N" };
+            return { pcX: 5, pcY: 6 };
         } else if (i === 42) {
-            return { pcX: 7, pcY: 6, pcLabelPos: "N" };
+            return { pcX: 7, pcY: 6 };
         } else if (i < 45) {
-            return { pcX: 28, pcY: -i + 40 + 8, pcDir: "W", pcLabelPos: "E" };
+            return { pcX: 28, pcY: -i + 40 + 8, pcDir: "W" };
         } else if (i === 45) {
-            return { pcX: 27, pcY: 3, pcLabelPos: "E" };
+            return { pcX: 27, pcY: 3 };
         } else if (i === 46) {
-            return { pcX: 2, pcY: 15, pcLabelPos: "W" };
+            return { pcX: 2, pcY: 15 };
         } else if (i < 49) {
-            return { pcX: 2, pcY: 14 + (-i + 47), pcLabelPos: "W" };
+            return { pcX: 2, pcY: 14 + (-i + 47) };
         }
     };
 
-    const { pcX, pcY, pcDir, pcLabelPos } = getPCxy(i);
+    const { pcX, pcY, pcDir } = getPCxy(i);
 
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
     markers[i].pcDir = pcDir;
-    markers[i].pcLabelPos = pcLabelPos;
 });
 
 /* const lisPc = line2.map((station, i) => {
@@ -367,11 +345,9 @@ const lisPc = () =>
 data-marker="${station.marker}"
 data-coords="${station.pcX}, ${station.pcY}" data-dir="${
                 station.pcDir
-            }" data-nearest="${station.data_nearest}"  data-clicked="${
+            }" data-nearest="${station.data_nearest}"  data-clicked=${
                 station.data_clicked
-            }" data-pclabel="${station.pcLabelPos}"
-
->
+            }>
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
         } else if (i === 43) {
@@ -391,10 +367,7 @@ const coda3 = () =>
                 station.pcDir
             }" data-nearest="${station.data_nearest}" data-clicked="${
                 station.data_clicked
-            }"
-        
-        data-pclabel ="${station.pcLabelPos}"
-        >
+            }">
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
         }
@@ -408,19 +381,22 @@ const coda4 = () =>
         } else if (i === 44) {
             return `<li data-coords="3, 16.2"></li>`;
         } else if (i === 45) {
-            return `<li data-coords="2, 15" data-dir="W" data-customLabel="E">
+            return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
 </li>`;
-        } else if (i > 45 && i < 49) {
+        } else if (i === 46) {
+            return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
+<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+                line2[i] ? line2[i].statn_nm : ""
+            }</a>
+</li>`;
+        } else if (i > 46 && i < 49) {
             return `<li
         data-marker="${station.marker}"
         data-coords="${station.pcX}, ${station.pcY}" data-dir="${
                 station.pcDir
             }" data-nearest="${station.data_nearest}" data-clicked="${
                 station.data_clicked
-            }"
-           data-pclabel ="${station.pcLabelPos}"
-        
-        >
+            }">
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
         }
@@ -476,9 +452,9 @@ ${trainPosList.length ? MarkerHtml.join("") : ""}
     }
 };
 
-update();
-
 function update() {
+    $("#wrap").html("");
+
     $("#wrap").html(getHtmlText());
 
     $(".subway-map").subwayMap({
@@ -489,48 +465,18 @@ function update() {
 
     const zoomRate = Math.min(
         w / $("canvas").width(),
-        h / $("canvas").height(),
-        1
+        h / $("canvas").height()
     );
-
-    $("#wrap").css("zoom", zoomRate);
-
-    const offset = $(`[data-info=${stationClicked}]`).offset();
-    const pclabelpos = $(`[data-info=${stationClicked}]`).data("labeld");
-
-    function transform(d) {
-        switch (d) {
-            case "N":
-                return "translate(-50%, 10%)";
-                break;
-            case "S":
-                return "translate(-50%, -110%)";
-                break;
-            case "W":
-                return "translate(10%, -50%)";
-                break;
-            case "E":
-                return "translate(-110%, -50%)";
-                break;
-            default:
-                return "translate(-50%, -100%)";
-                break;
-        }
+    if (w < 1360 || h < 840) {
+        $("#wrap").css("zoom", zoomRate);
     }
 
-    if (w < 768 && $(".popup").length) {
-        $(".popup").css({
-            left: `unset`,
-            top: `unset`,
-            transform: "unset",
-            position: "fixed",
-            bottom: 0,
-        });
-    } else if ($(".popup").length && w > 768) {
+    const offset = $(`[data-info=${stationClicked}]`).offset();
+
+    if ($(".popup").length && w > 768) {
         $(".popup").css({
             left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
             top: `${Math.min(offset.top * zoomRate, offset.top)}px`,
-            transform: transform(pclabelpos),
         });
     }
 }
@@ -540,117 +486,21 @@ let timeoutId;
 async function getTrainLocation() {
     try {
         const isMobile = $(window).width() <= 768;
-
-        console.log(isMobile, "mobile");
         if (trainPosList.length !== 0) {
             trainPosList.splice(0, trainPosList.length);
         }
 
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(getTrainLocation, 10000);
+        //   timeoutId = setTimeout(getTrainLocation, 10000)
         const response = await fetch(
-            `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,
+            "http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimePosition/0/100/2호선",
 
             { method: "GET" }
         );
 
-        const { realtimeArrivalList } = await response.json();
+        const { realtimePositionList } = await response.json();
 
-        const line2Trains = realtimeArrivalList.filter((station, i) => {
-            return station.subwayId === "1002";
-        });
-
-        const uniqueTrains = [];
-
-        line2Trains.forEach((train) => {
-            //barvlDt
-
-            const index = uniqueTrains.findIndex((el) => {
-                return el.btrainNo === train.btrainNo;
-            });
-
-            if (index === -1) {
-                uniqueTrains.push(train);
-            }
-        });
-
-        uniqueTrains.forEach((train, i) => {
-            const statnId = train.statnId.slice(-4);
-
-            console.log(train);
-
-            if (statnId[0] !== "0") return;
-
-            let timetableN;
-
-            if (train.updnLine === "0") {
-                timetableN = "0" + (statnId - 0 + 1);
-            } else {
-                timetableN = statnId;
-            }
-            console.log(timetableN);
-
-            const timeStation = line2.find(
-                (station) => station.statn_id == timetableN
-            );
-
-            const timeTaking = timeStation.toNextStation;
-            const disRate = 
-               (timeTaking - train.barvlDt) / timeTaking
-          
-
-            console.log(disRate)
-            const station = markers.find((item) => item.statn_id === statnId);
-
-            console.log(station === -1);
-
-            const getNextStation = (station) => {
-
-                
-                let nextStation;
-                if (station.updnLine === "내선") {
-                    nextStation = "0" + (station.statnId.slice(-4) - 0 + 1);
-                    console.log(station.statnId.slice(-4), '내선', nextStation)
-                } else {
-                    nextStation = "0" + (station.statnId.slice(-4) - 0 -1);
-                    console.log(station.statnId.slice(-4), '외선', nextStation)
-
-                }
-
-                console.log(nextStation)
-
-                if (nextStation === "0200") {
-                    nextStation = "0243";
-                }
-
-                if (nextStation === "0244") {
-                    nextStation = "0201";
-                }
-                return nextStation;
-            };
-
-            const statn2Id = getNextStation(train);
-
-            const station2 = markers.find((item) => item.statn_id === statn2Id);
-
-          
-
-            const pos = {
-                trainNo: train.btrainNo,
-                updnLine: train.updnLine,
-                x: isMobile
-                    ? station.x + (station2.x - station.x) * disRate
-                    : station.pcX + (station2.pcX - station.pcX) * disRate,
-                y: isMobile
-                    ? station.y + (station2.y - station.y) * disRate
-                    : station.pcY + (station2.pcY - station.pcY) * disRate,
-            };
-            trainPosList.push(pos);
-
-            console.log(trainPosList);
-        });
-
-        /*    const lis = realtimePositionList.map((train, i) => {
+        const lis = realtimePositionList.map((train, i) => {
             const statnId = train.statnId.slice(-4);
 
             const getNextStation = (station) => {
@@ -704,22 +554,13 @@ async function getTrainLocation() {
                 return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> ${train.trainNo}</li>`;
         });
 
-        update(); */
-
-        MarkerHtml = trainPosList.map((train) => {
-            if (train.updnLine === "내선") {
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1">${train.trainNo} 내</li>`;
-            } else
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> ${train.trainNo} </li>`;
-        });
-
         update();
     } catch (err) {
         console.log(err);
     }
 }
 
-timeoutId = setTimeout(getTrainLocation, 0);
+//timeoutId = setTimeout(getTrainLocation, 0)
 
 let RSid = 0;
 let recentSearch = [];
@@ -763,7 +604,9 @@ function onClickStation(name) {
         `${popupHtml}
             
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
-		 <div class="traindiv">
+			
+        <div class="traindiv">
+        
             <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
@@ -855,7 +698,7 @@ function onClickStation(name) {
 
 
 			</div>
-		 </div>
+		</div>
             
             </div>`
     );
@@ -883,7 +726,7 @@ function onClickStation(name) {
 
     clicked.data_clicked = "clicked";
 
-    console.log(markers);
+    console.log(clicked);
 
     update();
 
@@ -939,26 +782,28 @@ $(window).on("resize", function () {
 });
 
 function usedata(rdata) {
-    $(".search-history").html("");
-    const searchLis = rdata.map(
-        (station) =>
-            `<li>
-<a href="#">${station.text}</a>
-</li>
-               `
-    );
+    $(".slider .search-history").remove();
+    let list = `<ul class="search-history"> <h3>최근기록</h3>`;
+    rdata.map(function (value) {
+        list += `
+<li>
+<a href="./trainInfo?statn_nm=${value.text}">${value.text}</a>
+</li>`;
+    });
 
-    $(".search-history").html(searchLis.join(""));
+    list += `</ul>`;
+
+    $(".slider").append(list);
 }
 
 $("#search-history-btn").on("click", function (e) {
-    $(".search-history-wrapper").show();
-    $(".favorites-wrapper").hide();
+    $(".search-history").show();
+    $(".favorites").hide();
 });
 
 $("#fav-btn").on("click", function (e) {
-    $(".search-history-wrapper").hide();
-    $(".favorites-wrapper").show();
+    $(".search-history").hide();
+    $(".favorites").show();
 });
 
 $(".slider").on("click", ".delete-li", function () {
@@ -967,7 +812,7 @@ $(".slider").on("click", ".delete-li", function () {
     let num = $(this).parent().index();
     recentSearch.splice(num, 1);
     localStorage.gdata = JSON.stringify(recentSearch);
-    $(".slider .search-history-ul li").remove();
+    $(".slider .search-history").remove();
     usedata(recentSearch);
 });
 
@@ -1147,11 +992,6 @@ $(".loginbtn").on("click", function () {
 });
 
 $(".search-history").on("click", "a", function (e) {
-    console.log(e.target, "inSearchHistroy");
+    e.preventDefault();
     onClickStation($(this).text());
-    return false;
-});
-
-$("body").on("click", function (e) {
-    console.log(e.target);
 });

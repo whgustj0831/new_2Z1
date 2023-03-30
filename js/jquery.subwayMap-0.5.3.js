@@ -658,7 +658,6 @@ THE SOFTWARE.
             var topOffset = 0;
             var centerOffset = "0px";
 
-            console.log(data.pclabel)
             switch (data.labelPos.toLowerCase()) {
                 case "n":
                     pos =

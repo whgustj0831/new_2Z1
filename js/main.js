@@ -13,12 +13,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 2 * i + 5,
-            y: 2,
+            y: 3,
             statn_id: station.statn_id,
             marker: "",
             data_markerInfo: "",
             station_id: station.statn_id,
             data_clicked: false,
+            data_mlabel: "N",
         };
     } else if (i < 21) {
         return {
@@ -32,12 +33,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 12,
-            y: i - 1,
+            y: i,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "E",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "W",
         };
     } else if (i < 25) {
         return {
@@ -52,12 +54,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: -(i * 2) + 53,
-            y: 20,
+            y: 21,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "S",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "S",
         };
     } else if (i === 25) {
         return {
@@ -72,12 +75,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: 19,
+            y: 20,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "E",
         };
     } else if (i < 42) {
         return {
@@ -92,12 +96,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: ((-i + 26) * 16) / 17 + 18,
+            y: ((-i + 26) * 16) / 17 + 19,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "E",
         };
     } else if (i === 42) {
         return {
@@ -112,12 +117,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 4,
-            y: 3,
+            y: 4,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "E",
         };
     } else if (i < 46) {
         return {
@@ -132,13 +138,14 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 13,
-            y: 11 + 40 - i,
+            y: 12 + 40 - i,
 
             statn_id: station.statn_id,
             marker: "",
             data_dir: "E",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "E",
         };
     } else if (i < 50) {
         return {
@@ -153,12 +160,13 @@ const markers = line2.map((station, i) => {
             crdnt_x: station.crdnt_x - 0,
             crdnt_y: station.crdnt_y - 0,
             x: 3,
-            y: 13 - 46 + i,
+            y: 14 - 46 + i,
             statn_id: station.statn_id,
             marker: "",
             data_dir: "W",
             data_fav: false,
             station_id: station.statn_id,
+            data_mlabel: "W",
         };
     }
 });
@@ -167,6 +175,7 @@ const lisMobile = () =>
     markers.map((station, i) => {
         if (i < 43) {
             return `<li
+            data-pclabel="${station.data_mlabel}"
 data-marker="${station.marker}"
 data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -176,7 +185,7 @@ data-coords="${station.x}, ${station.y}" data-dir="${
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
         } else if (i === 43) {
-            return `<li data-coords="5,2">
+            return `<li data-coords="5,3">
     
         </li>`;
         }
@@ -185,10 +194,11 @@ data-coords="${station.x}, ${station.y}" data-dir="${
 const coda1 = () =>
     markers.map((station, i) => {
         if (i === 41) {
-            return `<li data-coords="12, 9"></li>`;
+            return `<li data-coords="12, 10"></li>`;
         }
         if (i > 42 && i < 46) {
             return `<li
+            data-pclabel="${station.data_mlabel}"
         data-marker="${station.marker}"
         data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -203,10 +213,11 @@ const coda1 = () =>
 const coda2 = () =>
     markers.map((station, i) => {
         if (i === 45) {
-            return `<li data-coords="4, 12.3"></li>`;
+            return `<li data-coords="4, 13.3"></li>`;
         }
         if (i > 45 && i < 49) {
             return `<li
+            data-pclabel="${station.data_mlabel}"
         data-marker="${station.marker}"
         data-coords="${station.x}, ${station.y}" data-dir="${
                 station.data_dir
@@ -222,45 +233,54 @@ line2.forEach((station, i) => {
     if (i > 48) return;
     const getPCxy = (i) => {
         if (i < 10) {
-            return {pcX: 9 + i * 2, pcY: 6, pcDir: "E", pcLabelPos: "N"};
+            return { pcX: 9 + i * 2, pcY: 6, pcDir: "E", pcLabelPos: "N" };
         } else if (i === 10) {
-            return {pcX: 28, pcY: 7, pcDir: "E", pcLabelPos: "E"};
+            return { pcX: 28, pcY: 7, pcDir: "E", pcLabelPos: "E" };
         } else if (i < 18) {
-            return {pcX: 28, pcY: 7 + ((i - 10) * 12) / 7, pcDir: "S", pcLabelPos: "E"};
+            return {
+                pcX: 28,
+                pcY: 7 + ((i - 10) * 12) / 7,
+                pcDir: "S",
+                pcLabelPos: "E",
+            };
         } else if (i === 18) {
-            return {pcX: 27, pcY: 20, pcDir: "S", pcLabelPos: "S"};
+            return { pcX: 27, pcY: 20, pcDir: "S", pcLabelPos: "S" };
         } else if (i < 30) {
-            return {pcX: 27 - ((i - 18) * 22) / 12, pcY: 20, pcDir: "E", pcLabelPos: "S"};
+            return {
+                pcX: 27 - ((i - 18) * 22) / 12,
+                pcY: 20,
+                pcDir: "E",
+                pcLabelPos: "S",
+            };
         } else if (i === 30) {
-            return {pcX: 5, pcY: 20, pcDir: "E", pcLabelPos: "S"};
+            return { pcX: 5, pcY: 20, pcDir: "E", pcLabelPos: "S" };
         } else if (i === 31) {
-            return {pcX: 4, pcY: 19, pcDir: "W", pcLabelPos: "W"};
+            return { pcX: 4, pcY: 19, pcDir: "W", pcLabelPos: "W" };
         } else if (i < 40) {
-            return {pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7, pcLabelPos: "W"};
+            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7, pcLabelPos: "W" };
         } else if (i === 40) {
-            return {pcX: 4, pcY: 7, pcLabelPos: "W"};
+            return { pcX: 4, pcY: 7, pcLabelPos: "W" };
         } else if (i === 41) {
-            return {pcX: 5, pcY: 6, pcLabelPos: "N"};
+            return { pcX: 5, pcY: 6, pcLabelPos: "N" };
         } else if (i === 42) {
-            return {pcX: 7, pcY: 6, pcLabelPos: "N"};
+            return { pcX: 7, pcY: 6, pcLabelPos: "N" };
         } else if (i < 45) {
-            return {pcX: 28, pcY: -i + 40 + 8, pcDir: "W", pcLabelPos: "E"};
+            return { pcX: 28, pcY: -i + 40 + 8, pcDir: "W", pcLabelPos: "E" };
         } else if (i === 45) {
-            return {pcX: 27, pcY: 3, pcLabelPos: "E"};
+            return { pcX: 27, pcY: 3, pcLabelPos: "E" };
         } else if (i === 46) {
-            return {pcX: 2, pcY: 15, pcLabelPos: "W"};
+            return { pcX: 2, pcY: 15, pcLabelPos: "W" };
         } else if (i < 49) {
-            return {pcX: 2, pcY: 14 + (-i + 47), pcLabelPos: "W"};
+            return { pcX: 2, pcY: 14 + (-i + 47), pcLabelPos: "W" };
         }
     };
 
-    const {pcX, pcY, pcDir, pcLabelPos} = getPCxy(i);
+    const { pcX, pcY, pcDir, pcLabelPos } = getPCxy(i);
 
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
     markers[i].pcDir = pcDir;
     markers[i].pcLabelPos = pcLabelPos;
-
 });
 
 /* const lisPc = line2.map((station, i) => {
@@ -349,9 +369,7 @@ data-coords="${station.pcX}, ${station.pcY}" data-dir="${
                 station.pcDir
             }" data-nearest="${station.data_nearest}"  data-clicked="${
                 station.data_clicked
-            }" data-pclabel="${
-                station.pcLabelPos
-            }"
+            }" data-pclabel="${station.pcLabelPos}"
 
 >
 <a href="#">${station ? station.statn_nm : ""}</a>
@@ -375,9 +393,7 @@ const coda3 = () =>
                 station.data_clicked
             }"
         
-        data-pclabel ="${
-                station.pcLabelPos
-            }"
+        data-pclabel ="${station.pcLabelPos}"
         >
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
@@ -394,7 +410,6 @@ const coda4 = () =>
         } else if (i === 45) {
             return `<li data-coords="2, 15" data-dir="W" data-customLabel="E">
 </li>`;
-
         } else if (i > 45 && i < 49) {
             return `<li
         data-marker="${station.marker}"
@@ -403,9 +418,7 @@ const coda4 = () =>
             }" data-nearest="${station.data_nearest}" data-clicked="${
                 station.data_clicked
             }"
-           data-pclabel ="${
-                station.pcLabelPos
-            }"
+           data-pclabel ="${station.pcLabelPos}"
         
         >
         <a href="#">${station ? station.statn_nm : ""}</a>
@@ -463,57 +476,65 @@ ${trainPosList.length ? MarkerHtml.join("") : ""}
     }
 };
 
-update()
+update();
 
 function update() {
-
-
     $("#wrap").html(getHtmlText());
 
     $(".subway-map").subwayMap({
-                                   debug: true,
-                               });
+        debug: true,
+    });
     const h = $(window).height();
     const w = $(window).width();
 
     const zoomRate = Math.min(
         w / $("canvas").width(),
-        h / $("canvas").height(), 1
+        h / $("canvas").height(),
+        1
     );
 
     $("#wrap").css("zoom", zoomRate);
 
     const offset = $(`[data-info=${stationClicked}]`).offset();
-    const pclabelpos = $(`[data-info=${stationClicked}]`).data('labeld');
+    const pclabelpos = $(`[data-info=${stationClicked}]`).data("labeld");
 
     function transform(d) {
         switch (d) {
             case "N":
-                return 'translate(-50%, 10%)'
+                return "translate(-50%, 10%)";
                 break;
-            case "S" :
-                return 'translate(-50%, -110%)'
+            case "S":
+                return "translate(-50%, -110%)";
                 break;
-            case "W" :
-                return 'translate(10%, -50%)'
+            case "W":
+                return "translate(10%, -50%)";
                 break;
-            case "E" :
-                return 'translate(-110%, -50%)'
+            case "E":
+                return "translate(-110%, -50%)";
                 break;
             default:
-                return 'translate(-50%, -100%)'
+                return "translate(-50%, -100%)";
                 break;
         }
     }
 
-    console.log(pclabelpos)
+    console.log(pclabelpos);
 
-    if ($(".popup").length && w > 768) {
+    if(w < 768  && $(".popup").length) {
         $(".popup").css({
-                            left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
-                            top: `${Math.min(offset.top * zoomRate, offset.top)}px`,
-                            transform: transform(pclabelpos)
-                        });
+            left: `unset`,
+            top: `unset`,
+            transform: 'unset',
+            position : 'fixed',
+            bottom : 0
+        });
+
+    } else if ($(".popup").length && w > 768) {
+        $(".popup").css({
+            left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
+            top: `${Math.min(offset.top * zoomRate, offset.top)}px`,
+            transform: transform(pclabelpos),
+        });
     }
 }
 
@@ -531,10 +552,10 @@ async function getTrainLocation() {
         const response = await fetch(
             "http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimePosition/0/100/2호선",
 
-            {method: "GET"}
+            { method: "GET" }
         );
 
-        const {realtimePositionList} = await response.json();
+        const { realtimePositionList } = await response.json();
 
         const lis = realtimePositionList.map((train, i) => {
             const statnId = train.statnId.slice(-4);
@@ -628,19 +649,19 @@ function onClickStation(name) {
     const popupHtml =
         $(window).width() > 768
             ? `<div class="popup"  style="left:${Math.min(
-                (offset.left * windowWidth) / 1360,
-                offset.left
-            )}px; top:${Math.min(
-                (offset.top * windowWidth) / 840,
-                offset.top
-            )}px">`
+                  (offset.left * windowWidth) / 1360,
+                  offset.left
+              )}px; top:${Math.min(
+                  (offset.top * windowWidth) / 840,
+                  offset.top
+              )}px">`
             : '<div class="popup">';
 
     $("body").append(
         `${popupHtml}
             
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
-		<div class="traindiv">
+		 <div class="traindiv">
             <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
@@ -732,7 +753,7 @@ function onClickStation(name) {
 
 
 			</div>
-		</div>
+		 </div>
             
             </div>`
     );
@@ -742,7 +763,7 @@ function onClickStation(name) {
 
         favId++;
 
-        const obj = {id: favId, text: stationClicked};
+        const obj = { id: favId, text: stationClicked };
 
         favData.push(obj);
 
@@ -777,7 +798,7 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
     onClickStation(name);
     RSid++;
 
-    const obj = {id: RSid, text: stationClicked};
+    const obj = { id: RSid, text: stationClicked };
 
     recentSearch.push(obj);
     if (recentSearch.length > 5) {
@@ -816,28 +837,26 @@ $(window).on("resize", function () {
 });
 
 function usedata(rdata) {
-    $(".slider .search-history").remove();
-    let list = `<ul class="search-history"> <h3>최근기록</h3>`;
-    rdata.map(function (value) {
-        list += `
-<li>
-<a href="./trainInfo?statn_nm=${value.text}">${value.text}</a>
-</li>`;
-    });
+    $(".search-history").html("");
+    const searchLis = rdata.map(
+        (station) =>
+            `<li>
+<a href="#">${station.text}</a>
+</li>
+               `
+    );
 
-    list += `</ul>`;
-
-    $(".slider").append(list);
+    $(".search-history").html(searchLis.join(""));
 }
 
 $("#search-history-btn").on("click", function (e) {
-    $(".search-history").show();
-    $(".favorites").hide();
+    $(".search-history-wrapper").show();
+    $(".favorites-wrapper").hide();
 });
 
 $("#fav-btn").on("click", function (e) {
-    $(".search-history").hide();
-    $(".favorites").show();
+    $(".search-history-wrapper").hide();
+    $(".favorites-wrapper").show();
 });
 
 $(".slider").on("click", ".delete-li", function () {
@@ -846,7 +865,7 @@ $(".slider").on("click", ".delete-li", function () {
     let num = $(this).parent().index();
     recentSearch.splice(num, 1);
     localStorage.gdata = JSON.stringify(recentSearch);
-    $(".slider .search-history").remove();
+    $(".slider .search-history-ul li").remove();
     usedata(recentSearch);
 });
 
@@ -1026,6 +1045,11 @@ $(".loginbtn").on("click", function () {
 });
 
 $(".search-history").on("click", "a", function (e) {
-    e.preventDefault();
+    console.log(e.target, "inSearchHistroy");
     onClickStation($(this).text());
+    return false;
+});
+
+$("body").on("click", function (e) {
+    console.log(e.target);
 });

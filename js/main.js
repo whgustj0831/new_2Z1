@@ -222,45 +222,43 @@ line2.forEach((station, i) => {
     if (i > 48) return;
     const getPCxy = (i) => {
         if (i < 10) {
-            return {pcX: 9 + i * 2, pcY: 6, pcDir: "E", pcLabelPos: "N"};
+            return { pcX: 9 + i * 2, pcY: 6, pcDir: "E" };
         } else if (i === 10) {
-            return {pcX: 28, pcY: 7, pcDir: "E", pcLabelPos: "E"};
+            return { pcX: 28, pcY: 7, pcDir: "E" };
         } else if (i < 18) {
-            return {pcX: 28, pcY: 7 + ((i - 10) * 12) / 7, pcDir: "S", pcLabelPos: "E"};
+            return { pcX: 28, pcY: 7 + ((i - 10) * 12) / 7, pcDir: "S" };
         } else if (i === 18) {
-            return {pcX: 27, pcY: 20, pcDir: "S", pcLabelPos: "S"};
+            return { pcX: 27, pcY: 20, pcDir: "S" };
         } else if (i < 30) {
-            return {pcX: 27 - ((i - 18) * 22) / 12, pcY: 20, pcDir: "E", pcLabelPos: "S"};
+            return { pcX: 27 - ((i - 18) * 22) / 12, pcY: 20, pcDir: "E" };
         } else if (i === 30) {
-            return {pcX: 5, pcY: 20, pcDir: "E", pcLabelPos: "S"};
+            return { pcX: 5, pcY: 20, pcDir: "E" };
         } else if (i === 31) {
-            return {pcX: 4, pcY: 19, pcDir: "W", pcLabelPos: "W"};
+            return { pcX: 4, pcY: 19, pcDir: "W" };
         } else if (i < 40) {
-            return {pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7, pcLabelPos: "W"};
+            return { pcX: 4, pcY: (-(i - 40) * 12) / 9 + 7 };
         } else if (i === 40) {
-            return {pcX: 4, pcY: 7, pcLabelPos: "W"};
+            return { pcX: 4, pcY: 7 };
         } else if (i === 41) {
-            return {pcX: 5, pcY: 6, pcLabelPos: "N"};
+            return { pcX: 5, pcY: 6 };
         } else if (i === 42) {
-            return {pcX: 7, pcY: 6, pcLabelPos: "N"};
+            return { pcX: 7, pcY: 6 };
         } else if (i < 45) {
-            return {pcX: 28, pcY: -i + 40 + 8, pcDir: "W", pcLabelPos: "E"};
+            return { pcX: 28, pcY: -i + 40 + 8, pcDir: "W" };
         } else if (i === 45) {
-            return {pcX: 27, pcY: 3, pcLabelPos: "E"};
+            return { pcX: 27, pcY: 3 };
         } else if (i === 46) {
-            return {pcX: 2, pcY: 15, pcLabelPos: "W"};
+            return { pcX: 2, pcY: 15 };
         } else if (i < 49) {
-            return {pcX: 2, pcY: 14 + (-i + 47), pcLabelPos: "W"};
+            return { pcX: 2, pcY: 14 + (-i + 47) };
         }
     };
 
-    const {pcX, pcY, pcDir, pcLabelPos} = getPCxy(i);
+    const { pcX, pcY, pcDir } = getPCxy(i);
 
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
     markers[i].pcDir = pcDir;
-    markers[i].pcLabelPos = pcLabelPos;
-
 });
 
 /* const lisPc = line2.map((station, i) => {
@@ -347,13 +345,9 @@ const lisPc = () =>
 data-marker="${station.marker}"
 data-coords="${station.pcX}, ${station.pcY}" data-dir="${
                 station.pcDir
-            }" data-nearest="${station.data_nearest}"  data-clicked="${
+            }" data-nearest="${station.data_nearest}"  data-clicked=${
                 station.data_clicked
-            }" data-pclabel="${
-                station.pcLabelPos
-            }"
-
->
+            }>
 <a href="#">${station ? station.statn_nm : ""}</a>
 </li>`;
         } else if (i === 43) {
@@ -373,12 +367,7 @@ const coda3 = () =>
                 station.pcDir
             }" data-nearest="${station.data_nearest}" data-clicked="${
                 station.data_clicked
-            }"
-        
-        data-pclabel ="${
-                station.pcLabelPos
-            }"
-        >
+            }">
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
         }
@@ -392,22 +381,22 @@ const coda4 = () =>
         } else if (i === 44) {
             return `<li data-coords="3, 16.2"></li>`;
         } else if (i === 45) {
-            return `<li data-coords="2, 15" data-dir="W" data-customLabel="E">
+            return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
 </li>`;
-
-        } else if (i > 45 && i < 49) {
+        } else if (i === 46) {
+            return `<li data-coords="2, 15" data-dir="W" data-labelpos="E">
+<a href="trainInfo.html?statn_nm=${line2[i].statn_nm}">${
+                line2[i] ? line2[i].statn_nm : ""
+            }</a>
+</li>`;
+        } else if (i > 46 && i < 49) {
             return `<li
         data-marker="${station.marker}"
         data-coords="${station.pcX}, ${station.pcY}" data-dir="${
                 station.pcDir
             }" data-nearest="${station.data_nearest}" data-clicked="${
                 station.data_clicked
-            }"
-           data-pclabel ="${
-                station.pcLabelPos
-            }"
-        
-        >
+            }">
         <a href="#">${station ? station.statn_nm : ""}</a>
         </li>`;
         }
@@ -463,57 +452,32 @@ ${trainPosList.length ? MarkerHtml.join("") : ""}
     }
 };
 
-update()
-
 function update() {
-
+    $("#wrap").html("");
 
     $("#wrap").html(getHtmlText());
 
     $(".subway-map").subwayMap({
-                                   debug: true,
-                               });
+        debug: true,
+    });
     const h = $(window).height();
     const w = $(window).width();
 
     const zoomRate = Math.min(
         w / $("canvas").width(),
-        h / $("canvas").height(), 1
+        h / $("canvas").height()
     );
-
-    $("#wrap").css("zoom", zoomRate);
-
-    const offset = $(`[data-info=${stationClicked}]`).offset();
-    const pclabelpos = $(`[data-info=${stationClicked}]`).data('labeld');
-
-    function transform(d) {
-        switch (d) {
-            case "N":
-                return 'translate(-50%, 10%)'
-                break;
-            case "S" :
-                return 'translate(-50%, -110%)'
-                break;
-            case "W" :
-                return 'translate(10%, -50%)'
-                break;
-            case "E" :
-                return 'translate(-110%, -50%)'
-                break;
-            default:
-                return 'translate(-50%, -100%)'
-                break;
-        }
+    if (w < 1360 || h < 840) {
+        $("#wrap").css("zoom", zoomRate);
     }
 
-    console.log(pclabelpos)
+    const offset = $(`[data-info=${stationClicked}]`).offset();
 
     if ($(".popup").length && w > 768) {
         $(".popup").css({
-                            left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
-                            top: `${Math.min(offset.top * zoomRate, offset.top)}px`,
-                            transform: transform(pclabelpos)
-                        });
+            left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
+            top: `${Math.min(offset.top * zoomRate, offset.top)}px`,
+        });
     }
 }
 
@@ -531,10 +495,10 @@ async function getTrainLocation() {
         const response = await fetch(
             "http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimePosition/0/100/2호선",
 
-            {method: "GET"}
+            { method: "GET" }
         );
 
-        const {realtimePositionList} = await response.json();
+        const { realtimePositionList } = await response.json();
 
         const lis = realtimePositionList.map((train, i) => {
             const statnId = train.statnId.slice(-4);
@@ -628,19 +592,21 @@ function onClickStation(name) {
     const popupHtml =
         $(window).width() > 768
             ? `<div class="popup"  style="left:${Math.min(
-                (offset.left * windowWidth) / 1360,
-                offset.left
-            )}px; top:${Math.min(
-                (offset.top * windowWidth) / 840,
-                offset.top
-            )}px">`
+                  (offset.left * windowWidth) / 1360,
+                  offset.left
+              )}px; top:${Math.min(
+                  (offset.top * windowWidth) / 840,
+                  offset.top
+              )}px">`
             : '<div class="popup">';
 
     $("body").append(
         `${popupHtml}
             
             <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
-		 <div class="traindiv">
+			
+        <div class="traindiv">
+        
             <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i>
 
@@ -732,7 +698,7 @@ function onClickStation(name) {
 
 
 			</div>
-		 </div>
+		</div>
             
             </div>`
     );
@@ -742,7 +708,7 @@ function onClickStation(name) {
 
         favId++;
 
-        const obj = {id: favId, text: stationClicked};
+        const obj = { id: favId, text: stationClicked };
 
         favData.push(obj);
 
@@ -760,7 +726,7 @@ function onClickStation(name) {
 
     clicked.data_clicked = "clicked";
 
-    console.log(markers);
+    console.log(clicked);
 
     update();
 
@@ -777,7 +743,7 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
     onClickStation(name);
     RSid++;
 
-    const obj = {id: RSid, text: stationClicked};
+    const obj = { id: RSid, text: stationClicked };
 
     recentSearch.push(obj);
     if (recentSearch.length > 5) {

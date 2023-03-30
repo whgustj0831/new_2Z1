@@ -277,6 +277,8 @@ line2.forEach((station, i) => {
 
     const { pcX, pcY, pcDir, pcLabelPos } = getPCxy(i);
 
+	    markers[i].toNextStation = station.toNextStation
+
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
     markers[i].pcDir = pcDir;
@@ -541,183 +543,113 @@ async function getTrainLocation() {
     try {
         const isMobile = $(window).width() <= 768;
 
-        console.log(isMobile, "mobile");
         if (trainPosList.length !== 0) {
             trainPosList.splice(0, trainPosList.length);
         }
 
         clearTimeout(timeoutId);
-        // timeoutId = setTimeout(getTrainLocation, 10000);
+        setTimeout(getTrainLocation, 4000)
         const response = await fetch(
-            `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,
+            `http://swopenAPI.seoul.go.kr/api/subway/46774250416c65653835766c785069/json/realtimeStationArrival/ALL`,
 
-            { method: "GET" }
+            {method: "GET"}
         );
 
-        const { realtimeArrivalList } = await response.json();
+        const {realtimeArrivalList} = await response.json();
 
         const line2Trains = realtimeArrivalList.filter((station, i) => {
             return station.subwayId === "1002";
         });
 
+
         const uniqueTrains = [];
 
+        const inlineTrains = []
+        const outlineTrains = []
         line2Trains.forEach((train) => {
-            //barvlDt
+            if (train.updnLine === "내선") {
+                const index = inlineTrains.findIndex((el) => {
+                    return el.btrainNo === train.btrainNo;
+                });
 
-            const index = uniqueTrains.findIndex((el) => {
-                return el.btrainNo === train.btrainNo;
-            });
+                if (index === -1) {
+                    inlineTrains.push(train);
+                }
+            } else {
+                const index = outlineTrains.findIndex((el) => {
+                    return el.btrainNo === train.btrainNo;
+                });
 
-            if (index === -1) {
-                uniqueTrains.push(train);
+                if (index === -1) {
+                    outlineTrains.push(train);
+                }
             }
+
+
         });
 
-        uniqueTrains.forEach((train, i) => {
+
+        [...outlineTrains, ...inlineTrains].forEach((train, i) => {
             const statnId = train.statnId.slice(-4);
 
-            console.log(train);
 
             if (statnId[0] !== "0") return;
 
-            let timetableN;
-
-            if (train.updnLine === "0") {
-                timetableN = "0" + (statnId - 0 + 1);
-            } else {
-                timetableN = statnId;
-            }
-            console.log(timetableN);
 
             const timeStation = line2.find(
-                (station) => station.statn_id == timetableN
+                (station) => station.statn_id == statnId
             );
 
+
             const timeTaking = timeStation.toNextStation;
-            const disRate = 
-               (timeTaking - train.barvlDt) / timeTaking
-          
+            const disRate =
+                (timeTaking - train.barvlDt) / timeTaking
 
-            console.log(disRate)
-            const station = markers.find((item) => item.statn_id === statnId);
 
-            console.log(station === -1);
+            const stationT = markers.find((item) => item.statn_id === statnId);
 
-            const getNextStation = (station) => {
+            const nextStationI = "0" + (train.statnFid.slice(-4) - 0);
 
-                
-                let nextStation;
-                if (station.updnLine === "내선") {
-                    nextStation = "0" + (station.statnId.slice(-4) - 0 + 1);
-                    console.log(station.statnId.slice(-4), '내선', nextStation)
-                } else {
-                    nextStation = "0" + (station.statnId.slice(-4) - 0 -1);
-                    console.log(station.statnId.slice(-4), '외선', nextStation)
+            const stationF = markers.find(item => item.statn_id === nextStationI)
 
-                }
-
-                console.log(nextStation)
-
-                if (nextStation === "0200") {
-                    nextStation = "0243";
-                }
-
-                if (nextStation === "0244") {
-                    nextStation = "0201";
-                }
-                return nextStation;
-            };
-
-            const statn2Id = getNextStation(train);
-
-            const station2 = markers.find((item) => item.statn_id === statn2Id);
-
-          
 
             const pos = {
                 trainNo: train.btrainNo,
                 updnLine: train.updnLine,
                 x: isMobile
-                    ? station.x + (station2.x - station.x) * disRate
-                    : station.pcX + (station2.pcX - station.pcX) * disRate,
+                    ? stationF.x + (stationT.x - stationF.x) * disRate
+                    : stationF.pcX + (stationT.pcX - stationF.pcX) * disRate,
                 y: isMobile
-                    ? station.y + (station2.y - station.y) * disRate
-                    : station.pcY + (station2.pcY - station.pcY) * disRate,
-            };
-            trainPosList.push(pos);
+                    ? stationF.y + (stationT.y - stationF.y) * disRate
+                    : stationF.pcY + (stationT.pcY - stationF.pcY) * disRate,
+            }
 
-            console.log(trainPosList);
+
+
+            trainPosList.push(pos)
+
         });
+        MarkerHtml = trainPosList.map((train) => {
 
-        /*    const lis = realtimePositionList.map((train, i) => {
-            const statnId = train.statnId.slice(-4);
+            if (train.updnLine === "내선") {
+                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1"> </li>`;
+            } else {
+                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> </li>`;
 
-            const getNextStation = (station) => {
-                let nextStation;
-                if (station.updnLine === "0") {
-                    nextStation = "0" + (statnId - 1 + 2);
-                } else {
-                    nextStation = "0" + (statnId - 1);
-                }
-
-                if (nextStation === "0200") {
-                    nextStation = "0243";
-                }
-
-                if (nextStation === "0244") {
-                    nextStation = "0201";
-                }
-                return nextStation;
-            };
-
-            const statn2Id = getNextStation(train);
-
-            if (statnId.slice(0, 1) == 0) {
-                const station = markers.find(
-                    (item) => item.statn_id === statnId
-                );
-                const station2 = markers.find(
-                    (item) => item.statn_id === statn2Id
-                );
-
-                console.log(station, station2);
-                const pos = {
-                    trainNo: train.trainNo,
-                    updnLine: train.updnLine,
-                    x: isMobile
-                        ? (station.x + station2.x) / 2
-                        : (station.pcX + station2.pcX) / 2,
-                    y: isMobile
-                        ? (station.y + station2.y) / 2
-                        : (station.pcY + station2.pcY) / 2,
-                };
-                trainPosList.push(pos);
-                console.log(trainPosList);
             }
         });
 
-        MarkerHtml = trainPosList.map((train) => {
-            if (train.updnLine === "0") {
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1"> ${train.trainNo}</li>`;
-            } else
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> ${train.trainNo}</li>`;
-        });
 
-        update(); */
-
-        MarkerHtml = trainPosList.map((train) => {
-            if (train.updnLine === "내선") {
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1">${train.trainNo} 내</li>`;
-            } else
-                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> ${train.trainNo} </li>`;
-        });
 
         update();
     } catch (err) {
         console.log(err);
     }
 }
+
+
+
+     
 
 timeoutId = setTimeout(getTrainLocation, 0);
 

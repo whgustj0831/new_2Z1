@@ -750,7 +750,7 @@ THE SOFTWARE.
                     : "") +
                 "width:80px;" +
 
-                "; border:3px solid red;" +
+      
                 ";position:absolute;top:" +
                 (y + el.position().top ) +
                 "px;left:" +

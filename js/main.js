@@ -518,17 +518,14 @@ function update() {
         }
     }
 
-    console.log(pclabelpos);
-
-    if(w < 768  && $(".popup").length) {
+    if (w < 768 && $(".popup").length) {
         $(".popup").css({
             left: `unset`,
             top: `unset`,
-            transform: 'unset',
-            position : 'fixed',
-            bottom : 0
+            transform: "unset",
+            position: "fixed",
+            bottom: 0,
         });
-
     } else if ($(".popup").length && w > 768) {
         $(".popup").css({
             left: `${Math.min(offset.left * zoomRate, offset.left)}px`,
@@ -543,21 +540,109 @@ let timeoutId;
 async function getTrainLocation() {
     try {
         const isMobile = $(window).width() <= 768;
+
+        console.log(isMobile, 'mobile')
         if (trainPosList.length !== 0) {
             trainPosList.splice(0, trainPosList.length);
         }
 
         clearTimeout(timeoutId);
-        //   timeoutId = setTimeout(getTrainLocation, 10000)
+                  timeoutId = setTimeout(getTrainLocation, 10000) 
         const response = await fetch(
-            "http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimePosition/0/100/2호선",
+            `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,
 
             { method: "GET" }
         );
 
-        const { realtimePositionList } = await response.json();
+        const { realtimeArrivalList } = await response.json();
 
-        const lis = realtimePositionList.map((train, i) => {
+        const line2Trains = realtimeArrivalList.filter((station, i) => {
+            return station.subwayId === "1002";
+        });
+
+        const uniqueTrains = [];
+
+        line2Trains.forEach((train) => {
+            //barvlDt
+
+            const index = uniqueTrains.findIndex((el) => {
+                return el.btrainNo === train.btrainNo;
+            });
+
+            if (index === -1) {
+                uniqueTrains.push(train);
+            }
+        });
+
+        uniqueTrains.forEach((train, i) => {
+            const statnId = train.statnId.slice(-4);
+
+            console.log(train);
+
+            if (statnId[0] !== "0") return;
+
+            let timetableN;
+
+            if (train.updnLine === "0") {
+                timetableN = "0" + (statnId - 0 + 1);
+            } else {
+                timetableN = statnId;
+            }
+            console.log(timetableN);
+
+            const timeStation = line2.find(
+                (station) => station.statn_id == timetableN
+            );
+
+            const timeTaking = timeStation.toNextStation;
+            const disRate = Math.max(train.barvlDt / timeTaking, 1)
+
+            const station = markers.find((item) => item.statn_id === statnId);
+
+            console.log(station === -1);
+
+            const getNextStation = (station) => {
+                let nextStation;
+                if (station.updnLine === "0") {
+                    nextStation = "0" + (statnId - 1 + 2);
+                } else {
+                    nextStation = "0" + (statnId - 1);
+                }
+
+                if (nextStation === "0200") {
+                    nextStation = "0243";
+                }
+
+                if (nextStation === "0244") {
+                    nextStation = "0201";
+                }
+                return nextStation;
+            };
+
+            const statn2Id = getNextStation(train);
+
+            const station2 = markers.find((item) => item.statn_id === statn2Id);
+
+            const pos = {
+                trainNo: train.btrainNo,
+                updnLine: train.updnLine,
+                x: isMobile
+                    ? station.x +
+                    (station2.x - station.x) * disRate
+                    : station.pcX +
+                      (station2.pcX - station.pcX) * disRate,
+                y: isMobile
+                    ? station.y +
+                      (station2.y - station.y) * disRate
+                    : station.pcY +
+                      (station2.pcY - station.pcY) * disRate
+            };
+            trainPosList.push(pos);
+
+            console.log(trainPosList);
+        });
+
+        /*    const lis = realtimePositionList.map((train, i) => {
             const statnId = train.statnId.slice(-4);
 
             const getNextStation = (station) => {
@@ -611,13 +696,23 @@ async function getTrainLocation() {
                 return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> ${train.trainNo}</li>`;
         });
 
+        update(); */
+
+        MarkerHtml = trainPosList.map((train) => {
+        
+            if (train.updnLine ==="내선") {
+                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1"> </li>`;
+            } else
+                return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> </li>`;
+        });
+
         update();
     } catch (err) {
         console.log(err);
     }
 }
 
-//timeoutId = setTimeout(getTrainLocation, 0)
+timeoutId = setTimeout(getTrainLocation, 0);
 
 let RSid = 0;
 let recentSearch = [];

@@ -277,7 +277,7 @@ line2.forEach((station, i) => {
 
     const { pcX, pcY, pcDir, pcLabelPos } = getPCxy(i);
 
-	    markers[i].toNextStation = station.toNextStation
+    markers[i].toNextStation = station.toNextStation;
 
     markers[i].pcX = pcX;
     markers[i].pcY = pcY;
@@ -548,24 +548,23 @@ async function getTrainLocation() {
         }
 
         clearTimeout(timeoutId);
-        setTimeout(getTrainLocation, 4000)
+        /*        setTimeout(getTrainLocation, 4000)  */
         const response = await fetch(
             `http://swopenAPI.seoul.go.kr/api/subway/46774250416c65653835766c785069/json/realtimeStationArrival/ALL`,
 
-            {method: "GET"}
+            { method: "GET" }
         );
 
-        const {realtimeArrivalList} = await response.json();
+        const { realtimeArrivalList } = await response.json();
 
         const line2Trains = realtimeArrivalList.filter((station, i) => {
             return station.subwayId === "1002";
         });
 
-
         const uniqueTrains = [];
 
-        const inlineTrains = []
-        const outlineTrains = []
+        const inlineTrains = [];
+        const outlineTrains = [];
         line2Trains.forEach((train) => {
             if (train.updnLine === "내선") {
                 const index = inlineTrains.findIndex((el) => {
@@ -584,34 +583,27 @@ async function getTrainLocation() {
                     outlineTrains.push(train);
                 }
             }
-
-
         });
-
 
         [...outlineTrains, ...inlineTrains].forEach((train, i) => {
             const statnId = train.statnId.slice(-4);
 
-
-            if (statnId[0] !== "0") return;
-
+            if (statnId[0] !== "0" || statnId >= 2043) return;
 
             const timeStation = line2.find(
                 (station) => station.statn_id == statnId
             );
 
-
             const timeTaking = timeStation.toNextStation;
-            const disRate =
-                (timeTaking - train.barvlDt) / timeTaking
-
+            const disRate = (timeTaking - train.barvlDt) / timeTaking;
 
             const stationT = markers.find((item) => item.statn_id === statnId);
 
             const nextStationI = "0" + (train.statnFid.slice(-4) - 0);
 
-            const stationF = markers.find(item => item.statn_id === nextStationI)
-
+            const stationF = markers.find(
+                (item) => item.statn_id === nextStationI
+            );
 
             const pos = {
                 trainNo: train.btrainNo,
@@ -622,34 +614,23 @@ async function getTrainLocation() {
                 y: isMobile
                     ? stationF.y + (stationT.y - stationF.y) * disRate
                     : stationF.pcY + (stationT.pcY - stationF.pcY) * disRate,
-            }
+            };
 
-
-
-            trainPosList.push(pos)
-
+            trainPosList.push(pos);
         });
         MarkerHtml = trainPosList.map((train) => {
-
             if (train.updnLine === "내선") {
                 return `<li data-coords="${train.x}, ${train.y}" data-marker="@train1"> </li>`;
             } else {
                 return `<li data-coords="${train.x}, ${train.y}" data-marker="@train0"> </li>`;
-
             }
         });
-
-
 
         update();
     } catch (err) {
         console.log(err);
     }
 }
-
-
-
-     
 
 timeoutId = setTimeout(getTrainLocation, 0);
 
@@ -667,7 +648,6 @@ if (localStorage.recentSearch) {
 let name;
 
 function onClickStation(name) {
-    console.log(name);
     stationClicked = name.slice(
         0,
         name.indexOf("(") === -1 ? name.length : name.indexOf("(")
@@ -679,6 +659,8 @@ function onClickStation(name) {
     const windowWidth = $(window).width();
 
     //PC화면
+
+    const isFav = favData.some((station) => station.text === name);
 
     const popupHtml =
         $(window).width() > 768
@@ -694,7 +676,9 @@ function onClickStation(name) {
     $("body").append(
         `${popupHtml}
             
-            <button type="button" class='addS' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class='addS ${
+                isFav ? "added" : ""
+            }' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
             <h3>${name}</h3>
             <div class="popupbg"></div>
 		 <div class="traindiv">
@@ -795,22 +779,26 @@ function onClickStation(name) {
     );
 
     $(".addS").on("click", function () {
-        const statn = $(this).data("statn");
+        if ($(this).is(".added")) {
+            const idx = favData.indexOf(
+                (station) => station.text === stationClicked
+            );
 
-        favId++;
+            deleteFav(idx);
+        } else {
+            favId++;
 
-        const obj = { id: favId, text: stationClicked };
+            const obj = { id: favId, text: stationClicked };
 
-        favData.push(obj);
+            favData.push(obj);
 
-        localStorage.favData = JSON.stringify(favData);
+            localStorage.favData = JSON.stringify(favData);
 
-        useFavData(favData);
+            useFavData(favData);
+        }
+
+        $(this).toggleClass("added");
     });
-
-    $(".addS").on('click', function() {
-        $(".addS > i").css("color", "rgb(2, 176, 11)");
-    })
 
     const clicked = markers.find((el) => {
         return el.statn_nm === stationClicked;
@@ -897,7 +885,6 @@ $("#fav-btn").on("click", function (e) {
     $(".search-history-wrapper").hide();
     $(".favorites-wrapper").show();
 });
-
 
 $(".slider").on("click", ".delete-li", function () {
     console.log("delte");
@@ -1033,14 +1020,12 @@ if (localStorage.favData) {
     useFavData(favData);
 }
 
-console.log(favData);
 // 추가
 $(".search-result").on("mousedown", "input", function () {
     onClickStation($(this).val());
 });
 
 function useFavData(favData) {
-    console.log(favData);
     $(".favorites").html("");
     const favHtml = favData.map(
         (station) =>
@@ -1050,18 +1035,22 @@ function useFavData(favData) {
             </li>`
     );
 
-    console.log(favHtml);
-
     $(".favorites").html(favHtml.join(""));
 }
 
 $(".slider").on("click", ".delete-fav-btn", function () {
-    let num = $(this).parent().index();
-    favData.splice(num, 1);
+    const value = $(this).siblings("input").val();
+    const idx = favData.indexOf((station) => station.text === value);
+
+    deleteFav(idx);
+});
+
+function deleteFav(idx) {
+    favData.splice(idx, 1);
     localStorage.favData = JSON.stringify(favData);
 
     useFavData(favData);
-});
+}
 
 $("#mobile-search").on("click", function () {
     $(".search-box").toggleClass("show");
@@ -1079,17 +1068,17 @@ $(".search_button").on("click", function () {
 
 $(".logini").on("click", function () {
     $(".login_popup").show();
-    $(this).addClass('on')
+    $(this).addClass("on");
 });
 $(".loginbtn").on("click", function () {
     $(".login_popup").hide();
 });
-$('#wrap').on('click', function(){
+$("#wrap").on("click", function () {
     $(".login_popup").hide();
-})
-$('#wrap').on('click', function(){
+});
+$("#wrap").on("click", function () {
     $(".popup").hide();
-})
+});
 
 $(".search-history").on("click", "a", function (e) {
     console.log(e.target, "inSearchHistroy");

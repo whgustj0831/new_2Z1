@@ -567,7 +567,7 @@ THE SOFTWARE.
             switch (data.marker.toLowerCase()) {
                 case "@train0":
                     const trainImg = new Image();
-                    trainImg.src = "img/train.jpg";
+                    trainImg.src = "img/train.png";
 
                     trainImg.onload = function () {
                         //이미지, x좌표, y좌표, 가로크기, 세로크기

@@ -49,8 +49,8 @@ body {
 }
 .nav > button:nth-child(2) {
     width: 70px;
-    border-left: 2px solid rgb(2, 176, 11);
-    border-right: 2px solid rgb(2, 176, 11);
+    border-left: 1px solid rgb(2, 176, 11);
+    border-right: 1px solid rgb(2, 176, 11);
 }
 
 .logini {
@@ -178,7 +178,7 @@ body {
 .popup {
     background: #fff;
     width: 400px;
-    height: 200px;
+    height: 250px;
     border: 2px solid rgb(2, 176, 11);
     position: fixed;
     transform: translate(-50%, -100%);
@@ -186,18 +186,21 @@ body {
 }
 .popup > h3 {
     text-align: center;
-    margin-top: 35px;
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
+    border: 5px solid rgb(2, 176, 11);
+    border-radius: 30px;
+    background: #fff;
+    margin: 30px 20%;
 }
-.popup .popupbg {
-    background: rgb(2, 176, 11);
+.popup > .popupbg {
     width: 100%;
+    height: 15px;
     position: fixed;
-    top: 40px;
+    top: 42px;
     left: 0;
-    height: 18px;
+    background-color: rgb(2, 176, 11);
     z-index: -99999;
 }
 .popup > button {
@@ -210,21 +213,48 @@ body {
 .popup > .traindiv {
     display: flex;
     position: fixed;
-    bottom: 20px;
     text-align: center;
 }
 .popup > .traindiv > .inline-train {
     width: 200px;
+    padding: 10px;
 }
+.popup > .traindiv > .inline-train > i {
+    color: rgb(2, 176, 11);
+}
+.popup > .traindiv > .inline-train > span {
+    padding: 2px;
+}
+.popup > .traindiv > .inline-train > div {
+    padding: 5px 0;
+}
+.popup > .traindiv > .inline-train > .train-number > i {
+    color: rgb(2, 176, 11);
+}
+
 .popup > .traindiv > .outline-train {
     width: 200px;
+    padding: 10px;
+}
+.popup > .traindiv > .outline-train > i {
+    color: rgb(2, 176, 11);
+}
+.popup > .traindiv > .outline-train > span {
+    padding: 2px;
+}
+.popup > .traindiv > .outline-train > div {
+    padding: 5px 0;
+}
+.popup > .traindiv > .outline-train > .train-number > i {
+    color: rgb(2, 176, 11);
 }
 
 .login_popup {
     display: none;
     position: fixed;
-    top: 10%;
-    right: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 500px;
     height: 700px;
     padding: 120px 100px;
@@ -256,7 +286,7 @@ body {
     font-size: 15px;
     outline: none;
 }
-.login_popup > button {
+.login_popup > .loginbtn {
     border: 1px solid rgb(2, 176, 11);
     text-align: center;
     font-size: 20px;
@@ -272,6 +302,18 @@ body {
 .login_popup > button:active {
 	background-color: rgb(231, 231, 231);
 }
+.login_popup > .login_w {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.login_popup > .login_w > button {
+    border: none;
+    text-align: center;
+}
+.login_popup > .login_w > .pwpopup_btn:hover {
+    color: rgb(2, 176, 11);
+}
 
 .searchbox2 {
     display: none;
@@ -285,13 +327,13 @@ body {
     font-size: 16px;
     width: 310px;
     background: #fff;
-    border: 2px solid rgb(2, 176, 11);
+    border: 1.5px solid rgb(2, 176, 11);
     border-bottom: none;
 }
 
 .search-result > li {
     width: 100%;
-    border-bottom: 2px solid rgb(2, 176, 11);
+    border-bottom: 1.5px solid rgb(2, 176, 11);
     padding: 10px 0px 10px 20px;
 }
 .search-result > li:hover {
@@ -310,13 +352,13 @@ body {
     padding: 100px 130px 60px 130px;
     font-size: 30px;
     font-weight: bold;
-    border-bottom: 2px solid rgb(2, 176, 11);
+    border-bottom: 1px solid rgb(2, 176, 11);
 }
 .search-history > li {
     width: 380px;
     text-align: center;
     padding: 10px;
-    border-bottom: 2px solid rgb(2, 176, 11);
+    border-bottom: 1px solid rgb(2, 176, 11);
 }
 .search-history > li:hover {
 	background-color: rgb(239, 239, 239);
@@ -332,11 +374,11 @@ body {
     padding: 60px 130px;
     font-size: 30px;
     font-weight: bold;
-    border-bottom: 2px solid rgb(2, 176, 11);
+    border-bottom: 1px solid rgb(2, 176, 11);
 }
 .favorites > li {
     width: 380px;
-    border-bottom: 2px solid rgb(2, 176, 11);
+    border-bottom: 1px solid rgb(2, 176, 11);
     display: flex;
     justify-content: space-between;
 }
@@ -357,7 +399,7 @@ body {
     background: none;
     border: none;
     padding: 10px 40px 10px 40px;
-    border-left: 2px solid rgb(2, 176, 11);
+    border-left: 1px solid rgb(2, 176, 11);
 }
 .favorites > li > button:hover {
 	background-color: rgb(0, 153, 8);
@@ -375,6 +417,63 @@ body {
 	background-color: rgb(0, 89, 4);
     color: #fff;
 }
+
+.pw_popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 700px;
+    padding: 120px 100px;
+    background: rgba(255, 255, 255, 1);
+    border: 3px solid rgb(2, 176, 11);
+    z-index: 9999999999999999;
+    border-radius: 30px;
+}
+.pw_popup > h2 {
+    color: rgb(2, 176, 11);
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 80px;
+}
+.pw_popup > p {
+    border: 1px solid rgb(2, 176, 11);
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    text-indent: 1em;
+    font-weight: bold;
+}
+.pw_popup > p > input {
+    border: none;
+    padding: 10px;
+    margin: 10px 0 0 20px;
+    width: 90%;
+    font-size: 15px;
+    outline: none;
+    border-left: 1px solid rgb(2, 176, 11);
+}
+.pw_popup > button {
+    border: 1px solid rgb(2, 176, 11);
+    text-align: center;
+    font-size: 20px;
+    width: 300px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+.pw_popup > button:hover {
+	background-color: rgb(239, 239, 239);
+}
+.pw_popup > button:active {
+	background-color: rgb(231, 231, 231);
+}
+
 
 @media screen and (max-width: 768px) {
     .flex-container {
@@ -411,9 +510,6 @@ body {
     }
     .logini {
         margin: 10px 0;
-    }
-    .logini.on {
-        background-color: rgb(0, 89, 4);
     }
     .mobile-search {
         margin: 10px 0;
@@ -453,13 +549,13 @@ body {
        /* width: 420px; */
        width: 63.8vh;
        background: #fff;
-       border: 2px solid rgb(2, 176, 11);
+       border: 1.5px solid rgb(2, 176, 11);
        border-bottom: none;
     }
 
     .search-result > li {
         width: 100%;
-        border-bottom: 2px solid rgb(2, 176, 11);
+        border-bottom: 1.5px solid rgb(2, 176, 11);
         padding: 10px 0px 10px 20px;
     }
     .search-result > li > input {
@@ -495,7 +591,8 @@ body {
         position: fixed;
         width: 100%;
         height: 350px;
-        border: 2px solid salmon;
+        border: none;
+        border-top: 3px solid rgb(2, 176, 11);
         left: 0;
         bottom: 0px;
         transform: unset;
@@ -503,38 +600,67 @@ body {
     }
     .popup > h3 {
         text-align: center;
-        margin-top: 35px;
         font-size: 20px;
         font-weight: bold;
         padding: 5px;
+        border: 5px solid rgb(2, 176, 11);
+        border: 5px solid rgb(2, 176, 11);
+        border-radius: 30px;
+        background: #fff;
+        margin: 40px 30%;
     }
-    .popup .popupbg {
-        background: rgb(2, 176, 11);
-        width: 100%;
-        position: unset;
-        top: 40px;
-        left: 0;
-        height: 18px;
-        z-index: -99999;
+    .popup > .popupbg {
+       display: none;
     }
     .popup > button {
-        position: unset;
-        right: 7px;
-        top: 7px;
+        position: fixed;
+        right: 10px;
+        bottom: -210px;
         border: none;
         font-size: 22px;
     }
     .popup > .traindiv {
         display: flex;
-        position: fixed;
-        bottom: 60px;
+        position: unset;
+        bottom: 30px;
         text-align: center;
+        margin-top: 30px;
+        font-size: 18px;
+        padding: 10px;
     }
+
     .popup > .traindiv > .inline-train {
-        width: 50%;
+        width: 300px;
+        padding: 10px;
     }
+    .popup > .traindiv > .inline-train > i {
+        color: rgb(2, 176, 11);
+    }
+    .popup > .traindiv > .inline-train > span {
+        padding: 2px;
+    }
+    .popup > .traindiv > .inline-train > div {
+        padding: 5px 0;
+    }
+    .popup > .traindiv > .inline-train > .train-number > i {
+        color: rgb(2, 176, 11);
+    }
+
     .popup > .traindiv > .outline-train {
         width: 50%;
+        padding: 10px;
+    }
+    .popup > .traindiv > .outline-train > i {
+        color: rgb(2, 176, 11);
+    }
+    .popup > .traindiv > .outline-train > span {
+        padding: 2px;
+    }
+    .popup > .traindiv > .outline-train > div {
+        padding: 5px 0;
+    }
+    .popup > .traindiv > .outline-train > .train-number > i {
+        color: rgb(2, 176, 11);
     }
 
     .login_popup {
@@ -566,12 +692,19 @@ body {
 
 
 
-[data-clicked="clicked"] {
-    background-color: red;
+a.text {
+    border-radius: 50%;
+    background-color: #fff;
+    Border : 3px solid rgb(2, 176, 11) !important;
 }
 
-[data-nearest="nearest"] {
-    background-color: yellow;
+a.text[data-clicked="clicked"] {
+    background-color: rgb(78, 183, 94);
+}
+
+a.text[data-nearest="nearest"] {
+    background-color: rgb(219, 65, 65);
+    Border : 1px solid rgb(2, 176, 11) !important;
 }
 
 [data-pclabel="N"] {

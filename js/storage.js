@@ -98,3 +98,10 @@ export const addFav =(stationToadd) => {
     localStorage.favData = JSON.stringify(favData);
 
 }
+
+$('.allC').on('click', function(){
+    localStorage.clear()
+    favData = []
+    useFavData(favData)
+    return false
+})

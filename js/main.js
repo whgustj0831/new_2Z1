@@ -788,6 +788,7 @@ $("#mobile-search").on("click", function () {
     $(".search-box").toggleClass("show");
 });
 
+
 $(".search-box").on("click", function () {
     $(".searchbox2").show();
 });
@@ -796,20 +797,32 @@ $(".mobile-search").on("click", function () {
 });
 $(".search_button").on("click", function () {
     $(".searchbox2").hide();
+    $(this).addClass('on');
 });
-
 $(".logini").on("click", function () {
     $(".login_popup").show();
-    $(this).addClass("on");
+    $(this).addClass('on');
 });
 $(".loginbtn").on("click", function () {
     $(".login_popup").hide();
 });
-$("#wrap").on("click", function () {
+$('.pwpopup_btn').on('click', function(){
+    $(".pw_popup").show();
+})
+$('.pwbtn').on('click', function(){
+    $(".pw_popup").hide();
+})
+$('#wrap').on('click', function(){
     $(".login_popup").hide();
-});
-$("#wrap").on("click", function () {
+})
+$('#wrap').on('click', function(){
+    $(".pw_popup").hide();
+})
+$('#wrap').on('click', function(){
     $(".popup").hide();
+})
+$(".nav > button").on("click", function () {
+    $(this).addClass('on');
 });
 
 $(".search-history").on("click", "a", function (e) {

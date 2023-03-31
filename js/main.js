@@ -557,10 +557,15 @@ async function getTrainLocation() {
 
         const { realtimeArrivalList } = await response.json();
 
+
+        if(!realtimeArrivalList) return;
+
         const line2Trains = realtimeArrivalList.filter((station, i) => {
             return station.subwayId === "1002";
         });
 
+
+        if(!realtimeArrivalList) return;
         const uniqueTrains = [];
 
         const inlineTrains = [];
@@ -648,10 +653,13 @@ if (localStorage.recentSearch) {
 let name;
 
 function onClickStation(name) {
+    console.log(name)
     stationClicked = name.slice(
         0,
         name.indexOf("(") === -1 ? name.length : name.indexOf("(")
     );
+
+    console.log(stationClicked)
 
     $(".popup").remove();
 
@@ -803,6 +811,8 @@ function onClickStation(name) {
     const clicked = markers.find((el) => {
         return el.statn_nm === stationClicked;
     });
+
+
     markers.forEach((marker, i) => {
         marker.data_clicked = "";
     });
@@ -821,14 +831,26 @@ $("#wrap").on("mousedown", ".subway-map a.text", function (e) {
 
     const name = $(this).data("info");
 
-    console.log(name);
+
 
     onClickStation(name);
+
     RSid++;
 
     const obj = { id: RSid, text: stationClicked };
 
+    const isDup = recentSearch.findIndex(
+        (station) => station.text === stationClicked
+    );
+
+    console.log(isDup, "hiiii");
+
+    if (isDup !== -1) {
+        recentSearch.splice(isDup, 1);
+    }
+
     recentSearch.push(obj);
+
     if (recentSearch.length > 5) {
         recentSearch.shift();
     }
@@ -1030,7 +1052,7 @@ function useFavData(favData) {
     const favHtml = favData.map(
         (station) =>
             `<li>
-                <input type="text" value="${station.text}" disabled>
+                <a>  ${station.text}  </a>
                 <button type="button" class='delete-fav-btn' data-statn="${station.text}">삭제</button>
             </li>`
     );
@@ -1089,3 +1111,13 @@ $(".search-history").on("click", "a", function (e) {
 $("body").on("click", function (e) {
     console.log(e.target);
 });
+
+
+$('.favorites').on('click', 'a', function() {
+    console.log('input')
+ 
+
+  
+    onClickStation($(this).text().trim());
+
+})

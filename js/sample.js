@@ -9,9 +9,8 @@ let timeId00;
 
 /* updateArrivalData(); */
 
-let stationClicked;
-function updateArrivalData() {
-    stationClicked = stationClicked;
+
+export function updateArrivalData(stationClicked) {
 
     clearTimeout(timeId00);
     let i = 0;

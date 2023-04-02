@@ -817,6 +817,9 @@ $('#wrap').on('click', function(){
     $(".login_popup").hide();
 })
 $('#wrap').on('click', function(){
+    $(".searchbox2").hide();
+})
+$('#wrap').on('click', function(){
     $(".pw_popup").hide();
 })
 $('#wrap').on('click', function(){

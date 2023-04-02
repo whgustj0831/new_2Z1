@@ -576,16 +576,14 @@ body {
         z-index: 99999999;
         position: fixed;
         top: 110px;
-        /* left: 50%;
-        transform: translateX(-50%); */
-        right: 15%;
+        left: 0;
     }
     .search-result {
-       width: 420px;
-       /* width: 63.8vh; */
-       background: #fff;
-       border: 1.5px solid rgb(2, 176, 11);
-       border-bottom: none;
+        width: 100vh;
+        background: #fff;
+        border: 1.5px solid rgb(2, 176, 11);
+        border-left: none;
+        border-bottom: none;
     }
 
     .search-result > li {
@@ -759,10 +757,10 @@ body {
         z-index: 99999999;
         position: fixed;
         top: 110px;
-        right: 18%;
+        left: 0;
     }
     .search-result {
-        width: 300px;
+        width: 100vh;
         background: #fff;
         border: 1.5px solid rgb(2, 176, 11);
         border-bottom: none;

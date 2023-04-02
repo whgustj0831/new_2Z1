@@ -828,10 +828,8 @@ $(".nav > button").on("click", function () {
 $(".pw_popup > div > button").on("click", function () {
     $(this).addClass('on');
 });
-
-$(".search-history").on("click", "a", function (e) {
-    onClickStation($(this).text());
-    return false;
+$(".pw_popup > div > button").on("click", function () {
+    $(this).addClass('on');
 });
 
 $("body").on("click", function (e) {

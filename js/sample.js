@@ -159,7 +159,6 @@ function insertData(arrivalDataArr) {
         const congestionHtml = line[0].congestion.map(
             (number) =>
                 ` <span data-crowded='${getLevel(number)}'>
-					${getLevel(number)}
 					</span>`
         );
 

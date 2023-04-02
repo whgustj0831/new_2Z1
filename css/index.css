@@ -103,12 +103,12 @@ body {
 
 .guide {
     background: #fff;
-    border: 1px solid rgb(2, 176, 11);
+    border: 2px solid rgb(2, 176, 11);
     position: fixed;
     left: 3%;
     top: 10%;
-    width: 200px;
-    height: 250px;
+    width: 150px;
+    height: 200px;
     border-radius: 30px;
     padding: 20px;
     z-index: 9999999;
@@ -177,7 +177,7 @@ body {
 
 .popup {
     background: #fff;
-    width: 400px;
+    width: 450px;
     height: 250px;
     border: 2px solid rgb(2, 176, 11);
     position: fixed;
@@ -216,7 +216,7 @@ body {
     text-align: center;
 }
 .popup > .traindiv > .inline-train {
-    width: 200px;
+    width: 225px;
     padding: 10px;
 }
 .popup > .traindiv > .inline-train > i {
@@ -233,7 +233,7 @@ body {
 }
 
 .popup > .traindiv > .outline-train {
-    width: 200px;
+    width: 225px;
     padding: 10px;
 }
 .popup > .traindiv > .outline-train > i {
@@ -393,7 +393,7 @@ body {
     background: none;
     border: none;
     line-height: 37px;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 .favorites > li > button {
     background: none;
@@ -437,7 +437,7 @@ body {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 .pw_popup > p {
     border: 1px solid rgb(2, 176, 11);
@@ -465,7 +465,7 @@ body {
     background: #fff;
     padding: 10px;
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .pw_popup > button:hover {
 	background-color: rgb(239, 239, 239);
@@ -473,7 +473,36 @@ body {
 .pw_popup > button:active {
 	background-color: rgb(231, 231, 231);
 }
-
+.pw_popup > div {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px 20px;
+    height: 30px;
+}
+.pw_popup > div > p {
+    line-height: 35px;
+    cursor: pointer;
+}
+.pw_popup > div > button {
+    border: 1px solid rgb(2, 176, 11);
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+.pw_popup > div > button {
+    border: 1px solid rgb(2, 176, 11);
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+.pw_popup > div > button:hover {
+    background-color: rgb(2, 176, 11);
+    color: #fff;
+}
+.pw_popup > div > button.on {
+    border: 1px solid rgb(0, 147, 7);
+    background-color: rgb(0, 147, 7);
+    color: #fff;
+}
 
 @media screen and (max-width: 768px) {
     .flex-container {
@@ -541,13 +570,14 @@ body {
         display: none;
         z-index: 99999999;
         position: fixed;
-        /* right: 100px; */
-        right: 0;
         top: 110px;
+        /* left: 50%;
+        transform: translateX(-50%); */
+        right: 15%;
     }
     .search-result {
-       /* width: 420px; */
-       width: 63.8vh;
+       width: 420px;
+       /* width: 63.8vh; */
        background: #fff;
        border: 1.5px solid rgb(2, 176, 11);
        border-bottom: none;
@@ -607,30 +637,29 @@ body {
         border: 5px solid rgb(2, 176, 11);
         border-radius: 30px;
         background: #fff;
-        margin: 40px 30%;
+        margin: 10px 30% 0 30%;
     }
     .popup > .popupbg {
        display: none;
     }
     .popup > button {
-        position: fixed;
-        right: 10px;
-        bottom: -210px;
+        position: unset;
         border: none;
         font-size: 22px;
+        margin: 10px 90%;
     }
     .popup > .traindiv {
         display: flex;
         position: unset;
         bottom: 30px;
         text-align: center;
-        margin-top: 30px;
+        margin-top: 10px;
         font-size: 18px;
         padding: 10px;
     }
 
     .popup > .traindiv > .inline-train {
-        width: 300px;
+        width: 50%;
         padding: 10px;
     }
     .popup > .traindiv > .inline-train > i {
@@ -689,22 +718,78 @@ body {
     }
 
 }
+@media screen and (max-width:460px) {
+    .search-box {
+        width: 100%;
+        text-align: center;
+        line-height: 0;
+        padding: 10px;
+        margin-left: 0;
+    }
+    .search-box > input {
+        padding: 5px;
+        width: 250px;
+        border-radius: 30px;
+        text-indent: 1em;
+        outline: none;
+        border: 1px solid rgb(2, 176, 11);
+    }
+    .searchbox2 {
+        display: none;
+        z-index: 99999999;
+        position: fixed;
+        top: 110px;
+        right: 18%;
+    }
+    .search-result {
+        width: 300px;
+        background: #fff;
+        border: 1.5px solid rgb(2, 176, 11);
+        border-bottom: none;
+    }
+    .popup > .traindiv {
+        display: flex;
+        position: unset;
+        bottom: 30px;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        padding: 10px;
+    }
+    .popup > .traindiv > .inline-train {
+        width: 50%;
+        padding: 10px;
+    }
+    .popup > .traindiv > .inline-train > i {
+        color: rgb(2, 176, 11);
+    }
+    .popup > .traindiv > .inline-train > span {
+        padding: 0px;
+        margin: 2px;
+    }
+    .popup > .traindiv > .inline-train > div {
+        padding: 5px 0;
+    }
+    .popup > .traindiv > .inline-train > .train-number > i {
+        color: rgb(2, 176, 11);
+    }
 
-
-
-a.text {
-    border-radius: 50%;
-    background-color: #fff;
-    Border : 3px solid rgb(2, 176, 11) !important;
-}
-
-a.text[data-clicked="clicked"] {
-    background-color: rgb(78, 183, 94);
-}
-
-a.text[data-nearest="nearest"] {
-    background-color: rgb(219, 65, 65);
-    Border : 1px solid rgb(2, 176, 11) !important;
+    .popup > .traindiv > .outline-train {
+        width: 50%;
+        padding: 10px;
+    }
+    .popup > .traindiv > .outline-train > i {
+        color: rgb(2, 176, 11);
+    }
+    .popup > .traindiv > .outline-train > span {
+        padding: 2px;
+    }
+    .popup > .traindiv > .outline-train > div {
+        padding: 5px 0;
+    }
+    .popup > .traindiv > .outline-train > .train-number > i {
+        color: rgb(2, 176, 11);
+    }
 }
 
 [data-pclabel="N"] {
@@ -748,38 +833,59 @@ a.text[data-nearest="nearest"] {
 
 }
 
+.congestion > span {
+    padding: 0 10px;
+}
+
+a.text {
+    border-radius: 50%;
+    background-color: #fff;
+    Border : 3px solid rgb(2, 176, 11) !important;
+}
+a:hover {
+    background :rgb(2, 176, 11);
+    transition: all 0.2s;
+}
+a.text[data-clicked="clicked"] {
+    background-color: rgb(78, 183, 94);
+}
+
+a.text[data-nearest="nearest"] {
+    background-color: rgb(219, 65, 65);
+    Border : 1px solid rgb(2, 176, 11) !important;
+}
 
 
 .addS.added i {
-    color :rgb(2, 176, 11)
+    color :rgb(2, 176, 11);
 }
 
 [data-crowded="0"] {
-    background-image: url(../img/1.png);
+    background-image: url(../img/emoji0.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 [data-crowded="1"] {
-    background-image: url(../img/1.png);
+    background-image: url(../img/emoji0.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 [data-crowded="2"] {
-    background-image: url(../img/2.png);
+    background-image: url(../img/emoji1.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 [data-crowded="3"] {
-    background-image: url(../img/3.png);
+    background-image: url(../img/emoji2.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 [data-crowded="4"] {
-    background-image: url(../img/4.png);
+    background-image: url(../img/emoji3.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

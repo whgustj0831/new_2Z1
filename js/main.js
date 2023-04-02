@@ -536,6 +536,7 @@ function onClickStation(name) {
             }' data-statn="${name}"><i class="fa-solid fa-star"></i></button>
             <h3>${name}</h3>
             <div class="popupbg"></div>
+            
 		 <div class="traindiv">
             <div class="train inline-train">
 				<i class="fa-solid fa-location-dot"></i> 열차위치
@@ -545,36 +546,36 @@ function onClickStation(name) {
 				<div class="train-msg">
 					&nbsp;
 				</div>
-				<span class="train-number"> <i class="fa-solid fa-train"></i> <span> </span> </span>
+				<span class="train-number"> <i class="fa-solid fa-train"></i> 외선 <span> </span> </span>
 				<div class="congestion"> <span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 				</div>
 
@@ -584,43 +585,43 @@ function onClickStation(name) {
 
 
 			<div class="train outline-train">
-				<i class="fa-solid fa-location-dot"></i> 열차위치
+				<i class="fa-solid fa-location-dot"></i>
 
 
 
 				<div class="train-msg">
 					&nbsp;
 				</div>
-				<span class="train-number"> <i class="fa-solid fa-train"></i> <span> </span> </span>
+				<span class="train-number"> 내선 <i class="fa-solid fa-train"></i> <span> </span> </span>
 				<div class="congestion"> <span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 					<span data-crowded="0">
-						0
+						
 					</span>
 				</div>
 
@@ -822,6 +823,9 @@ $('#wrap').on('click', function(){
     $(".popup").hide();
 })
 $(".nav > button").on("click", function () {
+    $(this).addClass('on');
+});
+$(".pw_popup > div > button").on("click", function () {
     $(this).addClass('on');
 });
 

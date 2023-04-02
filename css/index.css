@@ -290,7 +290,7 @@ body {
     border: 1px solid rgb(2, 176, 11);
     text-align: center;
     font-size: 20px;
-    width: 300px;
+    width: 100%;
     background: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -695,15 +695,16 @@ body {
     .login_popup {
         display: none;
         position: fixed;
-        right: 0;
+        left: 0;
         top: 0;
         width: 100vw;
         height: 100vh;
         background: #fff;
-        z-index: 99999999999;
+        z-index: 9999999999999999999;
         border: none;
         border-radius: 0;
         padding: 120px 100px;
+        transform: unset;
     }
 
     .login_popup > button {
@@ -718,6 +719,7 @@ body {
     }
 
 }
+
 @media screen and (max-width:460px) {
     .search-box {
         width: 100%;
@@ -818,13 +820,13 @@ body {
 
     
     .search-history-wrapper > h3 {
-        padding: 100px 130px 60px 130px;
+        padding: 100px 95px 60px 95px;
         font-size: 30px;
         font-weight: bold;
         border-bottom: 1px solid rgb(2, 176, 11);
     }
     .search-history > li {
-        width: 380px;
+        width: 310px;
         text-align: center;
         padding: 10px;
         border-bottom: 1px solid rgb(2, 176, 11);
@@ -836,17 +838,18 @@ body {
         background-color: rgb(231, 231, 231);
     }
     .search-history > li > a {
-        padding: 10px 100px;
+        padding: 10px;
         font-size: 16px;
     }
+
     .favorites-wrapper > h3 {
-        padding: 60px 130px;
+        padding: 60px 95px;
         font-size: 30px;
         font-weight: bold;
         border-bottom: 1px solid rgb(2, 176, 11);
     }
     .favorites > li {
-        width: 380px;
+        width: 310px;
         border-bottom: 1px solid rgb(2, 176, 11);
         display: flex;
         justify-content: space-between;
@@ -867,7 +870,7 @@ body {
     .favorites > li > button {
         background: none;
         border: none;
-        padding: 10px 40px 10px 40px;
+        padding: 10px 40px 10px 30px;
         border-left: 1px solid rgb(2, 176, 11);
     }
     .favorites > li > button:hover {
@@ -877,6 +880,27 @@ body {
     .favorites > li > button:active {
         background-color: rgb(0, 89, 4);
         color: #fff;
+    }
+    .allC {
+        margin-left: 37%;
+        margin-top: 10px;
+        font-size: 14px;
+        padding: 5px;
+        border: none;
+        background: rgb(2, 176, 11);
+        color: #fff;
+    }
+
+
+    .login_popup > .login_w {
+        display: unset;
+        margin: 20px;
+    }
+    .login_popup > .login_w > button {
+        display: block;
+        border: none;
+        text-align: center;
+        margin: 5px 10px;
     }
 }
 
@@ -930,7 +954,7 @@ a.text {
     background-color: #fff;
     Border : 3px solid rgb(2, 176, 11) !important;
 }
-a:hover {
+a.text:hover {
     background :rgb(2, 176, 11);
     transition: all 0.2s;
 }

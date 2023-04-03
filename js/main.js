@@ -307,13 +307,13 @@ data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="
     <ul class="trains"  data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>
-<ul data-color="#82eca7">
+<ul data-color="#fff">
 ${lisMobile().join("")}
 </ul>
-<ul data-color="#82eca7">
+<ul data-color="#fff">
 ${coda1().join("")}
 </ul>
-<ul data-color="#82eca7">
+<ul data-color="#fff">
 ${coda2().join("")}
 </ul>
 
@@ -330,13 +330,13 @@ data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="
   <ul class="trains" data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>
-<ul data-color="#82eca7">
+<ul data-color="#fff">
     ${lisPc().join("")}
 </ul>
-<ul data-color="#82eca7">
+<ul data-color="#fff">
     ${coda3().join("")}
 </ul>
-<ul data-color="#82eca7" >
+<ul data-color="#fff" >
     ${coda4().join("")}
 </ul>
 

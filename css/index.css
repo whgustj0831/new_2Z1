@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'KorailRoundGothicBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+* { font-family: 'KorailRoundGothicBold'; }
 
 body {
     width: 100%;
@@ -187,7 +194,7 @@ body {
     border: 2px solid rgb(2, 176, 11);
     position: fixed;
     transform: translate(-50%, -100%);
-    z-index: 9999999;
+    z-index: 999999999;
 }
 .popup > h3 {
     text-align: center;
@@ -227,8 +234,9 @@ body {
 .popup > .traindiv > .inline-train > i {
     color: rgb(2, 176, 11);
 }
-.popup > .traindiv > .inline-train > span {
-    padding: 2px;
+.popup > .traindiv > .inline-train > .congestion > span {
+    padding: 0px 9px;
+    margin: 1px;
 }
 .popup > .traindiv > .inline-train > div {
     padding: 5px 0;
@@ -244,8 +252,9 @@ body {
 .popup > .traindiv > .outline-train > i {
     color: rgb(2, 176, 11);
 }
-.popup > .traindiv > .outline-train > span {
-    padding: 2px;
+.popup > .traindiv > .outline-train > .congestion > span {
+    padding: 0px 9px;
+    margin: 1px;
 }
 .popup > .traindiv > .outline-train > div {
     padding: 5px 0;
@@ -746,7 +755,7 @@ body {
     }
     .search-box > input {
         padding: 5px;
-        width: 250px;
+        width: 220px;
         border-radius: 30px;
         text-indent: 1em;
         outline: none;
@@ -983,10 +992,13 @@ a.text[data-clicked="clicked"] {
 }
 
 a.text[data-nearest="nearest"] {
-    background-color: rgb(219, 65, 65);
-    Border : 1px solid rgb(2, 176, 11) !important;
+    background-color: rgb(255, 255, 255);
+    Border : 4px solid rgb(176, 2, 57) !important;
 }
-
+span.text {
+    z-index: 99999999 !important;
+    padding: 2px !important;
+}
 
 .addS.added i {
     color :rgb(2, 176, 11);

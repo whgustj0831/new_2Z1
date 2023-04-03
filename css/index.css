@@ -34,7 +34,7 @@ body {
 }
 
 .header {
-    z-index: 999999;
+    z-index: 9999999;
     position: fixed;
     width: 100%;
     display: flex;
@@ -568,11 +568,14 @@ body {
     }
     .search-box > input {
         padding: 5px;
-        width: 350px;
+        width: 400px;
         border-radius: 30px;
         text-indent: 1em;
         outline: none;
         border: 1px solid rgb(2, 176, 11);
+    }
+    .search-box > .search_button {
+        display: none;
     }
     .search-box > button {
         width: 50px;

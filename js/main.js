@@ -302,7 +302,7 @@ const getHtmlText = () => {
 
     
     <div class="subway-map" data-columns="16" data-rows="24" data-cellSize="50" 
-data-textClass="text" data-gridNumbers="true" data-grid="yes" data-lineWidth="8">
+data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="8">
 
     <ul class="trains"  data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
@@ -326,7 +326,7 @@ ${coda2().join("")}
         const htmlText = `
     
 <div class="subway-map" data-columns="34" data-rows="21" data-cellSize="40" 
-data-textClass="text" data-gridNumbers="true" data-grid="true" data-lineWidth="8">
+data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="8">
   <ul class="trains" data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>

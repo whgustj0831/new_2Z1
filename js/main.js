@@ -844,11 +844,14 @@ $(".favorites").on("click", "a", function () {
     return false;
 });
 
-$('.favorites').on('click', 'a', function() {
+$('.search-history').on('click', 'a', function() {
  
 
   
     onClickStation($(this).text().trim());
 
+    return false
+
 })
+
 

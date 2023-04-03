@@ -843,3 +843,12 @@ $(".favorites").on("click", "a", function () {
     onClickStation($(this).text().trim());
     return false;
 });
+
+$('.favorites').on('click', 'a', function() {
+ 
+
+  
+    onClickStation($(this).text().trim());
+
+})
+

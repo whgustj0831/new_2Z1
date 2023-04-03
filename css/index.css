@@ -34,7 +34,7 @@ body {
 }
 
 .header {
-    z-index: 999999999999;
+    z-index: 999999;
     position: fixed;
     width: 100%;
     display: flex;
@@ -163,7 +163,7 @@ body {
 }
 
 .slider {
-    z-index: 99999999;
+    z-index: 9999999 !important;
     background-color: #fff;
     position: fixed;
     left: 100%;
@@ -194,7 +194,7 @@ body {
     border: 2px solid rgb(2, 176, 11);
     position: fixed;
     transform: translate(-50%, -100%);
-    z-index: 999999999;
+    z-index: 999999;
 }
 .popup > h3 {
     text-align: center;

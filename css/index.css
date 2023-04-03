@@ -997,7 +997,7 @@ a.text[data-nearest="nearest"] {
 }
 span.text {
     z-index: 99999999 !important;
-    padding: 2px !important;
+    /* padding: 10px !important; */
 }
 
 .addS.added i {

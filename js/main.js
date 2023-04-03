@@ -416,8 +416,8 @@ async function getTrainLocation() {
         }
 
         clearTimeout(timeoutId);
-     
-     //   timeoutId = setTimeout(getTrainLocation, 4000); 
+
+        //   timeoutId = setTimeout(getTrainLocation, 4000);
 
         const response = await fetch(
             `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,
@@ -660,6 +660,9 @@ function onClickStation(name) {
 
     updateArrivalData(stationClicked);
     addRecentSearch(stationClicked);
+    $("#search-input").val(stationClicked);
+
+    $(".search-result").html("");
 }
 
 $("#wrap").on("click", ".subway-map a.text", function (e) {
@@ -749,7 +752,14 @@ function getGeoPos() {
     });
 }
 
-$("#search-input").on("input", (e) => {
+$("#search-input").on("keyup", (e) => {
+
+
+    if (e.keyCode === 13) {
+
+        $(".search-result").html("");
+        return;
+    }
     const value = e.target.value;
     const arr = [];
 
@@ -772,6 +782,16 @@ $("#search-input").on("input", (e) => {
     $(".search-result").html(htmlText.join(""));
 });
 
+$(".search-box").on("submit", function (e) {
+    if ($(".searched").length) {
+        onClickStation($(".searched")[0].value);
+    }
+
+    $(".search-result").html("");
+
+    return false;
+});
+
 localStorageInit();
 
 // 추가
@@ -789,7 +809,6 @@ $("#mobile-search").on("click", function () {
     $(".search-box").toggleClass("show");
 });
 
-
 $(".search-box").on("click", function () {
     $(".searchbox2").show();
 });
@@ -798,41 +817,39 @@ $(".mobile-search").on("click", function () {
 });
 $(".search_button").on("click", function () {
     $(".searchbox2").hide();
-    $(this).addClass('on');
+    $(this).addClass("on");
 });
 $(".logini").on("click", function () {
     $(".login_popup").show();
-    $(this).addClass('on');
+    $(this).addClass("on");
 });
 $(".loginbtn").on("click", function () {
     $(".login_popup").hide();
 });
-$('.pwpopup_btn').on('click', function(){
+$(".pwpopup_btn").on("click", function () {
     $(".pw_popup").show();
-})
-$('.pwbtn').on('click', function(){
+});
+$(".pwbtn").on("click", function () {
     $(".pw_popup").hide();
-})
-$('#wrap').on('click', function(){
+});
+$("#wrap").on("click", function () {
     $(".login_popup").hide();
-})
-$('#wrap').on('click', function(){
-    $(".searchbox2").hide();
-})
-$('#wrap').on('click', function(){
+});
+
+$("#wrap").on("click", function () {
     $(".pw_popup").hide();
-})
-$('#wrap').on('click', function(){
+});
+$("#wrap").on("click", function () {
     $(".popup").hide();
-})
+});
 $(".nav > button").on("click", function () {
-    $(this).addClass('on');
+    $(this).addClass("on");
 });
 $(".pw_popup > div > button").on("click", function () {
-    $(this).addClass('on');
+    $(this).addClass("on");
 });
 $(".pw_popup > div > button").on("click", function () {
-    $(this).addClass('on');
+    $(this).addClass("on");
 });
 
 $("body").on("click", function (e) {
@@ -844,14 +861,8 @@ $(".favorites").on("click", "a", function () {
     return false;
 });
 
-$('.search-history').on('click', 'a', function() {
- 
-
-  
+$(".search-history").on("click", "a", function () {
     onClickStation($(this).text().trim());
 
-    return false
-
-})
-
-
+    return false;
+});

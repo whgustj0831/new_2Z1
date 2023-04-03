@@ -996,7 +996,7 @@ a.text[data-nearest="nearest"] {
     Border : 4px solid rgb(176, 2, 57) !important;
 }
 span.text {
-    z-index: 99999999 !important;
+    z-index: 999999 !important;
     /* padding: 10px !important; */
 }
 

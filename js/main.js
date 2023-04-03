@@ -416,8 +416,8 @@ async function getTrainLocation() {
         }
 
         clearTimeout(timeoutId);
-        /* 
-        timeoutId = setTimeout(getTrainLocation, 4000); */
+     
+        timeoutId = setTimeout(getTrainLocation, 4000); 
 
         const response = await fetch(
             `http://swopenAPI.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/ALL`,

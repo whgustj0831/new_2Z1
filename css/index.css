@@ -12,9 +12,10 @@
     position: fixed;
     left: 0; top: 0;
     background: #fff;
-    border-right: 3px solid #000;
+    border-right: 3px solid #fff;
     z-index: 999999999999;
     transition: transform 10s;
+    background-color: rgb(223, 243, 255);
 }
 .intro_ot {
     height: 100%;
@@ -22,9 +23,10 @@
     position: fixed;
     right: 0; top: 0;
     background: #fff;
-    border-left: 3px solid #000;
+    border-left: 3px solid #fff;
     z-index: 999999999999;
     transition: transform 10s;
+    background-color: rgb(198, 178, 225);
 }
 .intro_op.hide {
     transform: translate(-10000px);
@@ -34,10 +36,10 @@
 }
 .intro_op > p {
     text-align: center;
-    border: 2px solid #000;
     margin: 150px 20%;
-    padding: 70px 0;
-    border-radius: 20px;
+    padding: 10% 0;
+    border: 1px solid #fff;
+    border-radius: 30px;
     font-size: 50px;
     background: url(../img/Artboard\ 420000.png);
     background-repeat: no-repeat;
@@ -46,16 +48,38 @@
 }
 .intro_ot > p {
     text-align: center;
-    border: 2px solid #000;
     margin: 150px 20%;
-    padding: 70px 0;
-    border-radius: 20px;
+    padding: 10% 0;
+    border: 1px solid #000;
+    border-radius: 30px;
     font-size: 50px;
     background: url(../img/Artboard\ 520000.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
     color: #fff;
+}
+.intro_op > div {
+    display: flex;
+    justify-content: end;
+    margin: 20%;
+    font-size: 25px;
+    word-break: keep-all;
+    padding-right: 20px;
+}
+.intro_ot > div {
+    display: flex;
+    margin: 20%;
+    color: #fff;
+    font-size: 25px;
+    word-break: keep-all;
+    padding-left: 20px;
+}
+.intro_op > div > p {
+    margin-right: 20px;
+}
+.intro_ot > div > p {
+    margin-right: 20px;
 }
 
 body {
@@ -97,6 +121,12 @@ body {
 
 .header > h1 {
     padding: 10px 30px;
+    display: flex;
+}
+.header > h1 > p {
+    padding: 10px 20px;
+    font-size: 20px;
+    color: rgb(0, 121, 6);
 }
 
 .btns {
@@ -571,6 +601,47 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    
+    .intro_op > p {
+        text-align: center;
+        margin: 150px 20%;
+        padding: 20% 0;
+        border-radius: 30px;
+        font-size: 30px;
+        background: url(../img/Artboard\ 420000.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center;
+    }
+    .intro_ot > p {
+        text-align: center;
+        margin: 150px 20%;
+        padding: 20% 0;
+        border-radius: 30px;
+        font-size: 30px;
+        background: url(../img/Artboard\ 520000.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center;
+        color: #fff;
+    }
+    .intro_op > div {
+        display: flex;
+        justify-content: end;
+        margin: 150px 20%;
+        font-size: 16px;
+        word-break: keep-all;
+        padding-right: 20px;
+    }
+    .intro_ot > div {
+        display: flex;
+        margin: 150px 20%;
+        color: #fff;
+        font-size: 16px;
+        word-break: keep-all;
+        padding-left: 20px;
+    }
+
     span.text {
         font-size: 19px;
         word-break: keep-all;
@@ -585,6 +656,11 @@ body {
     .header {
         display: flex;
         flex-wrap: wrap;
+    }
+    .header > h1 > p {
+        padding: 12px 0px 12px 20px;
+        font-size: 16px;
+        color: rgb(0, 121, 6);
     }
     .search-box {
         display: none;
@@ -805,6 +881,12 @@ body {
     }
 }
 @media screen and (max-width:460px) {
+    .header > h1 > p {
+        display: none;
+        padding: 12px 0px 12px 20px;
+        font-size: 16px;
+        color: rgb(0, 121, 6);
+    }
     .search-box {
         width: 100%;
         text-align: center;

@@ -62,12 +62,12 @@ THE SOFTWARE.
             this.layer++;
             var canvas = $(
                 "<canvas style='position:absolute;z-Index:" +
-                ((overlay ? 2000 : 1000) + this.layer) +
-                "' width='" +
-                this.options.pixelWidth +
-                "' height='" +
-                this.options.pixelHeight +
-                "'></canvas>"
+                    ((overlay ? 2000 : 1000) + this.layer) +
+                    "' width='" +
+                    this.options.pixelWidth +
+                    "' height='" +
+                    this.options.pixelHeight +
+                    "'></canvas>"
             );
             el.append(canvas);
             return canvas[0].getContext("2d");
@@ -188,14 +188,11 @@ THE SOFTWARE.
                         $(ul)
                             .children("li")
                             .each(function () {
-
-
                                 var coords = $(this).attr("data-coords");
                                 if (coords === undefined) coords = "";
 
                                 var clicked = $(this).attr("data-clicked");
                                 if (clicked === undefined) clicked = "";
-
 
                                 var nearest = $(this).attr("data-nearest");
                                 if (nearest === undefined) nearest = "";
@@ -206,10 +203,8 @@ THE SOFTWARE.
                                 var labelPos = $(this).attr("data-labelPos");
                                 if (labelPos === undefined) labelPos = "s";
 
-
                                 var pclabel = $(this).attr("data-pclabel");
                                 if (pclabel === undefined) pclabel = "s";
-
 
                                 var marker = $(this).attr("data-marker");
                                 if (marker == undefined) marker = "";
@@ -233,17 +228,17 @@ THE SOFTWARE.
 
                                 self._debug(
                                     "Coords=" +
-                                    coords +
-                                    "; Dir=" +
-                                    dir +
-                                    "; Link=" +
-                                    link +
-                                    "; Label=" +
-                                    label +
-                                    "; labelPos=" +
-                                    labelPos +
-                                    "; Marker=" +
-                                    marker
+                                        coords +
+                                        "; Dir=" +
+                                        dir +
+                                        "; Link=" +
+                                        link +
+                                        "; Label=" +
+                                        label +
+                                        "; labelPos=" +
+                                        labelPos +
+                                        "; Marker=" +
+                                        marker
                                 );
 
                                 var x = "";
@@ -272,7 +267,7 @@ THE SOFTWARE.
                                     labelPos: labelPos,
                                     clicked: clicked,
                                     nearest: nearest,
-                                    pclabel : pclabel
+                                    pclabel: pclabel,
                                 };
                             });
 
@@ -337,12 +332,12 @@ THE SOFTWARE.
 
                         legend.append(
                             "<div><span style='float:left; display:block; width:100px;height:" +
-                            lineWidth +
-                            "px;'><svg>" +
-                            lineSVG +
-                            "</svg></span>" +
-                            lineLabels[line].label +
-                            "</div>"
+                                lineWidth +
+                                "px;'><svg>" +
+                                lineSVG +
+                                "</svg></span>" +
+                                lineLabels[line].label +
+                                "</div>"
                         );
                     }
                 }
@@ -351,7 +346,6 @@ THE SOFTWARE.
 
         _drawBg: function (el) {
             /*     console.log("hi"); */
-
             /*   if ($(window).width() > 768) {
                   var ctx = this._getCanvasLayer(el, false);
                   var background = new Image();
@@ -485,13 +479,13 @@ THE SOFTWARE.
                         }
                         this._debug(
                             currNode.x * scale +
-                            xVal +
-                            ", " +
-                            currNode.y * scale +
-                            "; " +
-                            (nextNode.x + (dirVal * xDiff) / 2) * scale +
-                            ", " +
-                            (nextNode.y + (yVal * xDiff) / 2) * scale
+                                xVal +
+                                ", " +
+                                currNode.y * scale +
+                                "; " +
+                                (nextNode.x + (dirVal * xDiff) / 2) * scale +
+                                ", " +
+                                (nextNode.y + (yVal * xDiff) / 2) * scale
                         );
                         ctx.bezierCurveTo(
                             currNode.x * scale + xVal,
@@ -546,7 +540,6 @@ THE SOFTWARE.
             if (data.label == "") return;
             if (data.marker == "") data.marker = "station";
 
-
             // Scale coordinates for rendering
             var x = data.x * scale;
             var y = data.y * scale;
@@ -595,6 +588,21 @@ THE SOFTWARE.
                     ctx.arc(x, y, width / 2, 0, Math.PI * 2, true);
 
                     break;
+
+                case "@mypos":
+                    textClass = "myPos";
+
+                    const trainImg3 = new Image();
+
+                    trainImg3.src = "img/myLoc1.png";
+                    trainImg3.onload = function () {
+                        //이미지, x좌표, y좌표, 가로크기, 세로크기
+
+                        ctx.drawImage(trainImg3, x - 30, y - 40, 30, 40);
+                    };
+
+                    break;
+
                 case "interchange":
                 case "@interchange":
                     ctx.lineWidth = width;
@@ -733,8 +741,7 @@ THE SOFTWARE.
                     ? "font-size:8pt;font-family:Verdana,Arial,Helvetica,Sans Serif;text-decoration:none; "
                     : "") +
                 "width:20px;" +
-
-          //      (pos != "" ? pos : "") +
+                //      (pos != "" ? pos : "") +
                 ";position:absolute;top:" +
                 (y + el.position().top) +
                 "px;left:" +
@@ -742,17 +749,14 @@ THE SOFTWARE.
                 "px;z-index:3000; border : 5px solid green; display:block; height : 20px; '";
 
             var style2 =
-
                 (textClass != "" ? "class='" + textClass + "' " : "") +
                 "style='" +
                 (textClass == ""
                     ? "font-size:16pt;font-family:Verdana,Arial,Helvetica,Sans Serif;text-decoration:none;"
                     : "") +
                 "width:80px;" +
-
-      
                 ";position:absolute;top:" +
-                (y + el.position().top ) +
+                (y + el.position().top) +
                 "px;left:" +
                 (x + el.position().left) +
                 "px;z-index:2999; '";
@@ -760,37 +764,36 @@ THE SOFTWARE.
             if (data.link != "") {
                 $(
                     "<a " +
-                    `data-labelD="${data.pclabel}"` +
-                    "data-info=" +
-                    data.label.replace(/\\n/g, "<br />") +
-                    style1 +
-                    " title='" +
-                    data.title.replace(/\\n/g, "<br />") +
-                    "' href='" +
-                    data.link +
-                    `' data-clicked = "${data.clicked}"
-                         data-nearest = "${data.nearest}"`
-
-
-                    + "target='_new'>" + "</a>"
+                        `data-labelD="${data.pclabel}"` +
+                        "data-info=" +
+                        data.label.replace(/\\n/g, "<br />") +
+                        style1 +
+                        " title='" +
+                        data.title.replace(/\\n/g, "<br />") +
+                        "' href='" +
+                        data.link +
+                        `' data-clicked = "${data.clicked}"
+                         data-nearest = "${data.nearest}"` +
+                        "target='_new'>" +
+                        "</a>"
                 ).appendTo(el);
 
                 $(
                     "<span " +
-                    `data-pclabel="${data.pclabel}"`+
-                    style2 +
-                    ">" +
-                    data.label.replace(/\\n/g, "<br />") +
-                    "</span>"
+                        `data-pclabel="${data.pclabel}"` +
+                        style2 +
+                        ">" +
+                        data.label.replace(/\\n/g, "<br />") +
+                        "</span>"
                 ).appendTo(el);
             } else
                 $(
                     "<span " +
-                    `data-pclabel="${data.pclabel}"`+
-                    style2 +
-                    ">" +
-                    data.label.replace(/\\n/g, "<br />") +
-                    "</span>"
+                        `data-pclabel="${data.pclabel}"` +
+                        style2 +
+                        ">" +
+                        data.label.replace(/\\n/g, "<br />") +
+                        "</span>"
                 ).appendTo(el);
         },
         _drawGrid: function (el, scale, gridNumbers) {

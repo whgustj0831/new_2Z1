@@ -13,6 +13,14 @@ import { updateArrivalData } from "./sample.js";
 let MarkerHtml;
 const trainPosList = [];
 let stationClicked;
+const myPosInfo = {
+    gotPos: false,
+    x: 0,
+    y: 0,
+    pcX: 0,
+    pcY: 0,
+};
+
 
 const markers = line2.map((station, i) => {
     return {
@@ -307,6 +315,13 @@ data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="
     <ul class="trains"  data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>
+
+
+<ul data-textClass="myPos">
+${myPosInfo.gotPos ? `<li   data-marker="@myPos" data-coords="${myPosInfo.x},${myPosInfo.y}"> </li>` : ""}
+
+</ul>
+
 <ul data-color="#fff">
 ${lisMobile().join("")}
 </ul>
@@ -330,6 +345,12 @@ data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="
   <ul class="trains" data-textClass="trains">
 ${trainPosList.length ? MarkerHtml.join("") : ""}
 </ul>
+
+<ul data-textClass="myPos">
+${myPosInfo.gotPos ? `<li   data-marker="@myPos" data-coords="${myPosInfo.pcX},${myPosInfo.pcY}"> </li>` : ""}
+
+</ul>
+
 <ul data-color="#fff">
     ${lisPc().join("")}
 </ul>
@@ -717,6 +738,7 @@ $(".slider").on("click", ".layer", function (e) {
 
 $("#get-stations").on("click", getGeoPos);
 
+
 function getGeoPos() {
     const options = {
         enableHighAccuracy: true,
@@ -748,9 +770,16 @@ function getGeoPos() {
             $(`[data-info="${station.statn_nm}"]`).addClass("nearest");
         });
 
+        myPosInfo.gotPos = true;
+        myPosInfo.x = line2Sort[0].x + (line2Sort[1].x - line2Sort[0].x)/2
+        myPosInfo.y = line2Sort[0].y + (line2Sort[1].y - line2Sort[0].y)/2
+        myPosInfo.pcX = line2Sort[0].pcX + (line2Sort[1].pcX - line2Sort[0].pcX)/2
+        myPosInfo.pcY = line2Sort[0].pcY + (line2Sort[1].pcY - line2Sort[0].pcY)/2
+
         update();
     });
 }
+
 
 $("#search-input").on("keyup", (e) => {
 

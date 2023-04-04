@@ -851,6 +851,11 @@ $(".pw_popup > div > button").on("click", function () {
 $(".pw_popup > div > button").on("click", function () {
     $(this).addClass("on");
 });
+$(".intro").on("click", function () {
+    $(".intro_op").addClass('hide');
+    $(".intro_ot").addClass('hide');
+});
+
 
 $("body").on("click", function (e) {
     console.log(e.target);

@@ -702,6 +702,15 @@ $(window).on("resize load", function () {
 
     if ($(window).width() < 768) {
         $("header").append($(".search-box"));
+	    
+	    
+	
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $("html, body").css({"width":w,"height":h});
+	    
+	    
+	    
     } else {
         $(".btns").append($(".search-box"));
     }

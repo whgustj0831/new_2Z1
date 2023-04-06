@@ -26,7 +26,7 @@ export function updateArrivalData(stationClicked) {
             clearTimeout(timerId);
 
             const response = await fetch(
-                `http://swopenapi.seoul.go.kr/api/subway/5741755a566c6565313030767a67524a/json/realtimeStationArrival/0/20/${stationClicked}`,
+                `http://swopenapi.seoul.go.kr/api/subway/46774250416c65653835766c785069/json/realtimeStationArrival/0/20/${stationClicked}`,
                 { method: "GET" }
             );
 
